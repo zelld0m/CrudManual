@@ -5,6 +5,13 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using DAO_ClassLibrary;
+
+
+using System.Configuration;
+using System.Data.Sql;
+using System.Data.SqlClient;
+using System.Data;
 
 namespace DAO_WcfService
 {
@@ -20,6 +27,17 @@ namespace DAO_WcfService
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: Add your service operations here
+
+        [OperationContract]
+        DAO_ClassLibrary.DAL_Dummy DummyViewALL();
+        [OperationContract]
+        DAO_ClassLibrary.DAL_Dummy DummyDelete(int inputID);
+        [OperationContract]
+        DAO_ClassLibrary.DAL_Dummy DummyAdd(String name);
+        [OperationContract]
+        DAO_ClassLibrary.DAL_Dummy DummySearch(String inputname);
+        [OperationContract]
+        DAO_ClassLibrary.DAL_Dummy DummyUpdate(int inputID, String name);
     }
 
 

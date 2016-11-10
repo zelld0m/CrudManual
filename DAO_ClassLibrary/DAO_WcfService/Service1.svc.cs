@@ -1,11 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
-
+using DAO_ClassLibrary;
 namespace DAO_WcfService
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in code, svc and config file together.
@@ -29,5 +30,54 @@ namespace DAO_WcfService
             }
             return composite;
         }
+      
+
+        string IService1.GetData(int value)
+        {
+            throw new NotImplementedException();
+        }
+
+        CompositeType IService1.GetDataUsingDataContract(CompositeType composite)
+        {
+            throw new NotImplementedException();
+        }
+
+        DAL_Dummy IService1.DummyViewALL()
+        {
+            throw new NotImplementedException();
+        }
+
+        DAL_Dummy IService1.DummyDelete(int inputID)
+        {
+            throw new NotImplementedException();
+        }
+
+        DAL_Dummy IService1.DummyAdd(string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        DAL_Dummy IService1.DummySearch(string inputname)
+        {
+            throw new NotImplementedException();
+        }
+
+        DAL_Dummy IService1.DummyUpdate(int inputID, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        #region Declaration
+        DAO_ClassLibrary.DAL_Dummy DAL = new DAO_ClassLibrary.DAL_Dummy();
+        DAL_Dummy dt = new DAL_Dummy();
+        #endregion Declaration
+
+        #region COding
+
+
+
+       
+        #endregion Codings
     }
 }
