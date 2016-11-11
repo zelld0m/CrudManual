@@ -31,22 +31,22 @@ namespace PresentationLayer {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
-        /// TextBox1 control.
+        /// _Tb_ID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox _Tb_ID;
         
         /// <summary>
-        /// TextBox2 control.
+        /// _Tb_Name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox2;
+        protected global::System.Web.UI.WebControls.TextBox _Tb_Name;
         
         /// <summary>
         /// _BtnAdd control.

@@ -122,13 +122,33 @@ namespace DataAccessLayer
 
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "SearchDummy";
+            cmd.CommandText = "Search_Dummy";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
 
         }
 
-    
+        public DataSet Search2_dummy(SqlCommand cmd,int _id)
+        {
+
+
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "Search_Dummy";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.AddWithValue("@id", _id);
+         
+            
+            //cmd.CommandText = "Select * from dummy";
+            SqlDataAdapter sda = new SqlDataAdapter("Search_Dummy", con);
+            DataSet ds = new DataSet();
+            cmd.ExecuteNonQuery();
+            sda.Fill(ds);
+
+            return ds;
+        }
+
+
     }
 }
 

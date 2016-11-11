@@ -9,6 +9,9 @@
         .auto-style1 {
             width: 100%;
         }
+        .auto-style2 {
+            width: 295px;
+        }
     </style>
 </head>
 <body>
@@ -17,7 +20,7 @@
     
         <table class="auto-style1">
             <tr>
-                <td>
+                <td class="auto-style2">
                     <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                     </asp:GridView>
                 </td>
@@ -28,7 +31,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>&nbsp;</td>
+                <td class="auto-style2">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -36,11 +39,11 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>
-                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                <td class="auto-style2">
+                    <asp:TextBox ID="_Tb_ID" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="_Tb_Name" runat="server"></asp:TextBox>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -48,7 +51,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>ID</td>
+                <td class="auto-style2">ID</td>
                 <td>Name</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -56,7 +59,7 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>&nbsp;</td>
+                <td class="auto-style2">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -64,17 +67,17 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>
-                    <asp:Button ID="_BtnAdd" runat="server" OnClick="_BtnAdd_Click" Text="add" />
+                <td class="auto-style2">
+                    <asp:Button ID="_BtnAdd" runat="server" OnClick="_BtnAdd_Click" style="height: 26px" Text="add" />
                 </td>
                 <td>
-                    <asp:Button ID="_BtnSearch" runat="server" Text="Search" />
+                    <asp:Button ID="_BtnSearch" runat="server" OnClick="_BtnSearch_Click" Text="Search" />
                 </td>
                 <td>
-                    <asp:Button ID="_BtnUpdate" runat="server" Text="Update" />
+                    <asp:Button ID="_BtnUpdate" runat="server" OnClick="_BtnUpdate_Click" Text="Update" />
                 </td>
                 <td>
-                    <asp:Button ID="_btnDelete" runat="server" Text="Delete" />
+                    <asp:Button ID="_btnDelete" runat="server" OnClick="_btnDelete_Click" Text="Delete" />
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

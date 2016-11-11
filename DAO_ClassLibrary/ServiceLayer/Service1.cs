@@ -43,14 +43,15 @@ namespace ServiceLayer
         Business b = new Business();
         void IService1.addDummy(string name)
         {
-            //b.name = name;
-            b.insert_Dummy(name);
+            b.name = name;
+            b.insert_Dummy();
             throw new NotImplementedException();
         }
 
         void IService1.deleteDummy(int ID)
         {
-            b.delete_Dummy(ID);
+            b.id = ID;
+            b.delete_Dummy(b.id);
             throw new NotImplementedException();
         }
 
@@ -60,7 +61,9 @@ namespace ServiceLayer
 
         void IService1.UpdateDummy(int ID, string Name)
         {
-            b.update_Dummy(ID, Name);
+            b.id = ID;
+            b.name = Name;
+            b.update_Dummy(b.id);
             throw new NotImplementedException();
         }
 
@@ -68,7 +71,10 @@ namespace ServiceLayer
 
         DataSet IService1.SearchDummy(int ID_toSearch)
         {
-         
+            b.id = ID_toSearch;
+            b.Search_dummy(b.id);
+            DataSet ds = new DataSet();
+            ds = b.view_dummy();
             throw new NotImplementedException();
         }
 
