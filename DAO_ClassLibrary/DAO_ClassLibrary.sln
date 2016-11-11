@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO_ClassLibrary", "DAO_ClassLibrary\DAO_ClassLibrary.csproj", "{6210C831-7BAC-435A-B26B-F0C6E003BF0E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccessLayer", "DAO_ClassLibrary\DataAccessLayer.csproj", "{6210C831-7BAC-435A-B26B-F0C6E003BF0E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO_WcfService", "DAO_WcfService\DAO_WcfService.csproj", "{B45E988B-2416-496A-B3B8-F49DC55A2B8D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLayer", "BusinessLayer\BusinessLayer.csproj", "{00C93DFF-0614-4B29-A2B7-AE15C24E2E88}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{B45E988B-2416-496A-B3B8-F49DC55A2B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B45E988B-2416-496A-B3B8-F49DC55A2B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B45E988B-2416-496A-B3B8-F49DC55A2B8D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00C93DFF-0614-4B29-A2B7-AE15C24E2E88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00C93DFF-0614-4B29-A2B7-AE15C24E2E88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00C93DFF-0614-4B29-A2B7-AE15C24E2E88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00C93DFF-0614-4B29-A2B7-AE15C24E2E88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

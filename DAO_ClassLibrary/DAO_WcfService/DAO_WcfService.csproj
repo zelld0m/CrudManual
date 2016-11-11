@@ -115,9 +115,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DAO_ClassLibrary\DAO_ClassLibrary.csproj">
+    <ProjectReference Include="..\DAO_ClassLibrary\DataAccessLayer.csproj">
       <Project>{6210c831-7bac-435a-b26b-f0c6e003bf0e}</Project>
-      <Name>DAO_ClassLibrary</Name>
+      <Name>DataAccessLayer</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
