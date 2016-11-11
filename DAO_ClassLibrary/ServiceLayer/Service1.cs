@@ -64,7 +64,7 @@ namespace ServiceLayer
             b.id = ID;
             b.name = Name;
             b.update_Dummy(b.id);
-            throw new NotImplementedException();
+        
         }
 
        

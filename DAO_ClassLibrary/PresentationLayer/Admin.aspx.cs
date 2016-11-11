@@ -22,7 +22,9 @@ namespace PresentationLayer
 
         void refresh()
         {
-            GridView1.DataSource = b.view_dummy();
+            GridView1.DataSource = svc.viewALLDummy();
+
+            //GridView1.DataSource = b.view_dummy();
             GridView1.DataBind();
         }
         #region Buttons
@@ -45,11 +47,11 @@ namespace PresentationLayer
 
         protected void _BtnUpdate_Click(object sender, EventArgs e)
         {
-            //  svc.UpdateDummy(Convert.ToInt32(_Tb_ID.Text), _Tb_Name.Text);
+              svc.UpdateDummy(Convert.ToInt32(_Tb_ID.Text), _Tb_Name.Text);
 
-            b.id = Convert.ToInt32(_Tb_ID.Text);
-            b.name = _Tb_Name.Text;
-            b.update_Dummy(b.id);
+           // b.id = Convert.ToInt32(_Tb_ID.Text);
+           // b.name = _Tb_Name.Text;
+           // b.update_Dummy(b.id);
             refresh();
         }
 
