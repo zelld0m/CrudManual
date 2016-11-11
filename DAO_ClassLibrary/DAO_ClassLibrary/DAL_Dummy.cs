@@ -80,6 +80,19 @@ namespace DAO_ClassLibrary
             con.Close();
         }
 
+        public SqlDataAdapter viewAllxx(DataTable dtx )
+        {
+            con.Open();
+            SqlCommand cmd = con.CreateCommand();
+            cmd.CommandText = "SELECT * FROM Dummy";
+            cmd.ExecuteNonQuery();
+            DataTable dt = new DataTable();
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+    
+            da.Fill(dt);
+            return da;
+        }
+
 
     }
 }

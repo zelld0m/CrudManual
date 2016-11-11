@@ -54,6 +54,9 @@ namespace DAO_WcfService
 
         DAL_Dummy IService1.DummyAdd(string name)
         {
+
+           
+            return dt;
             throw new NotImplementedException();
         }
 
@@ -63,6 +66,11 @@ namespace DAO_WcfService
         }
 
         DAL_Dummy IService1.DummyUpdate(int inputID, string name)
+        {
+            throw new NotImplementedException();
+        }
+
+        DAL_Dummy IService1.viewall()
         {
             throw new NotImplementedException();
         }

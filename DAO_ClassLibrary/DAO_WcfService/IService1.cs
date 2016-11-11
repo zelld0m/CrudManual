@@ -38,6 +38,11 @@ namespace DAO_WcfService
         DAO_ClassLibrary.DAL_Dummy DummySearch(String inputname);
         [OperationContract]
         DAO_ClassLibrary.DAL_Dummy DummyUpdate(int inputID, String name);
+
+        [OperationContract]
+        DAO_ClassLibrary.DAL_Dummy viewall();
+
+    
     }
 
 
