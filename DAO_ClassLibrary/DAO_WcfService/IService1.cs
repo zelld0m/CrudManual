@@ -29,18 +29,18 @@ namespace DAO_WcfService
         // TODO: Add your service operations here
 
         [OperationContract]
-        DAO_ClassLibrary.DAL_Dummy DummyViewALL();
+        DAO_ClassLibrary.DataAccessLayer DummyViewALL();
         [OperationContract]
-        DAO_ClassLibrary.DAL_Dummy DummyDelete(int inputID);
+        DAO_ClassLibrary.DataAccessLayer DummyDelete(int inputID);
         [OperationContract]
-        DAO_ClassLibrary.DAL_Dummy DummyAdd(String name);
+        DAO_ClassLibrary.DataAccessLayer DummyAdd(String name);
         [OperationContract]
-        DAO_ClassLibrary.DAL_Dummy DummySearch(String inputname);
+        DAO_ClassLibrary.DataAccessLayer DummySearch(String inputname);
         [OperationContract]
-        DAO_ClassLibrary.DAL_Dummy DummyUpdate(int inputID, String name);
+        DAO_ClassLibrary.DataAccessLayer DummyUpdate(int inputID, String name);
 
         [OperationContract]
-        DAO_ClassLibrary.DAL_Dummy viewall();
+        DAO_ClassLibrary.DataAccessLayer viewall();
 
     
     }

@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO_ClassLibrary", "DAO_Cla
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAO_WcfService", "DAO_WcfService\DAO_WcfService.csproj", "{B45E988B-2416-496A-B3B8-F49DC55A2B8D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebDummy", "WebDummy\WebDummy.csproj", "{013594AC-D95E-4F77-A18C-54E5504280FC}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{B45E988B-2416-496A-B3B8-F49DC55A2B8D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B45E988B-2416-496A-B3B8-F49DC55A2B8D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B45E988B-2416-496A-B3B8-F49DC55A2B8D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{013594AC-D95E-4F77-A18C-54E5504280FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{013594AC-D95E-4F77-A18C-54E5504280FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{013594AC-D95E-4F77-A18C-54E5504280FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{013594AC-D95E-4F77-A18C-54E5504280FC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

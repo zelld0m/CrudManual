@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 using System.Data;
 namespace DAO_ClassLibrary
 {
-    public class DAL_Dummy
+    public class DataAccessLayer
     {
         //sample
 
@@ -93,18 +93,44 @@ namespace DAO_ClassLibrary
            
             return ds ;
         }
-        public DataSet insert_Dummy(SqlCommand cmd)
+        public void insert_Dummy(SqlCommand cmd)
         {
             con.Open();
             cmd.Connection = con;
-            cmd.CommandText = "Insert_Dummy"
+            cmd.CommandText = "Insert_Dummy";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+        }
+
+        public void update_Dummy(SqlCommand cmd)
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "Update_Dummy";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+        }
+        public void Delete_Dummy(SqlCommand cmd)
+        {
 
 
-            SqlDataAdapter sda = new SqlDataAdapter("SelectALL_Dummy", con);
-            DataSet ds = new DataSet();
-            sda.Fill(ds);
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "Delete_Dummy";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
 
-            return ds;
+        }
+        public void Search_dummy(SqlCommand cmd)
+        {
+
+
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "SearchDummy";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+
         }
 
     }

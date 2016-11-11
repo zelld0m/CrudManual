@@ -42,17 +42,17 @@ namespace DAO_WcfService
             throw new NotImplementedException();
         }
 
-        DAL_Dummy IService1.DummyViewALL()
+        DataAccessLayer IService1.DummyViewALL()
         {
             throw new NotImplementedException();
         }
 
-        DAL_Dummy IService1.DummyDelete(int inputID)
+        DataAccessLayer IService1.DummyDelete(int inputID)
         {
             throw new NotImplementedException();
         }
 
-        DAL_Dummy IService1.DummyAdd(string name)
+        DataAccessLayer IService1.DummyAdd(string name)
         {
 
            
@@ -60,25 +60,25 @@ namespace DAO_WcfService
             throw new NotImplementedException();
         }
 
-        DAL_Dummy IService1.DummySearch(string inputname)
+        DataAccessLayer IService1.DummySearch(string inputname)
         {
             throw new NotImplementedException();
         }
 
-        DAL_Dummy IService1.DummyUpdate(int inputID, string name)
+        DataAccessLayer IService1.DummyUpdate(int inputID, string name)
         {
             throw new NotImplementedException();
         }
 
-        DAL_Dummy IService1.viewall()
+        DataAccessLayer IService1.viewall()
         {
             throw new NotImplementedException();
         }
 
 
         #region Declaration
-        DAO_ClassLibrary.DAL_Dummy DAL = new DAO_ClassLibrary.DAL_Dummy();
-        DAL_Dummy dt = new DAL_Dummy();
+        DAO_ClassLibrary.DataAccessLayer DAL = new DAO_ClassLibrary.DataAccessLayer();
+        DataAccessLayer dt = new DataAccessLayer();
         #endregion Declaration
 
         #region COding
