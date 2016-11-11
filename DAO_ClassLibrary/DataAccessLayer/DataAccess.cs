@@ -144,7 +144,7 @@ namespace DataAccessLayer
             DataSet ds = new DataSet();
             cmd.ExecuteNonQuery();
             sda.Fill(ds);
-
+            con.Close();
             return ds;
         }
 

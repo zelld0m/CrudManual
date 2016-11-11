@@ -153,12 +153,6 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\BusinessLayer\BusinessLayer.csproj">
-      <Project>{00c93dff-0614-4b29-a2b7-ae15c24e2e88}</Project>
-      <Name>BusinessLayer</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <WCFMetadataStorage Include="Service References\ServiceReference1\" />
   </ItemGroup>
   <PropertyGroup>

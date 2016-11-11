@@ -12,11 +12,11 @@ namespace ServiceLayer
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
     public class Service1 : IService1
     {
+        #region Fixed
         public string GetData(int value)
         {
             return string.Format("You entered: {0}", value);
         }
-
         public CompositeType GetDataUsingDataContract(CompositeType composite)
         {
             if (composite == null)
@@ -33,11 +33,13 @@ namespace ServiceLayer
         {
             throw new NotImplementedException();
         }
-
         CompositeType IService1.GetDataUsingDataContract(CompositeType composite)
         {
             throw new NotImplementedException();
         }
+        #endregion Fixed
+
+
 
         #region Code
         Business b = new Business();
@@ -45,37 +47,28 @@ namespace ServiceLayer
         {
             b.name = name;
             b.insert_Dummy();
-          
         }
 
         void IService1.deleteDummy(int ID)
         {
             b.id = ID;
             b.delete_Dummy(b.id);
-           
         }
-
-
-
-      
-
+        
         void IService1.UpdateDummy(int ID, string Name)
         {
             b.id = ID;
             b.name = Name;
             b.update_Dummy(b.id);
-        
         }
-
-       
-
+        
         DataSet IService1.SearchDummy(int ID_toSearch)
         {
             b.id = ID_toSearch;
             b.Search_dummy(b.id);
             DataSet ds = new DataSet();
-            ds = b.view_dummy();
-            throw new NotImplementedException();
+            ds = b.Search22_dummy(b.id);
+            return ds;
         }
 
         DataSet IService1.viewALLDummy()
