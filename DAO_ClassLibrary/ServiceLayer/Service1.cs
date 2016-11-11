@@ -45,14 +45,14 @@ namespace ServiceLayer
         {
             b.name = name;
             b.insert_Dummy();
-            throw new NotImplementedException();
+          
         }
 
         void IService1.deleteDummy(int ID)
         {
             b.id = ID;
             b.delete_Dummy(b.id);
-            throw new NotImplementedException();
+           
         }
 
 
