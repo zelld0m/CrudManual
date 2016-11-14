@@ -31,8 +31,12 @@
                     <asp:GridView ID="GridView2" runat="server">
                     </asp:GridView>
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                </td>
+                <td>
+                    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                </td>
                 <td>
                     <asp:Button ID="Btn_refresh" runat="server" OnClick="Btn_AuthorityName_Click" Text="Refresh" Width="28px" />
                 </td>

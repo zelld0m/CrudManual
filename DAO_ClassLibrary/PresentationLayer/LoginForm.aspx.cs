@@ -17,7 +17,30 @@ namespace PresentationLayer
 
         protected void Btn_Login_Click(object sender, EventArgs e)
         {
+            if ( String.IsNullOrWhiteSpace(Tb_Name.Text) || String.IsNullOrWhiteSpace(Tb_AuthorityName.Text))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " Please Complete the TextBox " + "');", true);
+            }
+            else
+            {
+                
+                GridView1.DataSource = svc.Validation(Tb_Name.Text, Tb_AuthorityName.Text);
+                GridView1.DataBind();
+                if (GridView1.Rows.Count > 0)//Sucess Login In
+                {
+                    int AccessLevel = Convert.ToInt32(svc.Validation(Tb_Name.Text, Tb_AuthorityName.Text).Tables[0].Rows[0][4]);
+                    int id = Convert.ToInt32(svc.Validation(Tb_Name.Text, Tb_AuthorityName.Text).Tables[0].Rows[0][0]);
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", " : alert('" + " Congratulations ::" + AccessLevel + "');", true);
+                    Response.Write("<script>alert('Congrats PASSWORD AND USERNAME: AccessLevel = " + AccessLevel + " ');</script>");
+                    Response.Redirect("Admin.aspx?id="+id+"&AccessLevel=" + AccessLevel, true);// Correct 
 
+
+                }
+                else
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " Input Error " + "');", true);
+                }
+            }
         }
 
         protected void Btn_Out_Click(object sender, EventArgs e)

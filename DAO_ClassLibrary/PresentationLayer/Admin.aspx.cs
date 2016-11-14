@@ -13,6 +13,11 @@ namespace PresentationLayer
         ServiceReference1.Service1Client svc = new ServiceReference1.Service1Client();
         protected void Page_Load(object sender, EventArgs e)
         {
+            int  id = Convert.ToInt32(Request.QueryString["id"]);
+            int AccessLevel = Convert.ToInt32( Request.QueryString["AccessLevel"]);
+            Label1.Text = id.ToString();
+            Label2.Text = AccessLevel.ToString();
+
             refresh();
         }
         void refresh()
@@ -84,15 +89,11 @@ namespace PresentationLayer
         }
         protected void _btnDelete_Click(object sender, EventArgs e)
         {
-
-         
-           // GridView1.DataBind();
             if (String.IsNullOrWhiteSpace(_Tb_ID.Text  ))
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "ID BOX IS EMPTY  " + "');", true);    
                 refresh();
             }
-           
             else 
             {
               
@@ -107,11 +108,9 @@ namespace PresentationLayer
                 else if (GridView1.Rows.Count ==0)
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " NO ID FOUND " + "');", true);
-                }
-               
+                }  
                 refresh();
             }
-           
         }
         #endregion buttons
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
