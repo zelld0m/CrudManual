@@ -13,7 +13,7 @@
             width: 201px;
         }
         .auto-style3 {
-            width: 207px;
+            width: 60px;
         }
     </style>
 </head>
@@ -27,8 +27,7 @@
                     <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                     </asp:GridView>
                 </td>
-                <td class="auto-style3">&nbsp;</td>
-                <td>
+                <td colspan="2">
                     <asp:GridView ID="GridView2" runat="server">
                     </asp:GridView>
                 </td>

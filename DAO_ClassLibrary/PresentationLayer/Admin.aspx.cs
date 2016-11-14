@@ -33,10 +33,7 @@ namespace PresentationLayer
         protected void _BtnSearch_Click(object sender, EventArgs e)   // ERROR IN SEARCH
         {
 
-            //  b.Search_dummy(b.id);
-            // b.id = Convert.ToInt32(_Tb_ID.Text);
-            // GridView1.DataSource= b.Search_dummy(b.id);
-            // GridView1.DataBind();
+       
 
             GridView2.DataSource = svc.searchAuthority(Convert.ToInt32(_Tb_ID.Text));
             GridView2.DataBind();
@@ -47,8 +44,9 @@ namespace PresentationLayer
         {
             //refresh();
             svc.UpdateDummy(Convert.ToInt32(_Tb_ID.Text), _Tb_Name.Text);
-            GridView1.DataSource= svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
-            GridView1.DataBind();
+            svc.UpdateAuthority(Convert.ToInt32(_Tb_ID.Text), Convert.ToInt32(_Tb_AccessLevel.Text), _Tb_AuthorityName.Text);
+            _BtnSearch_Click(sender,e);   // Activate Button Search
+          
         }
         protected void _btnDelete_Click(object sender, EventArgs e)
         {

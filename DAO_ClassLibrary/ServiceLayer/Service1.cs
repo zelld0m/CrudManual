@@ -94,6 +94,12 @@ namespace ServiceLayer
             return ds;
             throw new NotImplementedException();
         }
+
+        void IService1.UpdateAuthority(int _id, int _AccessLevel, string _AuthorityName)
+        {
+            b.Update_Authority(_id, _AccessLevel, _AuthorityName);
+            
+        }
         #endregion
 
     }

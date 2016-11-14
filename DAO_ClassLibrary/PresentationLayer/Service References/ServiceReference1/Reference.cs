@@ -137,6 +137,12 @@ namespace PresentationLayer.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/searchAuthority", ReplyAction="http://tempuri.org/IService1/searchAuthorityResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> searchAuthorityAsync(int _ID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateAuthority", ReplyAction="http://tempuri.org/IService1/UpdateAuthorityResponse")]
+        void UpdateAuthority(int _id, int _AccessLevel, string _AuthorityName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateAuthority", ReplyAction="http://tempuri.org/IService1/UpdateAuthorityResponse")]
+        System.Threading.Tasks.Task UpdateAuthorityAsync(int _id, int _AccessLevel, string _AuthorityName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -244,6 +250,14 @@ namespace PresentationLayer.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> searchAuthorityAsync(int _ID) {
             return base.Channel.searchAuthorityAsync(_ID);
+        }
+        
+        public void UpdateAuthority(int _id, int _AccessLevel, string _AuthorityName) {
+            base.Channel.UpdateAuthority(_id, _AccessLevel, _AuthorityName);
+        }
+        
+        public System.Threading.Tasks.Task UpdateAuthorityAsync(int _id, int _AccessLevel, string _AuthorityName) {
+            return base.Channel.UpdateAuthorityAsync(_id, _AccessLevel, _AuthorityName);
         }
     }
 }

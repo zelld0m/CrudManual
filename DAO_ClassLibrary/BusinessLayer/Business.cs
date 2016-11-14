@@ -65,6 +65,13 @@ namespace BusinessLayer
         {
             return da.Search_Authority(cmd, _id);
         }
+        public void Update_Authority(int _id,int _AccessLevel,String _AuthorityName)
+        {
+            cmd.Parameters.AddWithValue("@AccessLevel", _AccessLevel);
+            cmd.Parameters.AddWithValue("@AuthorityName", _AuthorityName);
+            cmd.Parameters.AddWithValue("@id", _id);
+            da.Update_Authority(cmd);
+        }
         #endregion Crud_Authority
     }
 

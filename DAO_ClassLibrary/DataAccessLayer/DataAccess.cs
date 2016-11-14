@@ -90,6 +90,14 @@ namespace DataAccessLayer
             con.Close();
             return ds;
         }
+        public void Update_Authority(SqlCommand cmd)
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "Update_Authority";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+        }
     }
 }
 
