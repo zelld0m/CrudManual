@@ -31,6 +31,24 @@ namespace PresentationLayer {
         protected global::System.Web.UI.WebControls.GridView GridView1;
         
         /// <summary>
+        /// GridView2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.GridView GridView2;
+        
+        /// <summary>
+        /// Btn_refresh control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_refresh;
+        
+        /// <summary>
         /// _Tb_ID control.
         /// </summary>
         /// <remarks>
@@ -47,6 +65,24 @@ namespace PresentationLayer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox _Tb_Name;
+        
+        /// <summary>
+        /// _Tb_AuthorityName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox _Tb_AuthorityName;
+        
+        /// <summary>
+        /// _Tb_AccessLevel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox _Tb_AccessLevel;
         
         /// <summary>
         /// _BtnAdd control.

@@ -19,12 +19,14 @@ namespace PresentationLayer
         {
             GridView1.DataSource = svc.viewALLDummy();
             GridView1.DataBind();
+            GridView2.DataSource = svc.viewAuthority();
+            GridView2.DataBind();
         }
         #region Buttons
         protected void _BtnAdd_Click(object sender, EventArgs e)
         {
 
-            
+            svc.insertAuthority(_Tb_AuthorityName.Text, Convert.ToInt32(_Tb_AccessLevel.Text));
             svc.addDummy(_Tb_Name.Text);
             refresh();
         }
@@ -38,7 +40,6 @@ namespace PresentationLayer
             GridView1.DataSource= svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
             GridView1.DataBind();
         }
-
         protected void _BtnUpdate_Click(object sender, EventArgs e)
         {
             //refresh();
@@ -82,6 +83,11 @@ namespace PresentationLayer
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Btn_AuthorityName_Click(object sender, EventArgs e)
+        {
+            refresh();
         }
     }
 }

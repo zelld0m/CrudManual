@@ -10,7 +10,10 @@
             width: 100%;
         }
         .auto-style2 {
-            width: 295px;
+            width: 201px;
+        }
+        .auto-style3 {
+            width: 207px;
         }
     </style>
 </head>
@@ -24,15 +27,20 @@
                     <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                     </asp:GridView>
                 </td>
+                <td class="auto-style3">&nbsp;</td>
+                <td>
+                    <asp:GridView ID="GridView2" runat="server">
+                    </asp:GridView>
+                </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:Button ID="Btn_refresh" runat="server" OnClick="Btn_AuthorityName_Click" Text="Refresh" Width="28px" />
+                </td>
             </tr>
             <tr>
                 <td class="auto-style2">&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -42,25 +50,29 @@
                 <td class="auto-style2">
                     <asp:TextBox ID="_Tb_ID" runat="server"></asp:TextBox>
                 </td>
-                <td>
+                <td class="auto-style3">
                     <asp:TextBox ID="_Tb_Name" runat="server"></asp:TextBox>
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:TextBox ID="_Tb_AuthorityName" runat="server"></asp:TextBox>
+                </td>
+                <td>
+                    <asp:TextBox ID="_Tb_AccessLevel" runat="server"></asp:TextBox>
+                </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style2">ID</td>
-                <td>Name</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style3">Name</td>
+                <td>AuthorityName</td>
+                <td>AccessLevel</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
             </tr>
             <tr>
                 <td class="auto-style2">&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
@@ -70,7 +82,7 @@
                 <td class="auto-style2">
                     <asp:Button ID="_BtnAdd" runat="server" OnClick="_BtnAdd_Click" style="height: 26px" Text="add" />
                 </td>
-                <td>
+                <td class="auto-style3">
                     <asp:Button ID="_BtnSearch" runat="server" OnClick="_BtnSearch_Click" Text="Search" />
                 </td>
                 <td>

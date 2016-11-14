@@ -119,6 +119,18 @@ namespace PresentationLayer.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/viewALLDummy", ReplyAction="http://tempuri.org/IService1/viewALLDummyResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> viewALLDummyAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/insertAuthority", ReplyAction="http://tempuri.org/IService1/insertAuthorityResponse")]
+        void insertAuthority(string AuthorityName, int AccessLevel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/insertAuthority", ReplyAction="http://tempuri.org/IService1/insertAuthorityResponse")]
+        System.Threading.Tasks.Task insertAuthorityAsync(string AuthorityName, int AccessLevel);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/viewAuthority", ReplyAction="http://tempuri.org/IService1/viewAuthorityResponse")]
+        System.Data.DataSet viewAuthority();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/viewAuthority", ReplyAction="http://tempuri.org/IService1/viewAuthorityResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> viewAuthorityAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -202,6 +214,22 @@ namespace PresentationLayer.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> viewALLDummyAsync() {
             return base.Channel.viewALLDummyAsync();
+        }
+        
+        public void insertAuthority(string AuthorityName, int AccessLevel) {
+            base.Channel.insertAuthority(AuthorityName, AccessLevel);
+        }
+        
+        public System.Threading.Tasks.Task insertAuthorityAsync(string AuthorityName, int AccessLevel) {
+            return base.Channel.insertAuthorityAsync(AuthorityName, AccessLevel);
+        }
+        
+        public System.Data.DataSet viewAuthority() {
+            return base.Channel.viewAuthority();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> viewAuthorityAsync() {
+            return base.Channel.viewAuthorityAsync();
         }
     }
 }

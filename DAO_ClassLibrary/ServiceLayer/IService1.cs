@@ -33,7 +33,7 @@ namespace ServiceLayer
 
 
         [OperationContract]
-        void insertAuthority();
+        void insertAuthority(String AuthorityName, int AccessLevel);
         [OperationContract]
         DataSet viewAuthority();
         //[OperationContract]

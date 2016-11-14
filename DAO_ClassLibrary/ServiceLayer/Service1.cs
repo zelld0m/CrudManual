@@ -73,8 +73,21 @@ namespace ServiceLayer
             throw new NotImplementedException();
         }
         #endregion
+
         #region Authority
-       
+        DataSet IService1.viewAuthority()
+        {
+            DataSet ds = new DataSet();
+            ds = b.view_Authority();
+            return ds;
+            throw new NotImplementedException();
+        }
+        void IService1.insertAuthority(string AuthorityName, int AccessLevel)
+        {
+            
+            b.insert_Authority(AuthorityName, AccessLevel);
+                
+        }
         #endregion
 
     }

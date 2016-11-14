@@ -62,7 +62,7 @@ namespace DataAccessLayer
         public DataSet view_Authority()
         {
             SqlCommand cmd = con.CreateCommand();
-            String query = "Select * from Authority";
+            String query = "Select * from AuthorityLevel";
             SqlDataAdapter sda = new SqlDataAdapter(query, con);
             DataSet ds = new DataSet();
             sda.Fill(ds);

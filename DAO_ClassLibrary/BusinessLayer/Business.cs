@@ -46,6 +46,21 @@ namespace BusinessLayer
 
         }
         #endregion Crud_DummyEnd
+
+
+        #region Crud_Authority
+        public void insert_Authority(String AuthorityName,int AccessLevel)
+        {
+            cmd.Parameters.AddWithValue("@AuthorityName", AuthorityName);
+            cmd.Parameters.AddWithValue("@AccessLevel", AccessLevel);
+            da.insert_Authority(cmd);
+
+        }
+        public DataSet view_Authority()
+        {
+            return da.view_Authority();
+        }
+        #endregion Crud_Authority
     }
 
 }
