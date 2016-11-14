@@ -38,32 +38,25 @@ namespace ServiceLayer
             throw new NotImplementedException();
         }
         #endregion Fixed
-
-
-
+        
         #region Code
         Business b = new Business();
         void IService1.addDummy(string name)
         {
-            
             b.name = name;
             b.insert_Dummy();
-          //  b.insert2_Dummy(name);
         }
-
         void IService1.deleteDummy(int ID)
         {
             b.id = ID;
             b.delete_Dummy(b.id);
         }
-        
         void IService1.UpdateDummy(int ID, string Name)
         {
             b.id = ID;
             b.name = Name;
             b.update_Dummy(b.id);
         }
-        
         DataSet IService1.SearchDummy(int ID_toSearch)
         {
             b.id = ID_toSearch;
@@ -72,7 +65,6 @@ namespace ServiceLayer
             ds = b.Search_dummy(b.id);
             return ds;
         }
-
         DataSet IService1.viewALLDummy()
         {
             DataSet ds = new DataSet();

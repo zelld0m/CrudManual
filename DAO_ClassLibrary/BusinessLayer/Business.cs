@@ -10,10 +10,12 @@ namespace BusinessLayer
 {
     public class Business
     {
+        #region Declaration
         DataAccess da = new DataAccess();
         public int id { get; set; }
         public String name { get; set; }
         SqlCommand cmd = new SqlCommand();
+        #endregion Declaration
 
         public DataSet view_dummy() //  view
         {
@@ -23,10 +25,6 @@ namespace BusinessLayer
         {
             cmd.Parameters.AddWithValue("@name", name);//
             da.insert_Dummy(cmd);       // Method created in dataaccesslayer
-        }
-        public void insert2_Dummy(String _name)
-        {
-            da.insert_Dummy2( cmd ,_name);
         }
         public void update_Dummy(int _id)// Update
         {

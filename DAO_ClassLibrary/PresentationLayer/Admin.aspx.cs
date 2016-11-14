@@ -35,8 +35,6 @@ namespace PresentationLayer
             // b.id = Convert.ToInt32(_Tb_ID.Text);
             // GridView1.DataSource= b.Search_dummy(b.id);
             // GridView1.DataBind();
-
-            
             GridView1.DataSource= svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
             GridView1.DataBind();
         }
@@ -50,8 +48,35 @@ namespace PresentationLayer
         }
         protected void _btnDelete_Click(object sender, EventArgs e)
         {
-            svc.deleteDummy(Convert.ToInt32(_Tb_ID.Text));
-            refresh();
+
+         
+           // GridView1.DataBind();
+            if (String.IsNullOrWhiteSpace(_Tb_ID.Text  ))
+            {
+     
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "ID BOX IS EMPTY  " + "');", true);    
+                refresh();
+            }
+           
+            else 
+            {
+                GridView1.DataSource = svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
+                GridView1.DataBind();
+
+                if (GridView1.Rows.Count > 0)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " Deleted " + "');", true);
+                    svc.deleteDummy(Convert.ToInt32(_Tb_ID.Text));
+                    refresh();
+                }
+                else if (GridView1.Rows.Count ==0)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " NO ID FOUND " + "');", true);
+                }
+               
+                refresh();
+            }
+           
         }
         #endregion buttons
         protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
