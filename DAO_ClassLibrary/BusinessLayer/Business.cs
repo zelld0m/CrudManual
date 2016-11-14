@@ -33,6 +33,7 @@ namespace BusinessLayer
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@name", name);
             da.update_Dummy(cmd);
+            
         }
         public void delete_Dummy(int _id)   //Delete
         {

@@ -43,8 +43,10 @@ namespace PresentationLayer
 
         protected void _BtnUpdate_Click(object sender, EventArgs e)
         {
+            //refresh();
             svc.UpdateDummy(Convert.ToInt32(_Tb_ID.Text), _Tb_Name.Text);
-            refresh();
+            GridView1.DataSource= svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
+            GridView1.DataBind();
         }
         protected void _btnDelete_Click(object sender, EventArgs e)
         {

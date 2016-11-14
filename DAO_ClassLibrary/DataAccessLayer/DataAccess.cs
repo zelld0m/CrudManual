@@ -136,8 +136,6 @@ namespace DataAccessLayer
 
         public DataSet Search_dummy(SqlCommand cmd,int _id)
         {
-
-
             //con.Open();
             //cmd.Connection = con;
             //cmd.CommandText = "Search_Dummy";
