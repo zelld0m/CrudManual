@@ -84,9 +84,15 @@ namespace ServiceLayer
         }
         void IService1.insertAuthority(string AuthorityName, int AccessLevel)
         {
-            
             b.insert_Authority(AuthorityName, AccessLevel);
-                
+        }
+
+        DataSet IService1.searchAuthority(int _ID)
+        {
+            DataSet ds = new DataSet();
+            ds = b.search_Authority(_ID);
+            return ds;
+            throw new NotImplementedException();
         }
         #endregion
 

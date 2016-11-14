@@ -80,6 +80,16 @@ namespace DataAccessLayer
         }
         #endregion DB_AuthorityEnd
 
+
+        public DataSet Search_Authority(SqlCommand cmd,int _id)
+        {
+            String query = "Select * From AuthorityLevel where A_ID = '" +_id +"'";
+            SqlDataAdapter sda = new SqlDataAdapter(query, con);
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            con.Close();
+            return ds;
+        }
     }
 }
 

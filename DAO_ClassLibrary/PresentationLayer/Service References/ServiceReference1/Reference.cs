@@ -131,6 +131,12 @@ namespace PresentationLayer.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/viewAuthority", ReplyAction="http://tempuri.org/IService1/viewAuthorityResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> viewAuthorityAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/searchAuthority", ReplyAction="http://tempuri.org/IService1/searchAuthorityResponse")]
+        System.Data.DataSet searchAuthority(int _ID);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/searchAuthority", ReplyAction="http://tempuri.org/IService1/searchAuthorityResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> searchAuthorityAsync(int _ID);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -230,6 +236,14 @@ namespace PresentationLayer.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> viewAuthorityAsync() {
             return base.Channel.viewAuthorityAsync();
+        }
+        
+        public System.Data.DataSet searchAuthority(int _ID) {
+            return base.Channel.searchAuthority(_ID);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> searchAuthorityAsync(int _ID) {
+            return base.Channel.searchAuthorityAsync(_ID);
         }
     }
 }

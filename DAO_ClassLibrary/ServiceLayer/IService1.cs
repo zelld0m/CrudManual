@@ -36,8 +36,8 @@ namespace ServiceLayer
         void insertAuthority(String AuthorityName, int AccessLevel);
         [OperationContract]
         DataSet viewAuthority();
-        //[OperationContract]
-
+        [OperationContract]
+        DataSet searchAuthority(int _ID);
         //[OperationContract]
     }
 

@@ -37,6 +37,9 @@ namespace PresentationLayer
             // b.id = Convert.ToInt32(_Tb_ID.Text);
             // GridView1.DataSource= b.Search_dummy(b.id);
             // GridView1.DataBind();
+
+            GridView2.DataSource = svc.searchAuthority(Convert.ToInt32(_Tb_ID.Text));
+            GridView2.DataBind();
             GridView1.DataSource= svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
             GridView1.DataBind();
         }

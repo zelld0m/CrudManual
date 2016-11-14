@@ -60,6 +60,11 @@ namespace BusinessLayer
         {
             return da.view_Authority();
         }
+
+        public DataSet search_Authority(int _id)
+        {
+            return da.Search_Authority(cmd, _id);
+        }
         #endregion Crud_Authority
     }
 
