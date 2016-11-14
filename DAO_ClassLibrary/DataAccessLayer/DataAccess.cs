@@ -96,6 +96,22 @@ namespace DataAccessLayer
             cmd.CommandText = "Insert_Dummy";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
+            con.Close();
+        }
+
+        public void insert_Dummy2(SqlCommand cmd,String _name)
+        {
+          
+            cmd = new SqlCommand("INSERT INTO Data (Name) VALUES (@Name)");
+            cmd.CommandType = CommandType.Text;
+           
+            cmd.Connection = con;
+            cmd.Parameters.AddWithValue("@Name", _name);
+            con.Open();
+            //cmd.ExecuteNonQuery();
+
+          
+
         }
         public void update_Dummy(SqlCommand cmd)
         {
@@ -116,33 +132,31 @@ namespace DataAccessLayer
             cmd.ExecuteNonQuery();
 
         }
-        public void Search_dummy(SqlCommand cmd)
+
+
+        public DataSet Search_dummy(SqlCommand cmd,int _id)
         {
 
 
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandText = "Search_Dummy";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.ExecuteNonQuery();
-
-        }
-
-        public DataSet Search2_dummy(SqlCommand cmd,int _id)
-        {
+            //con.Open();
+            //cmd.Connection = con;
+            //cmd.CommandText = "Search_Dummy";
+            //cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@id", _id);
 
 
-            con.Open();
-            cmd.Connection = con;
-            cmd.CommandText = "Search_Dummy";
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.AddWithValue("@id", _id);
-         
-            
-            //cmd.CommandText = "Select * from dummy";
-            SqlDataAdapter sda = new SqlDataAdapter("Search_Dummy", con);
+            ////cmd.CommandText = "Select * from dummy";
+            //SqlDataAdapter sda = new SqlDataAdapter("Search_Dummy", con);
+            //DataSet ds = new DataSet();
+            //cmd.ExecuteNonQuery();
+            //sda.Fill(ds);
+            //con.Close();
+
+
+
+            String query = " Select * from dummy where ID like '" + _id + "%'";
+            SqlDataAdapter sda = new SqlDataAdapter(query, con);
             DataSet ds = new DataSet();
-            cmd.ExecuteNonQuery();
             sda.Fill(ds);
             con.Close();
             return ds;

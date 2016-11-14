@@ -24,7 +24,10 @@ namespace BusinessLayer
             cmd.Parameters.AddWithValue("@name", name);//
             da.insert_Dummy(cmd);       // Method created in dataaccesslayer
         }
-
+        public void insert2_Dummy(String _name)
+        {
+            da.insert_Dummy2( cmd ,_name);
+        }
         public void update_Dummy(int _id)// Update
         {
             cmd.Parameters.AddWithValue("@id", id);
@@ -36,18 +39,15 @@ namespace BusinessLayer
             cmd.Parameters.AddWithValue("@id", id);
             da.Delete_Dummy(cmd);
         }
-        public void Search_dummy(int _id)   //Search
-        {
-            cmd.Parameters.AddWithValue("@id", id);
-            da.Search_dummy(cmd);
-        }
-        public DataSet Search22_dummy(int _id)   //Search
+      
+        public DataSet Search_dummy(int _id)   //Search
         {
 
-            return da.Search2_dummy(cmd,_id);
+            return da.Search_dummy(cmd,_id);
 
       
         }
+
     }
     
 }

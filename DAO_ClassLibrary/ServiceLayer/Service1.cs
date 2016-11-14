@@ -45,8 +45,10 @@ namespace ServiceLayer
         Business b = new Business();
         void IService1.addDummy(string name)
         {
+            
             b.name = name;
             b.insert_Dummy();
+          //  b.insert2_Dummy(name);
         }
 
         void IService1.deleteDummy(int ID)
@@ -67,7 +69,7 @@ namespace ServiceLayer
             b.id = ID_toSearch;
             b.Search_dummy(b.id);
             DataSet ds = new DataSet();
-            ds = b.Search22_dummy(b.id);
+            ds = b.Search_dummy(b.id);
             return ds;
         }
 
