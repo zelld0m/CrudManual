@@ -20,6 +20,7 @@ namespace DataAccessLayer
             SqlDataAdapter sda = new SqlDataAdapter("SelectALL_Dummy", con);
             DataSet ds = new DataSet();
             sda.Fill(ds);
+            con.Close();
             return ds;
         }
         public void insert_Dummy(SqlCommand cmd)
@@ -38,6 +39,7 @@ namespace DataAccessLayer
             cmd.CommandText = "Update_Dummy";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
+            con.Close();
         }
         public void Delete_Dummy(SqlCommand cmd)
         {
@@ -66,6 +68,7 @@ namespace DataAccessLayer
             SqlDataAdapter sda = new SqlDataAdapter(query, con);
             DataSet ds = new DataSet();
             sda.Fill(ds);
+            con.Close();
             return ds;
         }
         public void insert_Authority(SqlCommand cmd)
@@ -97,6 +100,7 @@ namespace DataAccessLayer
             cmd.CommandText = "Update_Authority";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
+            con.Close();
         }
     }
 }

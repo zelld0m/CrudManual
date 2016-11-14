@@ -25,7 +25,6 @@ namespace PresentationLayer
         #region Buttons
         protected void _BtnAdd_Click(object sender, EventArgs e)
         {
-
             svc.insertAuthority(_Tb_AuthorityName.Text, Convert.ToInt32(_Tb_AccessLevel.Text));
             svc.addDummy(_Tb_Name.Text);
             refresh();
@@ -42,7 +41,6 @@ namespace PresentationLayer
         }
         protected void _BtnUpdate_Click(object sender, EventArgs e)
         {
-            //refresh();
             svc.UpdateDummy(Convert.ToInt32(_Tb_ID.Text), _Tb_Name.Text);
             svc.UpdateAuthority(Convert.ToInt32(_Tb_ID.Text), Convert.ToInt32(_Tb_AccessLevel.Text), _Tb_AuthorityName.Text);
             _BtnSearch_Click(sender,e);   // Activate Button Search
@@ -86,7 +84,7 @@ namespace PresentationLayer
 
         }
 
-        protected void Btn_AuthorityName_Click(object sender, EventArgs e)
+        protected void Btn_AuthorityName_Click(object sender, EventArgs e) // Refresh Button
         {
             refresh();
         }
