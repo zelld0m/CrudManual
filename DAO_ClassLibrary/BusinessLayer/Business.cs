@@ -16,10 +16,10 @@ namespace BusinessLayer
         public String name { get; set; }
         SqlCommand cmd = new SqlCommand();
         #endregion Declaration
-
+        #region Crud_Dummy
         public DataSet view_dummy() //  view
         {
-            return da.view_Dummy(); 
+            return da.view_Dummy();
         }
         public void insert_Dummy()   //Insert
         {
@@ -31,22 +31,21 @@ namespace BusinessLayer
             cmd.Parameters.AddWithValue("@id", id);
             cmd.Parameters.AddWithValue("@name", name);
             da.update_Dummy(cmd);
-            
+
         }
         public void delete_Dummy(int _id)   //Delete
         {
             cmd.Parameters.AddWithValue("@id", id);
             da.Delete_Dummy(cmd);
         }
-      
         public DataSet Search_dummy(int _id)   //Search
         {
 
-            return da.Search_dummy(cmd,_id);
+            return da.Search_dummy(cmd, _id);
 
-      
+
         }
-
+        #endregion Crud_DummyEnd
     }
-    
+
 }

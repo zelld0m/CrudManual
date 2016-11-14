@@ -30,6 +30,15 @@ namespace ServiceLayer
         void UpdateDummy(int ID, String Name);
         [OperationContract]
         DataSet viewALLDummy();
+
+
+        [OperationContract]
+        void insertAuthority();
+        [OperationContract]
+        DataSet viewAuthority();
+        //[OperationContract]
+
+        //[OperationContract]
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

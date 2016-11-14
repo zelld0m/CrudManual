@@ -39,7 +39,7 @@ namespace ServiceLayer
         }
         #endregion Fixed
         
-        #region Code
+        #region Dummy
         Business b = new Business();
         void IService1.addDummy(string name)
         {
@@ -73,6 +73,12 @@ namespace ServiceLayer
             throw new NotImplementedException();
         }
         #endregion
+        #region Authority
+       
+        #endregion
+
     }
+
+
 
 }
