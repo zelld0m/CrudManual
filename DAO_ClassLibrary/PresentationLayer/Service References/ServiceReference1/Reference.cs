@@ -143,6 +143,18 @@ namespace PresentationLayer.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/UpdateAuthority", ReplyAction="http://tempuri.org/IService1/UpdateAuthorityResponse")]
         System.Threading.Tasks.Task UpdateAuthorityAsync(int _id, int _AccessLevel, string _AuthorityName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteAuthority", ReplyAction="http://tempuri.org/IService1/deleteAuthorityResponse")]
+        void deleteAuthority(int _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/deleteAuthority", ReplyAction="http://tempuri.org/IService1/deleteAuthorityResponse")]
+        System.Threading.Tasks.Task deleteAuthorityAsync(int _id);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Validation", ReplyAction="http://tempuri.org/IService1/ValidationResponse")]
+        System.Data.DataSet Validation(string _Name, string _AuthorityName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Validation", ReplyAction="http://tempuri.org/IService1/ValidationResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ValidationAsync(string _Name, string _AuthorityName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -258,6 +270,22 @@ namespace PresentationLayer.ServiceReference1 {
         
         public System.Threading.Tasks.Task UpdateAuthorityAsync(int _id, int _AccessLevel, string _AuthorityName) {
             return base.Channel.UpdateAuthorityAsync(_id, _AccessLevel, _AuthorityName);
+        }
+        
+        public void deleteAuthority(int _id) {
+            base.Channel.deleteAuthority(_id);
+        }
+        
+        public System.Threading.Tasks.Task deleteAuthorityAsync(int _id) {
+            return base.Channel.deleteAuthorityAsync(_id);
+        }
+        
+        public System.Data.DataSet Validation(string _Name, string _AuthorityName) {
+            return base.Channel.Validation(_Name, _AuthorityName);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ValidationAsync(string _Name, string _AuthorityName) {
+            return base.Channel.ValidationAsync(_Name, _AuthorityName);
         }
     }
 }

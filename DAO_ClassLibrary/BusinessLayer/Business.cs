@@ -72,7 +72,16 @@ namespace BusinessLayer
             cmd.Parameters.AddWithValue("@id", _id);
             da.Update_Authority(cmd);
         }
+        public void delete_Authority(int _id)
+        {
+            cmd.Parameters.AddWithValue("@A_id", _id);
+            da.Delete_Authority(cmd);
+        }
         #endregion Crud_Authority
+        public DataSet validation(String _name,String _AuthorityName)
+        {
+           return da.validation(cmd, _name, _AuthorityName);
+        }
     }
 
 }

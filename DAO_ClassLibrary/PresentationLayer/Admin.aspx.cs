@@ -25,26 +25,62 @@ namespace PresentationLayer
         #region Buttons
         protected void _BtnAdd_Click(object sender, EventArgs e)
         {
-            svc.insertAuthority(_Tb_AuthorityName.Text, Convert.ToInt32(_Tb_AccessLevel.Text));
-            svc.addDummy(_Tb_Name.Text);
-            refresh();
+
+            if (String.IsNullOrWhiteSpace(_Tb_Name.Text) || String.IsNullOrWhiteSpace(_Tb_AuthorityName.Text) || String.IsNullOrWhiteSpace(_Tb_AccessLevel.Text))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Required Box IS EMPTY  " + "');", true);
+                refresh();
+            }
+
+            else
+            {
+                svc.insertAuthority(_Tb_AuthorityName.Text, Convert.ToInt32(_Tb_AccessLevel.Text));
+                svc.addDummy(_Tb_Name.Text);
+                refresh();
+            }
         }
-        protected void _BtnSearch_Click(object sender, EventArgs e)   // ERROR IN SEARCH
+        protected void _BtnSearch_Click(object sender, EventArgs e)   
         {
 
-       
+            if (String.IsNullOrWhiteSpace(_Tb_ID.Text))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "id box is empty To search " + "');", true);
+                refresh();
+            }
 
-            GridView2.DataSource = svc.searchAuthority(Convert.ToInt32(_Tb_ID.Text));
-            GridView2.DataBind();
-            GridView1.DataSource= svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
-            GridView1.DataBind();
+            else
+            {
+                GridView2.DataSource = svc.searchAuthority(Convert.ToInt32(_Tb_ID.Text));
+                GridView2.DataBind();
+                GridView1.DataSource = svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
+                GridView1.DataBind();
+            }
         }
         protected void _BtnUpdate_Click(object sender, EventArgs e)
         {
-            svc.UpdateDummy(Convert.ToInt32(_Tb_ID.Text), _Tb_Name.Text);
-            svc.UpdateAuthority(Convert.ToInt32(_Tb_ID.Text), Convert.ToInt32(_Tb_AccessLevel.Text), _Tb_AuthorityName.Text);
-            _BtnSearch_Click(sender,e);   // Activate Button Search
-          
+           _BtnSearch_Click(sender,e);   // Activate Button Search
+            if (String.IsNullOrWhiteSpace(_Tb_ID.Text) || String.IsNullOrWhiteSpace(_Tb_Name.Text) || String.IsNullOrWhiteSpace(_Tb_AuthorityName.Text) || String.IsNullOrWhiteSpace(_Tb_AccessLevel.Text))
+            {
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "ID BOX IS EMPTY  " + "');", true);
+                refresh();
+            }
+
+            else
+            {
+                _BtnSearch_Click(sender, e);  // using search for validation of records if Available
+                if (GridView1.Rows.Count > 0 && GridView2.Rows.Count > 0)
+                {
+                    svc.UpdateDummy(Convert.ToInt32(_Tb_ID.Text), _Tb_Name.Text);
+                    svc.UpdateAuthority(Convert.ToInt32(_Tb_ID.Text), Convert.ToInt32(_Tb_AccessLevel.Text), _Tb_AuthorityName.Text);
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " UPDATE SUCCESSFUL " + "');", true);
+                    refresh();
+                }
+                else if (GridView1.Rows.Count == 0)
+                {
+                    ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " NO ID FOUND " + "');", true);
+                }
+                refresh();
+            }
         }
         protected void _btnDelete_Click(object sender, EventArgs e)
         {
@@ -53,20 +89,19 @@ namespace PresentationLayer
            // GridView1.DataBind();
             if (String.IsNullOrWhiteSpace(_Tb_ID.Text  ))
             {
-     
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "ID BOX IS EMPTY  " + "');", true);    
                 refresh();
             }
            
             else 
             {
-                GridView1.DataSource = svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
-                GridView1.DataBind();
-
-                if (GridView1.Rows.Count > 0)
+              
+                _BtnSearch_Click(sender, e); // using search for validation of records if Available
+                if (GridView1.Rows.Count > 0 && GridView2.Rows.Count >0)
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " Deleted " + "');", true);
                     svc.deleteDummy(Convert.ToInt32(_Tb_ID.Text));
+                    svc.deleteAuthority(Convert.ToInt32(_Tb_ID.Text));
                     refresh();
                 }
                 else if (GridView1.Rows.Count ==0)

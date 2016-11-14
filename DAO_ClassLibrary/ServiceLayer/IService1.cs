@@ -40,6 +40,10 @@ namespace ServiceLayer
         DataSet searchAuthority(int _ID);
         [OperationContract]
         void UpdateAuthority(int _id, int _AccessLevel, String _AuthorityName);
+        [OperationContract]
+        void deleteAuthority(int _id);
+        [OperationContract]
+        DataSet Validation(String _Name, String _AuthorityName);
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

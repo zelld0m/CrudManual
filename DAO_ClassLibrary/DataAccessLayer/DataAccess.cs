@@ -48,6 +48,7 @@ namespace DataAccessLayer
             cmd.CommandText = "Delete_Dummy";
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
+            con.Close();
         }
         public DataSet Search_dummy(SqlCommand cmd,int _id)
         {
@@ -59,7 +60,6 @@ namespace DataAccessLayer
             return ds;
         }
         #endregion DB_DummyEnd
-
         #region DB_Authority
         public DataSet view_Authority()
         {
@@ -79,11 +79,7 @@ namespace DataAccessLayer
             cmd.CommandType = CommandType.StoredProcedure;
             cmd.ExecuteNonQuery();
             con.Close();
-            
         }
-        #endregion DB_AuthorityEnd
-
-
         public DataSet Search_Authority(SqlCommand cmd,int _id)
         {
             String query = "Select * From AuthorityLevel where A_ID = '" +_id +"'";
@@ -102,6 +98,28 @@ namespace DataAccessLayer
             cmd.ExecuteNonQuery();
             con.Close();
         }
+        public void Delete_Authority(SqlCommand cmd)
+        {
+            con.Open();
+            cmd.Connection = con;
+            cmd.CommandText = "Delete_Authority";
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.ExecuteNonQuery();
+            con.Close();
+        }
+        #endregion DB_AuthorityEnd
+
+        public DataSet validation(SqlCommand cmd , String _name , String _AuthorityName)
+        {
+    
+            String query = "select * from Dummy as D inner join authoritylevel as A on d.ID = A.A_Id where Name = '"+ _name +"' AND AuthorityName = '"+ _AuthorityName+"'";
+            SqlDataAdapter sda = new SqlDataAdapter(query, con);
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            con.Close();
+            return ds;
+        }
+
     }
 }
 

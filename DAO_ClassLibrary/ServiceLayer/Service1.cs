@@ -100,6 +100,21 @@ namespace ServiceLayer
             b.Update_Authority(_id, _AccessLevel, _AuthorityName);
             
         }
+
+        void IService1.deleteAuthority(int _id)
+        {
+            b.delete_Authority(_id);
+        }
+
+        DataSet IService1.Validation(string _Name, string _AuthorityName)
+        {
+
+            DataSet ds = new DataSet();
+            ds = b.validation(_Name,_AuthorityName);
+            return ds;
+            throw new NotImplementedException();
+           
+        }
         #endregion
 
     }
