@@ -51,7 +51,7 @@ namespace DataAccessLayer
         }
         public DataSet Search_dummy(SqlCommand cmd,int _id)
         {
-            String query = " Select * from dummy where ID like '" + _id + "%'";
+            String query = " Select * from dummy where ID = '" + _id + "'";
             SqlDataAdapter sda = new SqlDataAdapter(query, con);
             DataSet ds = new DataSet();
             sda.Fill(ds);

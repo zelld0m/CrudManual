@@ -64,6 +64,11 @@ namespace PresentationLayer
         {
             Response.Redirect("Admin.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);// Correct 
         }
+
+        protected void Btn_Update_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("UpdateForm.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);// Correct 
+        }
         #endregion ENDBTN
 
 

@@ -139,6 +139,7 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+    <Content Include="UpdateForm.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -189,6 +190,13 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="UpdateForm.aspx.cs">
+      <DependentUpon>UpdateForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="UpdateForm.aspx.designer.cs">
+      <DependentUpon>UpdateForm.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

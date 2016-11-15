@@ -63,7 +63,7 @@
                     <asp:Button ID="Btn_Delete" runat="server" Text="Delete Form" OnClick="Btn_Delete_Click" />
                 </td>
                 <td>
-                    <asp:Button ID="Btn_Update" runat="server" Text="Update Form" />
+                    <asp:Button ID="Btn_Update" runat="server" Text="Update Form" OnClick="Btn_Update_Click" />
                 </td>
                 <td>
                     <asp:Button ID="Btn_Search" runat="server" OnClick="Btn_Search_Click" Text="Search Product Form" />
