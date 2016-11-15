@@ -10,7 +10,7 @@
 namespace PresentationLayer {
     
     
-    public partial class Admin {
+    public partial class RegisterForm {
         
         /// <summary>
         /// form1 control.
@@ -22,58 +22,58 @@ namespace PresentationLayer {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Label1 control.
+        /// Lbl_Id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Lbl_Id;
         
         /// <summary>
-        /// Label2 control.
+        /// Lbl_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label Lbl_name;
         
         /// <summary>
-        /// GridView1 control.
+        /// Lbl_AuthorityName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView1;
+        protected global::System.Web.UI.WebControls.Label Lbl_AuthorityName;
         
         /// <summary>
-        /// GridView2 control.
+        /// Lbl_AccessLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView GridView2;
+        protected global::System.Web.UI.WebControls.Label Lbl_AccessLevel;
         
         /// <summary>
-        /// Btn_refresh control.
+        /// BtnBack control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_refresh;
+        protected global::System.Web.UI.WebControls.Button BtnBack;
         
         /// <summary>
-        /// _Tb_ID control.
+        /// BtnLogout control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox _Tb_ID;
+        protected global::System.Web.UI.WebControls.Button BtnLogout;
         
         /// <summary>
         /// _Tb_Name control.
@@ -94,48 +94,30 @@ namespace PresentationLayer {
         protected global::System.Web.UI.WebControls.TextBox _Tb_AuthorityName;
         
         /// <summary>
-        /// _Tb_AccessLevel control.
+        /// DropDownList1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox _Tb_AccessLevel;
+        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
         
         /// <summary>
-        /// _BtnAdd control.
+        /// Btn_Clear control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button _BtnAdd;
+        protected global::System.Web.UI.WebControls.Button Btn_Clear;
         
         /// <summary>
-        /// _BtnSearch control.
+        /// Btn_Save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button _BtnSearch;
-        
-        /// <summary>
-        /// _BtnUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button _BtnUpdate;
-        
-        /// <summary>
-        /// _btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button _btnDelete;
+        protected global::System.Web.UI.WebControls.Button Btn_Save;
     }
 }

@@ -30,9 +30,11 @@ namespace PresentationLayer
                 {
                     int AccessLevel = Convert.ToInt32(svc.Validation(Tb_Name.Text, Tb_AuthorityName.Text).Tables[0].Rows[0][4]);
                     int id = Convert.ToInt32(svc.Validation(Tb_Name.Text, Tb_AuthorityName.Text).Tables[0].Rows[0][0]);
+                    String Name = Convert.ToString(svc.Validation(Tb_Name.Text, Tb_AuthorityName.Text).Tables[0].Rows[0][1]);
+                    String AuthorityName = Convert.ToString(svc.Validation(Tb_Name.Text, Tb_AuthorityName.Text).Tables[0].Rows[0][3]);
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", " : alert('" + " Congratulations ::" + AccessLevel + "');", true);
                     Response.Write("<script>alert('Congrats PASSWORD AND USERNAME: AccessLevel = " + AccessLevel + " ');</script>");
-                    Response.Redirect("Admin.aspx?id="+id+"&AccessLevel=" + AccessLevel, true);// Correct 
+                    Response.Redirect("MainMenuForm.aspx?id="+id+"&AccessLevel="+ AccessLevel+"&AuthorityName="+AuthorityName+"&Name="+Name+"", true);// Correct 
 
 
                 }

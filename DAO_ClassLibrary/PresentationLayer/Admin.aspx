@@ -23,6 +23,19 @@
     
         <table class="auto-style1">
             <tr>
+                <td>ID:<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                </td>
+                <td>AccessLevel:<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+                </td>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
+            </tr>
+        </table>
+    
+        <table class="auto-style1">
+            <tr>
                 <td class="auto-style2">
                     <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged">
                     </asp:GridView>
@@ -31,12 +44,8 @@
                     <asp:GridView ID="GridView2" runat="server">
                     </asp:GridView>
                 </td>
-                <td>
-                    <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
-                </td>
-                <td>
-                    <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-                </td>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
                 <td>
                     <asp:Button ID="Btn_refresh" runat="server" OnClick="Btn_AuthorityName_Click" Text="Refresh" Width="28px" />
                 </td>
