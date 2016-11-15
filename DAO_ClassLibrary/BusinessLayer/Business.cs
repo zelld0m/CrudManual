@@ -87,6 +87,10 @@ namespace BusinessLayer
         {
             return da.Search_Brand(cmd, _BrandName);
         }
+        public DataSet View_ALLProduct()
+        {
+            return da.View_ALLProduct();
+        }
     }
 
 }

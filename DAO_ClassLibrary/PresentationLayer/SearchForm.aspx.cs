@@ -73,7 +73,8 @@ namespace PresentationLayer
         }
         protected void rb_ALL_CheckedChanged(object sender, EventArgs e)
         {
-
+         GridView1.DataSource = svc.ViewALLProduct();
+            GridView1.DataBind();
         }
 
         #endregion Button

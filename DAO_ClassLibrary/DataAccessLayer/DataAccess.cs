@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Configuration;
-
 using System.Data.SqlClient;
 using System.Data;
 namespace DataAccessLayer
@@ -119,7 +118,6 @@ namespace DataAccessLayer
             con.Close();
             return ds;
         }
-
         public DataSet Search_Brand(SqlCommand cmd, String _BrandName)
         {
             String query = "select * from Product where brand = '" + _BrandName+"'" ;
@@ -130,6 +128,17 @@ namespace DataAccessLayer
             return ds;
         }
 
+
+        public DataSet View_ALLProduct()
+        {
+            SqlCommand cmd = con.CreateCommand();
+            String query = "Select * from Product";
+            SqlDataAdapter sda = new SqlDataAdapter(query, con);
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            con.Close();
+            return ds;
+        }
     }
 }
 

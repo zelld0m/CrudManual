@@ -68,7 +68,7 @@ namespace PresentationLayer
                 GridView2.DataBind();
                 GridView1.DataSource = svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
                 GridView1.DataBind();
-                ClearControls();
+                
             }
         }
         protected void _BtnUpdate_Click(object sender, EventArgs e)
@@ -89,7 +89,7 @@ namespace PresentationLayer
                     svc.UpdateAuthority(Convert.ToInt32(_Tb_ID.Text), Convert.ToInt32(DropDownList1.SelectedValue), _Tb_AuthorityName.Text);
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " UPDATE SUCCESSFUL " + "');", true);
                     refresh();
-                    ClearControls();
+                    
                 }
                 else if (GridView1.Rows.Count == 0)
                 {
@@ -97,6 +97,7 @@ namespace PresentationLayer
                 }
                 refresh();
             }
+            ClearControls();
         }
         protected void _btnDelete_Click(object sender, EventArgs e)
         {
@@ -163,6 +164,11 @@ namespace PresentationLayer
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("MainMenuForm.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);// Correct 
+        }
+
+        protected void Btn_Clear_Click(object sender, EventArgs e)
+        {
+            ClearControls();
         }
     }
 }

@@ -134,7 +134,9 @@
                     </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:Button ID="Btn_Clear" runat="server" OnClick="Btn_Clear_Click" Text="Clear" />
+                </td>
             </tr>
             <tr>
                 <td class="auto-style2">ID</td>

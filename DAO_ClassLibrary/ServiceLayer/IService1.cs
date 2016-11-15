@@ -46,6 +46,8 @@ namespace ServiceLayer
         DataSet Validation(String _Name, String _AuthorityName);
         [OperationContract]
         DataSet SearchBrand(String _BrandName);
+        [OperationContract]
+        DataSet ViewALLProduct();
     }
 
     // Use a data contract as illustrated in the sample below to add composite types to service operations.

@@ -124,6 +124,15 @@ namespace ServiceLayer
             throw new NotImplementedException();
         }
 
+        DataSet IService1.ViewALLProduct()
+        {
+            DataSet ds = new DataSet();
+            ds = b.View_ALLProduct();
+            return ds;
+            throw new NotImplementedException();
+            throw new NotImplementedException();
+        }
+
 
 
 

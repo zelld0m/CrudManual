@@ -161,6 +161,12 @@ namespace PresentationLayer.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SearchBrand", ReplyAction="http://tempuri.org/IService1/SearchBrandResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> SearchBrandAsync(string _BrandName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ViewALLProduct", ReplyAction="http://tempuri.org/IService1/ViewALLProductResponse")]
+        System.Data.DataSet ViewALLProduct();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/ViewALLProduct", ReplyAction="http://tempuri.org/IService1/ViewALLProductResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> ViewALLProductAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -300,6 +306,14 @@ namespace PresentationLayer.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> SearchBrandAsync(string _BrandName) {
             return base.Channel.SearchBrandAsync(_BrandName);
+        }
+        
+        public System.Data.DataSet ViewALLProduct() {
+            return base.Channel.ViewALLProduct();
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> ViewALLProductAsync() {
+            return base.Channel.ViewALLProductAsync();
         }
     }
 }
