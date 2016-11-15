@@ -155,6 +155,12 @@ namespace PresentationLayer.ServiceReference1 {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/Validation", ReplyAction="http://tempuri.org/IService1/ValidationResponse")]
         System.Threading.Tasks.Task<System.Data.DataSet> ValidationAsync(string _Name, string _AuthorityName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SearchBrand", ReplyAction="http://tempuri.org/IService1/SearchBrandResponse")]
+        System.Data.DataSet SearchBrand(string _BrandName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IService1/SearchBrand", ReplyAction="http://tempuri.org/IService1/SearchBrandResponse")]
+        System.Threading.Tasks.Task<System.Data.DataSet> SearchBrandAsync(string _BrandName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -286,6 +292,14 @@ namespace PresentationLayer.ServiceReference1 {
         
         public System.Threading.Tasks.Task<System.Data.DataSet> ValidationAsync(string _Name, string _AuthorityName) {
             return base.Channel.ValidationAsync(_Name, _AuthorityName);
+        }
+        
+        public System.Data.DataSet SearchBrand(string _BrandName) {
+            return base.Channel.SearchBrand(_BrandName);
+        }
+        
+        public System.Threading.Tasks.Task<System.Data.DataSet> SearchBrandAsync(string _BrandName) {
+            return base.Channel.SearchBrandAsync(_BrandName);
         }
     }
 }

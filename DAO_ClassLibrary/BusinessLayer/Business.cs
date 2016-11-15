@@ -82,6 +82,11 @@ namespace BusinessLayer
         {
            return da.validation(cmd, _name, _AuthorityName);
         }
+
+        public DataSet Search_Brand(String _BrandName)
+        {
+            return da.Search_Brand(cmd, _BrandName);
+        }
     }
 
 }

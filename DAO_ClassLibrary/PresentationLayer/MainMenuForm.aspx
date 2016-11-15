@@ -32,11 +32,13 @@
             <tr>
                 <td>ID:<asp:Label ID="Lbl_Id" runat="server" Text="Label"></asp:Label>
                 </td>
-                <td>Name: <asp:Label ID="Lbl_name" runat="server" Text="Label"></asp:Label>
+                <td>Name:
+                    <asp:Label ID="Lbl_name" runat="server" Text="Label"></asp:Label>
                 </td>
                 <td>AuthorityName:<asp:Label ID="Lbl_AuthorityName" runat="server" Text="Label"></asp:Label>
                 </td>
-                <td>Access Level : <asp:Label ID="Lbl_AccessLevel" runat="server" Text="Label"></asp:Label>
+                <td>Access Level :
+                    <asp:Label ID="Lbl_AccessLevel" runat="server" Text="Label"></asp:Label>
                 </td>
             </tr>
             <tr>
@@ -53,7 +55,7 @@
                     <asp:Button ID="Btn_Delete" runat="server" Text="Delete Form" />
                 </td>
                 <td>
-                    <asp:Button ID="Btn_Search" runat="server" Text="Search Form" />
+                    <asp:Button ID="Btn_Search" runat="server" OnClick="Btn_Search_Click" Text="Search Form" />
                 </td>
                 <td>
                     <asp:Button ID="Btn_Update" runat="server" Text="Update Form" />

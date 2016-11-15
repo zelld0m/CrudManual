@@ -115,6 +115,19 @@ namespace ServiceLayer
             throw new NotImplementedException();
            
         }
+
+        DataSet IService1.SearchBrand(String _BrandName)
+        {
+            DataSet ds = new DataSet();
+            ds = b.Search_Brand(_BrandName);
+            return ds;
+            throw new NotImplementedException();
+        }
+
+
+
+
+
         #endregion
 
     }

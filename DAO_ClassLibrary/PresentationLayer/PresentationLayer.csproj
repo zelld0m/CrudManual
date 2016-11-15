@@ -130,6 +130,7 @@
     <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
     <None Include="Service References\ServiceReference1\configuration.svcinfo" />
     <Content Include="RegisterForm.aspx" />
+    <Content Include="SearchForm.aspx" />
     <Content Include="Service References\ServiceReference1\PresentationLayer.ServiceReference1.CompositeType.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Content>
@@ -168,6 +169,13 @@
     </Compile>
     <Compile Include="RegisterForm.aspx.designer.cs">
       <DependentUpon>RegisterForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SearchForm.aspx.cs">
+      <DependentUpon>SearchForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SearchForm.aspx.designer.cs">
+      <DependentUpon>SearchForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>

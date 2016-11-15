@@ -53,5 +53,10 @@ namespace PresentationLayer
         {
             Response.Redirect("LoginForm.aspx");
         }
+
+        protected void Btn_Search_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Search.Form.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);// Correct 
+        }
     }
 }

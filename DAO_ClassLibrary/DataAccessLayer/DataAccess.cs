@@ -120,6 +120,16 @@ namespace DataAccessLayer
             return ds;
         }
 
+        public DataSet Search_Brand(SqlCommand cmd, String _BrandName)
+        {
+            String query = "select * from Product where brand = '" + _BrandName+"'" ;
+            SqlDataAdapter sda = new SqlDataAdapter(query, con);
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            con.Close();
+            return ds;
+        }
+
     }
 }
 
