@@ -15,6 +15,26 @@
         .auto-style3 {
             width: 60px;
         }
+        .auto-style4 {
+            width: 362px;
+        }
+        .auto-style5 {
+            width: 157px;
+        }
+        .auto-style6 {
+            width: 227px;
+        }
+        .auto-style7 {
+            height: 59px;
+        }
+        .auto-style8 {
+            width: 227px;
+            height: 59px;
+        }
+        .auto-style9 {
+            width: 362px;
+            height: 59px;
+        }
     </style>
 </head>
 <body>
@@ -23,10 +43,45 @@
     
         <table class="auto-style1">
             <tr>
-                <td>ID:<asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+                <td class="auto-style7"></td>
+                <td class="auto-style7"></td>
+                <td class="auto-style8"></td>
+                <td class="auto-style9"></td>
+                <td class="auto-style7">
+                    <table class="auto-style1">
+                        <tr>
+                            <td class="auto-style5">
+                                <asp:Button ID="Btn_Back" runat="server" OnClick="Button1_Click" Text="Back" />
+                            </td>
+                            <td>
+                    <asp:Button ID="Btn_Logout" runat="server" OnClick="Btn_Logout_Click" Text="Logout" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="auto-style5">&nbsp;</td>
+                            <td>&nbsp;</td>
+                        </tr>
+                    </table>
                 </td>
-                <td>AccessLevel:<asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
+            </tr>
+            <tr>
+                <td>&nbsp;</td>
+                <td>ID:<asp:Label ID="Lbl_Id" runat="server" Text="Label"></asp:Label>
                 </td>
+                <td class="auto-style6">NAME:
+                    <asp:Label ID="Lbl_name" runat="server" Text="Label"></asp:Label>
+                </td>
+                <td class="auto-style4">AUTHORITY NAME : <asp:Label ID="Lbl_AuthorityName" runat="server" Text="Label"></asp:Label>
+                </td>
+                <td>ACCESS LEVEL :<asp:Label ID="Lbl_AccessLevel" runat="server" Text="Label"></asp:Label>
+                </td>
+            </tr>
+        </table>
+    
+        <table class="auto-style1">
+            <tr>
+                <td>&nbsp;</td>
+                <td>&nbsp;</td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
@@ -69,7 +124,14 @@
                     <asp:TextBox ID="_Tb_AuthorityName" runat="server"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:TextBox ID="_Tb_AccessLevel" runat="server"></asp:TextBox>
+                    <asp:DropDownList ID="DropDownList1" runat="server">
+                        <asp:ListItem>1</asp:ListItem>
+                        <asp:ListItem Value="2"></asp:ListItem>
+                        <asp:ListItem Value="3"></asp:ListItem>
+                        <asp:ListItem Value="4"></asp:ListItem>
+                        <asp:ListItem Value="5"></asp:ListItem>
+                        <asp:ListItem></asp:ListItem>
+                    </asp:DropDownList>
                 </td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>

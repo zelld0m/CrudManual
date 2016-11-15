@@ -9,16 +9,6 @@
         .auto-style1 {
             width: 100%;
         }
-        .auto-style2 {
-            width: 218px;
-        }
-        .auto-style3 {
-            width: 218px;
-            height: 23px;
-        }
-        .auto-style4 {
-            height: 23px;
-        }
         .auto-style5 {
             width: 215px;
         }
@@ -39,73 +29,35 @@
         .auto-style10 {
             height: 25px;
         }
+        .auto-style11 {
+            width: 538px;
+        }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
+        <br />
         <table class="auto-style1">
             <tr>
-                <td class="auto-style2">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style3">Search by ID From</td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:RadioButton ID="RadioButton1" runat="server" Text="1-10" />
+                <td class="auto-style11">&nbsp;</td>
+                <td>
+                    <asp:Button ID="Btn_Back" runat="server" OnClick="Btn_Back_Click" style="width: 46px" Text="Back" />
                 </td>
-                <td colspan="7" rowspan="4">&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:RadioButton ID="RadioButton2" runat="server" Text="11-20" />
+                <td>
+                    <asp:Button ID="Btn_Logout" runat="server" OnClick="Btn_Logout_Click" Text="Logout" />
                 </td>
             </tr>
             <tr>
-                <td class="auto-style2">
-                    <asp:RadioButton ID="RadioButton3" runat="server" Text="21-40" />
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:RadioButton ID="RadioButton4" runat="server" OnCheckedChanged="RadioButton4_CheckedChanged" Text="41-100" />
-                </td>
-            </tr>
-            <tr>
-                <td class="auto-style2">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
+                <td class="auto-style11">&nbsp;</td>
                 <td>&nbsp;</td>
                 <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style3"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4"></td>
             </tr>
         </table>
+        <br />
         <table class="auto-style1">
             <tr>
                 <td class="auto-style5">Search By AccessLevel</td>
@@ -126,40 +78,43 @@
                     <table class="auto-style1">
                         <tr>
                             <td>
-                                <asp:RadioButton ID="rb_1" runat="server" OnCheckedChanged="rb_1_CheckedChanged" Text="1" />
+                                <asp:RadioButton ID="rb_1" runat="server" OnCheckedChanged="rb_1_CheckedChanged" Text="Dell" AutoPostBack="True" GroupName="Brand" />
                             </td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:RadioButton ID="rb_2" runat="server" Text="2" />
+                                <asp:RadioButton ID="rb_2" runat="server" Text="Acer" AutoPostBack="True" GroupName="Brand" OnCheckedChanged="rb_2_CheckedChanged" />
                             </td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
                             <td class="auto-style10">
-                                <asp:RadioButton ID="rb_3" runat="server" Text="3" />
+                                <asp:RadioButton ID="rb_3" runat="server" Text="Asus" AutoPostBack="True" GroupName="Brand" OnCheckedChanged="rb_3_CheckedChanged" />
                             </td>
                             <td class="auto-style10"></td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:RadioButton ID="rb_4" runat="server" Text="4" />
+                                <asp:RadioButton ID="rb_4" runat="server" Text="HP" AutoPostBack="True" GroupName="Brand" OnCheckedChanged="rb_4_CheckedChanged" />
                             </td>
                             <td>&nbsp;</td>
                         </tr>
                         <tr>
                             <td>
-                                <asp:RadioButton ID="rb_5" runat="server" Text="5" />
+                                <asp:RadioButton ID="rb_5" runat="server" Text="Apple" AutoPostBack="True" GroupName="Brand" OnCheckedChanged="rb_5_CheckedChanged" />
                             </td>
                             <td>&nbsp;</td>
                         </tr>
                     </table>
-                    <asp:RadioButton ID="rb_ALL" runat="server" Text="ALL" />
+                    <asp:RadioButton ID="rb_ALL" runat="server" Text="ALL" AutoPostBack="True" GroupName="Brand" OnCheckedChanged="rb_ALL_CheckedChanged" />
                 </td>
                 <td class="auto-style8"></td>
                 <td class="auto-style9">&nbsp;</td>
-                <td class="auto-style9"></td>
+                <td class="auto-style9">
+                    <asp:GridView ID="GridView1" runat="server">
+                    </asp:GridView>
+                </td>
                 <td class="auto-style9"></td>
             </tr>
             <tr>

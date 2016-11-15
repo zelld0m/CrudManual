@@ -23,19 +23,6 @@ namespace PresentationLayer
 
             
         }
-
-        protected void RadioButton4_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        protected void rb_1_CheckedChanged(object sender, EventArgs e)
-        {
-            //GridView2.DataSource= svc.sear
-   
-           // GridView2.DataBind();
-            Clear(rb_1);
-        }
         
         private void Clear(RadioButton rb)
         {
@@ -47,6 +34,53 @@ namespace PresentationLayer
         protected void GridView2_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        protected void Btn_Back_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("MainMenuForm.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);
+
+        }
+        #region Button
+
+        protected void rb_1_CheckedChanged(object sender, EventArgs e)
+        {
+            GridView1.DataSource = svc.SearchBrand(rb_1.Text);
+            GridView1.DataBind();
+        }
+        protected void rb_2_CheckedChanged(object sender, EventArgs e)
+        {
+                GridView1.DataSource = svc.SearchBrand(rb_2.Text);
+                GridView1.DataBind();
+        }
+
+        protected void rb_3_CheckedChanged(object sender, EventArgs e)
+        {
+                GridView1.DataSource = svc.SearchBrand(rb_3.Text);
+                GridView1.DataBind();
+        }
+
+        protected void rb_4_CheckedChanged(object sender, EventArgs e)
+        { 
+            GridView1.DataSource = svc.SearchBrand(rb_4.Text);
+            GridView1.DataBind();
+        }
+
+        protected void rb_5_CheckedChanged(object sender, EventArgs e)
+        {
+            GridView1.DataSource = svc.SearchBrand(rb_5.Text);
+            GridView1.DataBind();
+        }
+        protected void rb_ALL_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        #endregion Button
+
+        protected void Btn_Logout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("LoginForm.aspx");
         }
     }
 }

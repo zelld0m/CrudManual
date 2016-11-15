@@ -22,6 +22,15 @@ namespace PresentationLayer {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
+        /// Btn_Admin control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Admin;
+        
+        /// <summary>
         /// Btn_Logout control.
         /// </summary>
         /// <remarks>
@@ -85,15 +94,6 @@ namespace PresentationLayer {
         protected global::System.Web.UI.WebControls.Button Btn_Delete;
         
         /// <summary>
-        /// Btn_Search control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Search;
-        
-        /// <summary>
         /// Btn_Update control.
         /// </summary>
         /// <remarks>
@@ -101,5 +101,14 @@ namespace PresentationLayer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button Btn_Update;
+        
+        /// <summary>
+        /// Btn_Search control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button Btn_Search;
     }
 }

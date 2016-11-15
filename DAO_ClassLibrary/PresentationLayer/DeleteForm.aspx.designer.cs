@@ -10,7 +10,7 @@
 namespace PresentationLayer {
     
     
-    public partial class Admin {
+    public partial class DeleteForm {
         
         /// <summary>
         /// form1 control.
@@ -22,22 +22,22 @@ namespace PresentationLayer {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// Btn_Back control.
+        /// Button3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Back;
+        protected global::System.Web.UI.WebControls.Button Button3;
         
         /// <summary>
-        /// Btn_Logout control.
+        /// Button2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Logout;
+        protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
         /// Lbl_Id control.
@@ -94,15 +94,6 @@ namespace PresentationLayer {
         protected global::System.Web.UI.WebControls.GridView GridView2;
         
         /// <summary>
-        /// Btn_refresh control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_refresh;
-        
-        /// <summary>
         /// _Tb_ID control.
         /// </summary>
         /// <remarks>
@@ -112,66 +103,12 @@ namespace PresentationLayer {
         protected global::System.Web.UI.WebControls.TextBox _Tb_ID;
         
         /// <summary>
-        /// _Tb_Name control.
+        /// Button1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox _Tb_Name;
-        
-        /// <summary>
-        /// _Tb_AuthorityName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox _Tb_AuthorityName;
-        
-        /// <summary>
-        /// DropDownList1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList DropDownList1;
-        
-        /// <summary>
-        /// _BtnAdd control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button _BtnAdd;
-        
-        /// <summary>
-        /// _BtnSearch control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button _BtnSearch;
-        
-        /// <summary>
-        /// _BtnUpdate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button _BtnUpdate;
-        
-        /// <summary>
-        /// _btnDelete control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button _btnDelete;
+        protected global::System.Web.UI.WebControls.Button Button1;
     }
 }

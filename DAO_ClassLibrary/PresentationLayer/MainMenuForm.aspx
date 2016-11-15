@@ -12,6 +12,12 @@
         .auto-style2 {
             width: 480px;
         }
+        .auto-style3 {
+            width: 143px;
+        }
+        .auto-style4 {
+            width: 83px;
+        }
     </style>
 </head>
 <body>
@@ -20,8 +26,10 @@
             <tr>
                 <td>&nbsp;</td>
                 <td class="auto-style2">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style4">&nbsp;</td>
+                <td class="auto-style3">
+                    <asp:Button ID="Btn_Admin" runat="server" OnClick="Btn_Admin_Click" style="height: 26px" Text="Admin" />
+                </td>
                 <td>
                     <asp:Button ID="Btn_Logout" runat="server" OnClick="Btn_Logout_Click" Text="Logout" />
                 </td>
@@ -52,13 +60,13 @@
                     <asp:Button ID="Btn_Registration" runat="server" OnClick="Btn_Registration_Click" style="height: 26px" Text="Register Form" />
                 </td>
                 <td>
-                    <asp:Button ID="Btn_Delete" runat="server" Text="Delete Form" />
-                </td>
-                <td>
-                    <asp:Button ID="Btn_Search" runat="server" OnClick="Btn_Search_Click" Text="Search Form" />
+                    <asp:Button ID="Btn_Delete" runat="server" Text="Delete Form" OnClick="Btn_Delete_Click" />
                 </td>
                 <td>
                     <asp:Button ID="Btn_Update" runat="server" Text="Update Form" />
+                </td>
+                <td>
+                    <asp:Button ID="Btn_Search" runat="server" OnClick="Btn_Search_Click" Text="Search Product Form" />
                 </td>
             </tr>
             <tr>

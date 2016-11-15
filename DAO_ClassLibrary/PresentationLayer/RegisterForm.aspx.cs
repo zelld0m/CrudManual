@@ -38,15 +38,13 @@ namespace PresentationLayer
             if (String.IsNullOrWhiteSpace(_Tb_Name.Text) || String.IsNullOrWhiteSpace(_Tb_AuthorityName.Text) || String.IsNullOrWhiteSpace(DropDownList1.SelectedValue))
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Required Box IS EMPTY  " + "');", true);
- 
             }
-
             else
             {
                 svc.insertAuthority(_Tb_AuthorityName.Text, Convert.ToInt32(DropDownList1.SelectedValue));
                 svc.addDummy(_Tb_Name.Text);
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Registration Saved" + "');", true);
-
+                ClearControls();
             }
         }
 
@@ -55,5 +53,20 @@ namespace PresentationLayer
             Response.Redirect("MainMenuForm.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);
 
         }
+
+        private void ClearControls()
+        {
+            foreach (Control c in Page.Controls)
+            {
+                foreach (Control ctrl in c.Controls)
+                {
+                    if (ctrl is TextBox)
+                    {
+                        ((TextBox)ctrl).Text = string.Empty;
+                    }
+                }
+            }
+        }
+
     }
 }

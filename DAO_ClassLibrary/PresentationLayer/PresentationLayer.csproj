@@ -96,6 +96,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DeleteForm.aspx" />
     <Content Include="LoginForm.aspx" />
     <Content Include="MainMenuForm.aspx" />
     <Content Include="packages.config" />
@@ -147,6 +148,13 @@
     </Compile>
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="DeleteForm.aspx.cs">
+      <DependentUpon>DeleteForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="DeleteForm.aspx.designer.cs">
+      <DependentUpon>DeleteForm.aspx</DependentUpon>
     </Compile>
     <Compile Include="LoginForm.aspx.cs">
       <DependentUpon>LoginForm.aspx</DependentUpon>
