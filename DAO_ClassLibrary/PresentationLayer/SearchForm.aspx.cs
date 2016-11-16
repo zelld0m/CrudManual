@@ -20,8 +20,11 @@ namespace PresentationLayer
             Name = Convert.ToString(Request.QueryString["Name"]);
             AccessLevel = Convert.ToInt32(Request.QueryString["AccessLevel"]);
             AuthorityName = Convert.ToString(Request.QueryString["AuthorityName"]);
+            Lbl_AccessLevel.Text = AccessLevel.ToString();
+            Lbl_AuthorityName.Text = AuthorityName.ToString();
+            Lbl_Id.Text = Id.ToString();
+            Lbl_name.Text = Name.ToString();
 
-            
         }
         
         private void Clear(RadioButton rb)
