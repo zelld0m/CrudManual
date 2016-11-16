@@ -1,45 +1,8 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="PresentationLayer.Admin" %>
-
-<!DOCTYPE html>
-
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head runat="server">
-    <title></title>
-    <style type="text/css">
-        .auto-style1 {
-            width: 100%;
-        }
-        .auto-style2 {
-            width: 201px;
-        }
-        .auto-style3 {
-            width: 60px;
-        }
-        .auto-style4 {
-            width: 362px;
-        }
-        .auto-style5 {
-            width: 157px;
-        }
-        .auto-style6 {
-            width: 227px;
-        }
-        .auto-style7 {
-            height: 59px;
-        }
-        .auto-style8 {
-            width: 227px;
-            height: 59px;
-        }
-        .auto-style9 {
-            width: 362px;
-            height: 59px;
-        }
-    </style>
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
+﻿<%@ Page Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Admin.aspx.cs" Inherits="PresentationLayer.Admin" %>
+<asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+     <div>
     
         <table class="auto-style1">
             <tr>
@@ -173,6 +136,48 @@
         </table>
     
     </div>
+</asp:Content>
+
+<%--<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <style type="text/css">
+        .auto-style1 {
+            width: 100%;
+        }
+        .auto-style2 {
+            width: 201px;
+        }
+        .auto-style3 {
+            width: 60px;
+        }
+        .auto-style4 {
+            width: 362px;
+        }
+        .auto-style5 {
+            width: 157px;
+        }
+        .auto-style6 {
+            width: 227px;
+        }
+        .auto-style7 {
+            height: 59px;
+        }
+        .auto-style8 {
+            width: 227px;
+            height: 59px;
+        }
+        .auto-style9 {
+            width: 362px;
+            height: 59px;
+        }
+    </style>
+</head>
+<body>
+    <form id="form1" runat="server">
+   
     </form>
 </body>
-</html>
+</html>--%>

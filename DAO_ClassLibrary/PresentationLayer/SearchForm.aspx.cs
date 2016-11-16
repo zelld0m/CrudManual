@@ -24,6 +24,7 @@ namespace PresentationLayer
             Lbl_AuthorityName.Text = AuthorityName.ToString();
             Lbl_Id.Text = Id.ToString();
             Lbl_name.Text = Name.ToString();
+            refresh();
 
         }
         
@@ -85,6 +86,12 @@ namespace PresentationLayer
         protected void Btn_Logout_Click(object sender, EventArgs e)
         {
             Response.Redirect("LoginForm.aspx");
+        }
+        private void refresh()
+        {
+
+            GridView1.DataSource = svc.ViewALLProduct();
+            GridView1.DataBind();
         }
     }
 }

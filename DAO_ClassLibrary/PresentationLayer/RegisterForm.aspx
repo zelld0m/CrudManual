@@ -12,6 +12,9 @@
         .auto-style2 {
             width: 144px;
         }
+        .auto-style3 {
+            height: 23px;
+        }
     </style>
 </head>
 <body>
@@ -53,17 +56,19 @@
             </tr>
             <tr>
                 <td>
-                    <asp:TextBox ID="_Tb_Name" runat="server"></asp:TextBox>
+                    <label class ="col-xs-11">Name</label>
+                    <asp:TextBox ID="_Tb_Name" runat="server" Class ="form-control" placeholder ="Name"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:TextBox ID="_Tb_AuthorityName" runat="server"></asp:TextBox>
+                    <label class ="col-xs-11">AuthorityName</label>
+                    <asp:TextBox ID="_Tb_AuthorityName" runat="server" Class ="form-control" placeholder ="Name"></asp:TextBox>
                 </td>
-                <td>
+                <td><label class ="col-xs-11">AccessLevel</label>
                     <asp:DropDownList ID="DropDownList1" runat="server" Width="93px">
                         <asp:ListItem>1</asp:ListItem>
                         <asp:ListItem>2</asp:ListItem>
                         <asp:ListItem>3</asp:ListItem>
-                        <asp:ListItem Value="4"></asp:ListItem>
+                        <asp:ListItem>4</asp:ListItem>
                         <asp:ListItem>5</asp:ListItem>
                     </asp:DropDownList>
                 </td>
@@ -73,11 +78,9 @@
                 <td>&nbsp;</td>
             </tr>
             <tr>
-                <td>Name</td>
-                <td>AuthorityName</td>
-                <td>AccessLevel</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td class="auto-style3">&nbsp;</td>
+                <td class="auto-style3"></td>
+                <td class="auto-style3"></td>
             </tr>
             <tr>
                 <td>&nbsp;</td>
