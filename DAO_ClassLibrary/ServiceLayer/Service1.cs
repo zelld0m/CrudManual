@@ -6,10 +6,70 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using BusinessLayer;
+using System.ServiceModel.Dispatcher;
+using System.ServiceModel.Description;
+using System.ServiceModel.Channels;
 
 namespace ServiceLayer
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the class name "Service1" in both code and config file together.
+
+    #region NEW
+    //public class MyMessageInspector : IClientMessageInspector
+    //{
+    //    void IClientMessageInspector.AfterReceiveReply(ref Message reply, object correlationState)
+    //    {
+    //        Console.WriteLine("AfterReceiveReply called");
+    //        throw new NotImplementedException();
+    //    }
+
+    //    object IClientMessageInspector.BeforeSendRequest(ref Message request, IClientChannel channel)
+    //    {
+    //        Console.WriteLine("BeforeSendRequest called");
+    //        throw new NotImplementedException();
+    //    }
+    //}
+
+    //public class SimpleEndpointBehavior : IEndpointBehavior
+    //{
+    //    public void AddBindingParameters(ServiceEndpoint endpoint, System.ServiceModel.Channels.BindingParameterCollection bindingParameters)
+    //    {
+    //        // No implementation necessary
+    //    }
+
+    //    public void ApplyClientBehavior(ServiceEndpoint endpoint, ClientRuntime clientRuntime)
+    //    {
+    //        clientRuntime.MessageInspectors.Add(new SimpleMessageInspector());
+    //    }
+
+    //    public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher)
+    //    {
+    //        // No implementation necessary
+    //    }
+
+    //    public void Validate(ServiceEndpoint endpoint)
+    //    {
+    //        // No implementation necessary
+    //    }
+    //}
+
+
+    //public class SimpleBehaviorExtensionElement : BehaviorExtensionElement
+    //{
+    //    public override Type BehaviorType
+    //    {
+    //        get { return typeof(SimpleEndpointBehavior); }
+    //    }
+
+    //    protected override object CreateBehavior()
+    //    {
+    //        // Create the  endpoint behavior that will insert the message
+    //        // inspector into the client runtime
+    //        return new SimpleEndpointBehavior();
+    //    }
+    //}
+
+    #endregion NEw 
     public class Service1 : IService1
     {
         #region Fixed

@@ -22,7 +22,9 @@
                         </tr>
                         <tr>
                             <td class="auto-style5">&nbsp;</td>
-                            <td>&nbsp;</td>
+                            <td>
+                                <asp:Button ID="Button1" runat="server" Text="GetStatus" OnClick="Button1_Click1" />
+                            </td>
                         </tr>
                     </table>
                 </td>
@@ -78,16 +80,17 @@
             </tr>
             <tr>
                 <td class="auto-style2">
-                    <asp:TextBox ID="_Tb_ID" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="_Tb_ID" runat="server" class="form-control" placeholder="ID"></asp:TextBox>
                 </td>
                 <td class="auto-style3">
-                    <asp:TextBox ID="_Tb_Name" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="_Tb_Name" runat="server" class="form-control" placeholder="Name"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:TextBox ID="_Tb_AuthorityName" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="_Tb_AuthorityName" runat="server" class="form-control" placeholder="AuthorityName"></asp:TextBox>
                 </td>
                 <td>
-                    <asp:DropDownList ID="DropDownList1" runat="server">
+                    
+                    <asp:DropDownList ID="DropDownList1" runat="server" >
                         <asp:ListItem>1</asp:ListItem>
                         <asp:ListItem Value="2"></asp:ListItem>
                         <asp:ListItem Value="3"></asp:ListItem>
@@ -112,10 +115,7 @@
             <tr>
                 <td class="auto-style2">&nbsp;</td>
                 <td class="auto-style3">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+           
             </tr>
             <tr>
                 <td class="auto-style2">
@@ -130,8 +130,7 @@
                 <td>
                     <asp:Button ID="_btnDelete" runat="server" OnClick="_btnDelete_Click" Text="Delete" />
                 </td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
+            
             </tr>
         </table>
     

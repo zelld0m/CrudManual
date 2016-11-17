@@ -6,7 +6,9 @@
 <head runat="server">
     <title>HelloSITEMASTER</title>
     <link href="Bootstrap/css/bootstrap.css" rel="stylesheet" />
-        <link href="Bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Bootstrap/css/Custom-Cs.css" rel="stylesheet" />
+    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
     <asp:ContentPlaceHolder ID="head" runat="server">
         
     </asp:ContentPlaceHolder>

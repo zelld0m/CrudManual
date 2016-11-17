@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-
+using PresentationLayer.ServiceReference1;
 namespace PresentationLayer
 {
     public partial class Admin : System.Web.UI.Page
@@ -17,7 +17,7 @@ namespace PresentationLayer
         protected void Page_Load(object sender, EventArgs e)
         {
             Id = Convert.ToInt32(Request.QueryString["id"]);
-            Name = Convert.ToString(Request.QueryString["Name"]);
+            Name =  Convert.ToString(Request.QueryString["Name"]);
             AccessLevel = Convert.ToInt32(Request.QueryString["AccessLevel"]);
             AuthorityName = Convert.ToString(Request.QueryString["AuthorityName"]);
 
@@ -44,6 +44,8 @@ namespace PresentationLayer
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Required Box IS EMPTY  " + "');", true);
                 refresh();
+
+              
             }
             else
             {
@@ -130,13 +132,11 @@ namespace PresentationLayer
         {
 
         }
-
         protected void Btn_AuthorityName_Click(object sender, EventArgs e) // Refresh Button
         {
             refresh();
            
         }
-
         private void ClearControls()
         {
             foreach (Control c in Page.Controls)
@@ -150,25 +150,26 @@ namespace PresentationLayer
                 }
             }
         }
-
         protected void Btn_Admin_Click(object sender, EventArgs e)
         {
 
         }
-
         protected void Btn_Logout_Click(object sender, EventArgs e)
         {
             Response.Redirect("LoginForm.aspx");
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             Response.Redirect("MainMenuForm.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);// Correct 
         }
-
         protected void Btn_Clear_Click(object sender, EventArgs e)
         {
             ClearControls();
+        }
+        protected void Button1_Click1(object sender, EventArgs e)
+        {
+            String status = String.Empty;
+           // PresentationLayer proxy = new ;
         }
     }
 }

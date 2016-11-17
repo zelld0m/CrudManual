@@ -36,7 +36,7 @@ namespace PresentationLayer
                     Response.Write("<script>alert('Congrats PASSWORD AND USERNAME: AccessLevel = " + AccessLevel + " ');</script>");
                     Response.Redirect("MainMenuForm.aspx?id="+id+"&AccessLevel="+ AccessLevel+"&AuthorityName="+AuthorityName+"&Name="+Name+"", true);// Correct 
 
-
+                    
                 }
                 else
                 {

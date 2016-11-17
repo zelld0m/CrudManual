@@ -5,6 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+    <link href="Bootstrap/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="Bootstrap/css/Custom-Cs.css" rel="stylesheet" />
+    <link href="Bootstrap/css/bootstrap-theme.css" rel="stylesheet" />
+    <link href="Bootstrap/css/bootstrap-theme.min.css" rel="stylesheet" />
     <style type="text/css">
         .auto-style1 {
             width: 100%;
@@ -25,44 +29,33 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:GridView ID="GridView1" runat="server">
-        </asp:GridView>
+
     
     </div>
-        <table class="auto-style1">
-            <tr>
-                <td class="auto-style2">&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style3">
-                    <asp:TextBox ID="Tb_Name" runat="server"></asp:TextBox>
-                </td>
-                <td class="auto-style4"></td>
-                <td class="auto-style4">
-                    <asp:TextBox ID="Tb_AuthorityName" runat="server"></asp:TextBox>
-                </td>
-                <td class="auto-style4"></td>
-            </tr>
-            <tr>
-                <td class="auto-style2">Name</td>
-                <td>&nbsp;</td>
-                <td>AuthorityName</td>
-                <td>&nbsp;</td>
-            </tr>
-            <tr>
-                <td class="auto-style2">
-                    <asp:Button ID="Btn_Login" runat="server" OnClick="Btn_Login_Click" Text="Button" />
-                </td>
-                <td>&nbsp;</td>
-                <td>
+     
+ 
+        <!-- Textbox and Label-->
+         <div class="center-page">
+             <asp:GridView ID="GridView1" runat="server">
+             </asp:GridView>
+                <div class="col-xs-11">
+                    <label class ="col-xs-11">Name</label>
+                    <asp:TextBox ID="Tb_Name" runat="server" class="form-control" placeholder ="Name"></asp:TextBox>
+                </div>
+                    <div class="col-xs-11">
+                        <label class="col-xs-11">AuthorityName</label>
+                        <asp:TextBox ID="Tb_AuthorityName" runat="server" class="form-control" placeholder="AuthorityName"></asp:TextBox>
+                          
+                 </div>
+             <div class="col-xs-11 space-vert"></div> 
+             <asp:Button ID="Btn_Login" runat="server" OnClick="Btn_Login_Click" Text="Login" />
+    
                     <asp:Button ID="Btn_Out" runat="server" OnClick="Btn_Out_Click" Text="Check" />
-                </td>
-                <td>&nbsp;</td>
-            </tr>
-        </table>
+          </div>
+            
+                  
+            <!-- Textbox ,Label,Buttons-->
+      
     </form>
 </body>
 </html>

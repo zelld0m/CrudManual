@@ -6,10 +6,14 @@ using System.ServiceModel;
 using System.Text;
 using System.Data;
 using System.Data.SqlClient;
-
+using System.ServiceModel.Dispatcher;
+using System.ServiceModel.Description;
+using System.ServiceModel.Channels;
 namespace ServiceLayer
 {
     // NOTE: You can use the "Rename" command on the "Refactor" menu to change the interface name "IService1" in both code and config file together.
+
+
     [ServiceContract]
     public interface IService1
     {
