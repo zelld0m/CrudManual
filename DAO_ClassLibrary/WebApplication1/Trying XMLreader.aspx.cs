@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -36,8 +37,7 @@ namespace WebApplication1
             }
         }
 
-        static IEnumerable<XElement> SimpleStreamAxis(string inputUrl,
-                                              string elementName)
+        static IEnumerable<XElement> SimpleStreamAxis(string inputUrl,string elementName)
         {
             using (XmlReader reader = XmlReader.Create(inputUrl))
             {
@@ -57,8 +57,6 @@ namespace WebApplication1
                     }
                 }
             }
-
-
         }
 
 
@@ -69,12 +67,26 @@ namespace WebApplication1
             xmlDoc.Load(urlx);
         }
         //--
-
-
         static void usingload(){
-        
         var document = XDocument.Load("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             }
         //==
+
+
+        private Boolean PostObjectToURL(String url, Object obj)
+        {
+            WebRequest request = WebRequest.Create(url);
+            request.ContentType = "text/xml";
+            request.Method = "POST";
+            Stream requestStream = request.GetRequestStream();
+            // Serializer using dynamic to get around compile time type checking
+            Microsoft.Owin.Security.DataHandler.Serializer<dynamic>.SerializeXmlObjectToStream(requestStream, obj);
+            requestStream.Close();
+            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+            {
+             return (response.StatusCode == HttpStatusCode.OK);
+            }
+         }
+
     }
 }
