@@ -15,25 +15,19 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-           
-
             //usingload();
-            //usingReader();
-
-
+           //usingReader();
         }
 
         static void usingReader()
         {
             using (XmlReader reader = XmlReader.Create("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10"))
             {
-                reader.ReadStartElement("theRootElement");
-
+                reader.ReadStartElement("Response");
                 while (reader.Name == "TheNodeIWant")
                 {
                     XElement el = (XElement)XNode.ReadFrom(reader);
                 }
-
                 reader.ReadEndElement();
             }
         }
@@ -92,6 +86,11 @@ namespace WebApplication1
         protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
         {
            
+        }
+
+        protected void TreeView2_SelectedNodeChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

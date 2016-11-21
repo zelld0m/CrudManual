@@ -15,6 +15,13 @@
                 <asp:TreeNodeBinding DataMember="int" />
             </DataBindings>
         </asp:TreeView>
+        <asp:XmlDataSource ID="XmlDataSource2" runat="server" DataFile="~/DataFiles/Price.xml" XPath="/price/*"></asp:XmlDataSource>
+        <asp:TreeView ID="TreeView2" runat="server" DataSourceID="XmlDataSource2" ImageSet="BulletedList2" OnSelectedNodeChanged="TreeView2_SelectedNodeChanged" ShowExpandCollapse="False">
+            <HoverNodeStyle Font-Underline="True" ForeColor="#5555DD" />
+            <NodeStyle Font-Names="Tahoma" Font-Size="10pt" ForeColor="Black" HorizontalPadding="5px" NodeSpacing="0px" VerticalPadding="0px" />
+            <ParentNodeStyle Font-Bold="False" />
+            <SelectedNodeStyle Font-Underline="True" ForeColor="#5555DD" HorizontalPadding="0px" VerticalPadding="0px" />
+        </asp:TreeView>
     
     </div>
         <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/DataFiles/Brand_XML.xml" XPath="/response/*"></asp:XmlDataSource>
