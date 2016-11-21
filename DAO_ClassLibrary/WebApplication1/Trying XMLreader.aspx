@@ -10,7 +10,10 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged">
+        <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" ShowLines="True">
+            <DataBindings>
+                <asp:TreeNodeBinding DataMember="int" />
+            </DataBindings>
         </asp:TreeView>
     
     </div>
