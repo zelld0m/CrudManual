@@ -15,19 +15,7 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            XmlDocument xdoc = new XmlDocument();//xml doc used for xml parsing
-
-            xdoc.Load(
-                "http://latestpackagingnews.blogspot.com/feeds/posts/default"
-                );//loading XML in xml doc
-
-            XmlNodeList xNodelst = xdoc.DocumentElement.SelectNodes("entry");//reading node so that we can traverse thorugh the XML
-
-            foreach (XmlNode xNode in xNodelst)//traversing XML 
-            {
-                //litFeed.Text += "read";
-            }
-
+           
 
             //usingload();
             //usingReader();
@@ -101,5 +89,9 @@ namespace WebApplication1
             }
          }
 
+        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
+        {
+           
+        }
     }
 }
