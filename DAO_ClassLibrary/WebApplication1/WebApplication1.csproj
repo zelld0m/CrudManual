@@ -185,9 +185,7 @@
     <Content Include="Content\bootstrap\css\Custom-Cs.css" />
     <Content Include="Content\Site.css" />
     <Content Include="DataFiles\Brand_XML.xml" />
-    <Content Include="DataFiles\EDP.xml" />
     <Content Include="DataFiles\Price.xml" />
-    <Content Include="DataFiles\Product.xml" />
     <Content Include="ProductDetails.xml" />
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
     <Content Include="fonts\glyphicons-halflings-regular.ttf" />
