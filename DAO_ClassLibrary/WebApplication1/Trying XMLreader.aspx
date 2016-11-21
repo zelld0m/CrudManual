@@ -10,7 +10,11 @@
     <form id="form1" runat="server">
     <div>
     
+        <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1">
+        </asp:TreeView>
+    
     </div>
+        <asp:XmlDataSource ID="XmlDataSource1" runat="server" DataFile="~/DataFiles/Brand_XML.xml" XPath="/response/*"></asp:XmlDataSource>
     </form>
 </body>
 </html>
