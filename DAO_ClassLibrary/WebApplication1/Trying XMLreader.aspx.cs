@@ -16,12 +16,12 @@ namespace WebApplication1
         protected void Page_Load(object sender, EventArgs e)
         {
 
-           PostObjectToURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10",e);
+           PostObjectToURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10",GridView1  );
 
-            
-            // inputURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
+
+           // inputURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             //usingload();
-         //  usingReader();
+            //  usingReader();
         }
 
         //static void usingReader()
@@ -87,7 +87,17 @@ namespace WebApplication1
                  return (response.StatusCode == HttpStatusCode.OK);
              }
         }
+        //public GeneratedClassFromXSD GetObjectFromXML()
+        //{
+        //    var settings = new XmlReaderSettings();
+        //    var obj = new GeneratedClassFromXSD();
+        //    var reader = XmlReader.Create(urlToService, settings);
+        //    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(GeneratedClassFromXSD));
+        //    obj = (GeneratedClassFromXSD)serializer.Deserialize(reader);
 
+        //    reader.Close();
+        //    return obj;
+        //}
 
         protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
         {
