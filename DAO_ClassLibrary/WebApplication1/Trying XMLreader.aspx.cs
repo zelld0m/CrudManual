@@ -15,22 +15,27 @@ namespace WebApplication1
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+
+           PostObjectToURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10",e);
+
+            
+            // inputURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             //usingload();
-           //usingReader();
+         //  usingReader();
         }
 
-        static void usingReader()
-        {
-            using (XmlReader reader = XmlReader.Create("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10"))
-            {
-                reader.ReadStartElement("Response");
-                while (reader.Name == "TheNodeIWant")
-                {
-                    XElement el = (XElement)XNode.ReadFrom(reader);
-                }
-                reader.ReadEndElement();
-            }
-        }
+        //static void usingReader()
+        //{
+        //    using (XmlReader reader = XmlReader.Create("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10"))
+        //    {
+        //        reader.ReadStartElement("Response");
+        //        while (reader.Name == "TheNodeIWant")
+        //        {
+        //            XElement el = (XElement)XNode.ReadFrom(reader);
+        //        }
+        //        reader.ReadEndElement();
+        //    }
+        //}
 
         static IEnumerable<XElement> SimpleStreamAxis(string inputUrl,string elementName)
         {
@@ -70,22 +75,23 @@ namespace WebApplication1
 
         private Boolean PostObjectToURL(String url, Object obj)
         {
-            WebRequest request = WebRequest.Create(url);
-            request.ContentType = "text/xml";
-            request.Method = "POST";
-            Stream requestStream = request.GetRequestStream();
-            // Serializer using dynamic to get around compile time type checking
-          //  Microsoft.Owin.Security.DataHandler.Serializer<dynamic>.SerializeXmlObjectToStream(requestStream, obj);
-            requestStream.Close();
-            using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-            {
-             return (response.StatusCode == HttpStatusCode.OK);
-            }
-         }
+             WebRequest request = WebRequest.Create(url);
+             request.ContentType = "text/xml";
+             request.Method = "POST";
+             Stream requestStream = request.GetRequestStream();
+             // Serializer using dynamic to get around compile time type checking
+             Serializer<dynamic>.SerializeXmlObjectToStream(requestStream, obj);
+             requestStream.Close();
+             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+             {
+                 return (response.StatusCode == HttpStatusCode.OK);
+             }
+        }
+
 
         protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
         {
-           
+
         }
 
         protected void TreeView2_SelectedNodeChanged(object sender, EventArgs e)
