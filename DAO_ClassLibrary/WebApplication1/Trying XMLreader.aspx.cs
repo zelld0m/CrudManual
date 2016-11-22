@@ -18,92 +18,106 @@ namespace WebApplication1
         DataTable dt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
-           GridView1.DataSource= RunSample();
-         //   TreeView1.DataSource = RunSample();
-            GridView1. DataBind();
-           //PostObjectToURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10",dt  );
 
-           //// GridView1.DataSource = dt;
-           // GridView1.DataBind();
-           // inputURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
-            //usingload();
-            //  usingReader();
+            #region error
+            /*
+             GridView1.DataSource = RunSample();
+            TreeView1.DataSource = RunSample();
+            GridView1.DataBind();
+            PostObjectToURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10", dt);
+
+            // GridView1.DataSource = dt;
+            GridView1.DataBind();
+            inputURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
+            usingload();
+            usingReader();
+            */
+            #endregion
+
         }
 
-        //static void usingReader()
-        //{
-        //    using (XmlReader reader = XmlReader.Create("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10"))
-        //    {
-        //        reader.ReadStartElement("Response");
-        //        while (reader.Name == "TheNodeIWant")
-        //        {
-        //            XElement el = (XElement)XNode.ReadFrom(reader);
-        //        }
-        //        reader.ReadEndElement();
-        //    }
-        //}
 
-        static IEnumerable<XElement> SimpleStreamAxis(string inputUrl,string elementName)
+        #region Errors
+
+        /*---------------- START
+        static void usingReader()
         {
-            using (XmlReader reader = XmlReader.Create(inputUrl))
+            using (XmlReader reader = XmlReader.Create("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10"))
             {
-                reader.MoveToContent();
-                while (reader.Read())
+                reader.ReadStartElement("Response");
+                while (reader.Name == "TheNodeIWant")
                 {
-                    if (reader.NodeType == XmlNodeType.Element)
+                    XElement el = (XElement)XNode.ReadFrom(reader);
+                }
+                reader.ReadEndElement();
+            }
+        }
+
+    static IEnumerable<XElement> SimpleStreamAxis(string inputUrl,string elementName)
+    {
+        using (XmlReader reader = XmlReader.Create(inputUrl))
+        {
+            reader.MoveToContent();
+            while (reader.Read())
+            {
+                if (reader.NodeType == XmlNodeType.Element)
+                {
+                    if (reader.Name == elementName)
                     {
-                        if (reader.Name == elementName)
+                        XElement el = XNode.ReadFrom(reader) as XElement;
+                        if (el != null)
                         {
-                            XElement el = XNode.ReadFrom(reader) as XElement;
-                            if (el != null)
-                            {
-                                yield return el;
-                            }
+                            yield return el;
                         }
                     }
                 }
             }
         }
+    }
 
 
-        void inputURL(String url)
-        {
-            String urlx = @"" + url + "";
-            XmlDocument xmlDoc = new XmlDocument();
-            xmlDoc.Load(urlx);
+    void inputURL(String url)
+    {
+        String urlx = @"" + url + "";
+        XmlDocument xmlDoc = new XmlDocument();
+        xmlDoc.Load(urlx);
+    }
+    //--
+    static void usingload(){
+    var document = XDocument.Load("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
         }
-        //--
-        static void usingload(){
-        var document = XDocument.Load("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
-            }
-        //==
+    //==
 
 
-        private Boolean PostObjectToURL(String url, Object obj)
+    private Boolean PostObjectToURL(String url, Object obj)
+    {
+         WebRequest request = WebRequest.Create(url);
+         request.ContentType = "text/xml";
+         request.Method = "POST";
+         Stream requestStream = request.GetRequestStream();
+         // Serializer using dynamic to get around compile time type checking
+         Serializer<dynamic>.SerializeXmlObjectToStream(requestStream, obj);
+         requestStream.Close();
+         using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
+         {
+             return (response.StatusCode == HttpStatusCode.OK);
+         }
+    } 
+
+
+
+
+        public GeneratedClassFromXSD GetObjectFromXML()
         {
-             WebRequest request = WebRequest.Create(url);
-             request.ContentType = "text/xml";
-             request.Method = "POST";
-             Stream requestStream = request.GetRequestStream();
-             // Serializer using dynamic to get around compile time type checking
-             Serializer<dynamic>.SerializeXmlObjectToStream(requestStream, obj);
-             requestStream.Close();
-             using (HttpWebResponse response = (HttpWebResponse)request.GetResponse())
-             {
-                 return (response.StatusCode == HttpStatusCode.OK);
-             }
-        }
-        //public GeneratedClassFromXSD GetObjectFromXML()
-        //{
-        //    var settings = new XmlReaderSettings();
-        //    var obj = new GeneratedClassFromXSD();
-        //    var reader = XmlReader.Create(urlToService, settings);
-        //    var serializer = new System.Xml.Serialization.XmlSerializer(typeof(GeneratedClassFromXSD));
-        //    obj = (GeneratedClassFromXSD)serializer.Deserialize(reader);
+            var settings = new XmlReaderSettings();
+            var obj = new GeneratedClassFromXSD();
+            var reader = XmlReader.Create(urlToService, settings);
+            var serializer = new System.Xml.Serialization.XmlSerializer(typeof(GeneratedClassFromXSD));
+            obj = (GeneratedClassFromXSD)serializer.Deserialize(reader);
 
-        //    reader.Close();
-        //    return obj;
-        //}
+            reader.Close();
+            return obj;
+        }
 
         protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
         {
@@ -135,10 +149,8 @@ namespace WebApplication1
                 return dsWeather;
             }
         }
-
         public static void PrintDataSet(DataSet ds)
         {
-            
             //    // Print out all tables and their columns  
             foreach (DataTable table in ds.Tables)
             {
@@ -164,6 +176,19 @@ namespace WebApplication1
                 Console.WriteLine(System.Environment.NewLine);
             }  // foreach relation  
         }
+        //----------------------END  */
 
+        #endregion Errors
+
+        protected void TreeView1_SelectedNodeChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void TreeView2_SelectedNodeChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }
+ 

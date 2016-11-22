@@ -12,7 +12,13 @@
     
         <asp:TreeView ID="TreeView1" runat="server" DataSourceID="XmlDataSource1" OnSelectedNodeChanged="TreeView1_SelectedNodeChanged" ShowLines="True">
             <DataBindings>
-                <asp:TreeNodeBinding DataMember="int" />
+                <asp:TreeNodeBinding DataMember="lst" Target="responseHeader" Text="responseHeader" />
+                <asp:TreeNodeBinding DataMember="int" Target="status" />
+                <asp:TreeNodeBinding DataMember="int" Target="QTime" />
+                <asp:TreeNodeBinding DataMember="int" Text="status" Value="status" />
+                <asp:TreeNodeBinding DataMember="lst" Text="params" Value="params" />
+                <asp:TreeNodeBinding DataMember="type" />
+                <asp:TreeNodeBinding DataMember="int" Text="EDP" Value="EDP" />
             </DataBindings>
         </asp:TreeView>
         <asp:GridView ID="GridView1" runat="server">
