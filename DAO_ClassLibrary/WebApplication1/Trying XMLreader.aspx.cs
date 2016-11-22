@@ -18,11 +18,13 @@ namespace WebApplication1
         DataTable dt = new DataTable();
         protected void Page_Load(object sender, EventArgs e)
         {
+           GridView1.DataSource= RunSample();
+         //   TreeView1.DataSource = RunSample();
+            GridView1. DataBind();
+           //PostObjectToURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10",dt  );
 
-           PostObjectToURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10",dt  );
-
-            GridView1.DataSource = dt;
-            GridView1.DataBind();
+           //// GridView1.DataSource = dt;
+           // GridView1.DataBind();
            // inputURL("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             //usingload();
             //  usingReader();
@@ -112,5 +114,56 @@ namespace WebApplication1
         {
 
         }
+
+
+
+        public DataSet RunSample()
+        {
+            //Create the web request
+            HttpWebRequest request
+                = WebRequest.Create("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0") as HttpWebRequest;
+
+            //Get response
+            using (HttpWebResponse response = request.GetResponse() as HttpWebResponse)
+            {
+                //    Load data into a dataset
+                DataSet dsWeather = new DataSet();
+                dsWeather.ReadXml(response.GetResponseStream());
+
+                //Print dataset information
+                PrintDataSet(dsWeather);
+                return dsWeather;
+            }
+        }
+
+        public static void PrintDataSet(DataSet ds)
+        {
+            
+            //    // Print out all tables and their columns  
+            foreach (DataTable table in ds.Tables)
+            {
+                Console.WriteLine("TABLE '{0}'", table.TableName);
+                Console.WriteLine("Total # of rows: {0}", table.Rows.Count);
+                Console.WriteLine("---------------------------------------------------------------");
+
+                foreach (DataColumn column in table.Columns)
+                {
+                    Console.WriteLine("- {0} ({1})", column.ColumnName, column.DataType.ToString());
+                }  // foreach column  
+
+                Console.WriteLine(System.Environment.NewLine);
+            }  // foreach table  
+
+            // Print out table relations  
+            foreach (DataRelation relation in ds.Relations)
+            {
+                Console.WriteLine("RELATION: {0}", relation.RelationName);
+                Console.WriteLine("---------------------------------------------------------------");
+                Console.WriteLine("Parent: {0}", relation.ParentTable.TableName);
+                Console.WriteLine("Child: {0}", relation.ChildTable.TableName);
+                Console.WriteLine(System.Environment.NewLine);
+            }  // foreach relation  
+        }
+
     }
 }
