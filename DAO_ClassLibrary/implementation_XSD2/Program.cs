@@ -17,7 +17,7 @@ namespace implementation_XSD2
             //LIST PRODUCT SERIALIZATION
             try
             {
-                Product product = new Product { 
+                product product = new product { 
                     id = "p01",
                     name = "product Name 1",
                     categoryname = "category 1",
@@ -25,7 +25,7 @@ namespace implementation_XSD2
                     description = new productDescription { color = "RED", size = "Size dd1", weight = "100gr" }
                 };
                 //--------ERROR 
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Product));
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(product));
                 StreamWriter sw = new StreamWriter("Product.xml");
                 xmlSerializer.Serialize(sw, product);
                 sw.Close();
@@ -39,9 +39,9 @@ namespace implementation_XSD2
             /// LIST Desirialization
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Product));  // FORMATTER
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(product));  // FORMATTER
                 StreamReader sr = new StreamReader("Product.xml");     // GET FROM
-                Product product = (Product) xmlSerializer.Deserialize(sr);     // DESERIALIZE PRODUCTS
+                product product = (product) xmlSerializer.Deserialize(sr);     // DESERIALIZE PRODUCTS
                
                     Console.WriteLine("list Product Information");
                     Console.WriteLine("ID: " + product.id);

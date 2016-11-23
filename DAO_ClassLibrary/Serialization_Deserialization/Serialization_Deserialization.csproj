@@ -98,9 +98,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <None Include="Product.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -110,7 +107,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Product.xml" />
     <Content Include="Web.config" />
     <Content Include="WebForm.aspx" />
   </ItemGroup>
@@ -125,6 +121,8 @@
     <Compile Include="Site.Master.designer.cs">
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
+    <Compile Include="System\Runtime\Serialization\DataContractAttribute.cs" />
+    <Compile Include="System\Runtime\Serialization\DataMemberAttribute.cs" />
     <Compile Include="WebForm.aspx.cs">
       <DependentUpon>WebForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -132,6 +130,10 @@
     <Compile Include="WebForm.aspx.designer.cs">
       <DependentUpon>WebForm.aspx</DependentUpon>
     </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="obj\Debug\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

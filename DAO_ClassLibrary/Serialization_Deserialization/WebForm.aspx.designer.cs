@@ -40,6 +40,15 @@ namespace Serialization_Deserialization {
         protected global::System.Web.UI.WebControls.TextBox TB_Name;
         
         /// <summary>
+        /// TB_CategoryName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TB_CategoryName;
+        
+        /// <summary>
         /// TB_Price control.
         /// </summary>
         /// <remarks>
@@ -49,6 +58,15 @@ namespace Serialization_Deserialization {
         protected global::System.Web.UI.WebControls.TextBox TB_Price;
         
         /// <summary>
+        /// TB_Value control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TB_Value;
+        
+        /// <summary>
         /// TB_Unit control.
         /// </summary>
         /// <remarks>
@@ -56,5 +74,41 @@ namespace Serialization_Deserialization {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox TB_Unit;
+        
+        /// <summary>
+        /// TB_Description control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TB_Description;
+        
+        /// <summary>
+        /// TB_Color control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TB_Color;
+        
+        /// <summary>
+        /// TB_Size control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TB_Size;
+        
+        /// <summary>
+        /// TB_Weight control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox TB_Weight;
     }
 }
