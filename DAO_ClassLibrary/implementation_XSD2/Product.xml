@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<product xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="p01" categoryname="category 1">
+  <name>product Name 1</name>
+  <price unit="USD">100</price>
+  <description>
+    <color>RED</color>
+    <size>Size dd1</size>
+    <weight>100gr</weight>
+  </description>
+</product>
