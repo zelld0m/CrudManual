@@ -18,6 +18,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApplication1", "WebAppli
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsoleApplication1", "ConsoleApplication1\ConsoleApplication1.csproj", "{11B9A7E4-F0C2-4C1A-8EDD-C8D399DFFBF0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Serialization_Deserialization", "Serialization_Deserialization\Serialization_Deserialization.csproj", "{D2BF6E46-7851-41D0-B772-1007CEAF58F7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test2", "Test2\Test2.csproj", "{E9F00F86-6370-4F60-B07A-7108FF1BE4BF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +52,14 @@ Global
 		{11B9A7E4-F0C2-4C1A-8EDD-C8D399DFFBF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11B9A7E4-F0C2-4C1A-8EDD-C8D399DFFBF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11B9A7E4-F0C2-4C1A-8EDD-C8D399DFFBF0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D2BF6E46-7851-41D0-B772-1007CEAF58F7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D2BF6E46-7851-41D0-B772-1007CEAF58F7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D2BF6E46-7851-41D0-B772-1007CEAF58F7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D2BF6E46-7851-41D0-B772-1007CEAF58F7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9F00F86-6370-4F60-B07A-7108FF1BE4BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9F00F86-6370-4F60-B07A-7108FF1BE4BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9F00F86-6370-4F60-B07A-7108FF1BE4BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9F00F86-6370-4F60-B07A-7108FF1BE4BF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
