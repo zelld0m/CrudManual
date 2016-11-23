@@ -8,7 +8,11 @@ using System.Xml.Linq;
 using System.Xml.Serialization;
 using System.Reflection;
 namespace implementation_XSD2
-{
+{ /// <summary>   
+///  http://stackoverflow.com/questions/60573/xmlserializer-there-was-an-error-reflecting-type?answertab=active#tab-top // problem fixed on reflection
+///  https://www.youtube.com/watch?v=UvEF7UPh1Qg#t=209.781108             // video
+/// http://xsd2code.codeplex.com/                                       // tutorial xsd2code
+/// </summary>
     class Program
     {
         static void Main(string[] args)

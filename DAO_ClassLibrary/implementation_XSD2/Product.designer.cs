@@ -282,7 +282,7 @@ namespace implementation_XSD2
         private byte valueField;
 
         public string unit { get; set; }
-        [XmlIgnore]  // --------------------------------------- VERY   IMPORTANT PART ---------------------------------
+        [XmlIgnore]  // -------------------- VERY   IMPORTANT PART ----   IF removed reflection problem will occur-----------
         [System.Xml.Serialization.XmlTextAttribute()]
         public byte Value { get; set; }
 
