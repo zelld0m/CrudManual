@@ -97,9 +97,7 @@ namespace Test2
                    };
                //--------ERROR 
                    XmlSerializer xmlSerializer = new XmlSerializer(typeof(Product));
-
                    StreamWriter sw = new StreamWriter("Product.xml");
-
                    xmlSerializer.Serialize(sw, product);
                    sw.Close();
                    //ERROR
@@ -111,7 +109,6 @@ namespace Test2
                }
                */
             //Product Desirialization
-
             /*
             try
             {

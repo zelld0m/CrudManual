@@ -14,21 +14,21 @@ namespace implementation_XSD2
     using System.ComponentModel;
     using System.Collections.Generic;
 
-
-    public partial class product
+    [XmlType("products.class")]
+    public partial class Product
     {
 
         private string nameField;
 
         private productPrice priceField;
-
+        
         private productDescription descriptionField;
 
         private string idField;
 
         private string categorynameField;
 
-        public product()
+        public Product()
         {
             this.descriptionField = new productDescription();
             this.priceField = new productPrice();

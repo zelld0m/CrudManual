@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 using System.Xml.Serialization;
-
+using System.Reflection;
 namespace implementation_XSD2
 {
     class Program
@@ -14,30 +14,20 @@ namespace implementation_XSD2
         static void Main(string[] args)
         {
             #region LIST _ Serialization
-
             //LIST PRODUCT SERIALIZATION
-
             try
             {
-
-                product Product = new product { 
-
-                    
+                Product product = new Product { 
                     id = "p01",
                     name = "product Name 1",
                     categoryname = "category 1",
                     price = new productPrice { Value = 100, unit = "USD" },
                     description = new productDescription { color = "RED", size = "Size dd1", weight = "100gr" }
                 };
-             
-              
-             
                 //--------ERROR 
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(product));
-
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Product));
                 StreamWriter sw = new StreamWriter("Product.xml");
-
-                xmlSerializer.Serialize(sw, Product);
+                xmlSerializer.Serialize(sw, product);
                 sw.Close();
                 //ERROR
                 Console.WriteLine("Serialization Success");
@@ -49,11 +39,9 @@ namespace implementation_XSD2
             /// LIST Desirialization
             try
             {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(product));  // FORMATTER
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(Product));  // FORMATTER
                 StreamReader sr = new StreamReader("Product.xml");     // GET FROM
-                product product = (product) xmlSerializer.Deserialize(sr);     // DESERIALIZE PRODUCTS
-               
-                
+                Product product = (Product) xmlSerializer.Deserialize(sr);     // DESERIALIZE PRODUCTS
                
                     Console.WriteLine("list Product Information");
                     Console.WriteLine("ID: " + product.id);
