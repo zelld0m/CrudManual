@@ -11,10 +11,20 @@ namespace UsingUrlToGetXML
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-         Label1.Text= MicrosoftLink.microsoftTutorial();
+         
         }
 
-        
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Label1.Text= MicrosoftLink.microsoftTutorial();
+        }
+
+      
+
+        protected void Button2_Click1(object sender, EventArgs e)
+        {
+            Label1.Text = MicrosoftLink.findReaderValue();
+        }
     }
 
 }
