@@ -9,12 +9,12 @@
     <ProductVersion>
     </ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{D2BF6E46-7851-41D0-B772-1007CEAF58F7}</ProjectGuid>
+    <ProjectGuid>{45631420-ACD2-4E7A-997F-84155C31BE61}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Serialization_Deserialization</RootNamespace>
-    <AssemblyName>Serialization_Deserialization</AssemblyName>
+    <RootNamespace>UsingUrlToGetXML</RootNamespace>
+    <AssemblyName>UsingUrlToGetXML</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -98,7 +98,6 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -107,31 +106,19 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Microsoft.aspx" />
     <Content Include="Web.config" />
-    <Content Include="WebForm.aspx" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Product.designer.cs" />
+    <Compile Include="Microsoft.aspx.cs">
+      <DependentUpon>Microsoft.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Microsoft.aspx.designer.cs">
+      <DependentUpon>Microsoft.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="MicrosoftLink.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Site.Master.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Site.Master.designer.cs">
-      <DependentUpon>Site.Master</DependentUpon>
-    </Compile>
-    <Compile Include="WebForm.aspx.cs">
-      <DependentUpon>WebForm.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="WebForm.aspx.designer.cs">
-      <DependentUpon>WebForm.aspx</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="bin\" />
-    <Folder Include="obj\Debug\" />
-    <Folder Include="System\Runtime\Serialization\" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -146,9 +133,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>52758</DevelopmentServerPort>
+          <DevelopmentServerPort>50527</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:52758/</IISUrl>
+          <IISUrl>http://localhost:50527/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
