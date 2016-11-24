@@ -79,7 +79,7 @@ namespace ConsoleApplication1
                         break;
                 }
             }
-            
+            Console.ReadLine();
           }
     }
 }
