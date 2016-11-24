@@ -11,7 +11,7 @@ namespace UsingUrlToGetXML
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-         MicrosoftLink.microsoftTutorial();
+         Label1.Text= MicrosoftLink.microsoftTutorial();
         }
 
         
