@@ -205,8 +205,12 @@ namespace UsingUrlToGetXML
         }
         public static string implement(TextBox tb1, TextBox tb2)
         {
+            
             var xdoc = XDocument.Load("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0");
             String inputString = "mmm";
+
+            //---------------------------------------- 1st approach --------------------------------------------------
+
             //xdoc.Descendants("responseHeader").Select(p => new
             //{
             //    status = p.Element("status").Value,
@@ -218,25 +222,70 @@ namespace UsingUrlToGetXML
             //    tb2.Text = "QTime = " + p.QTime;
             //    inputString = "----------";
             //});
-            //------------------------------------------------------------------------------------------------
-            // var selectedpage = from r in xdoc.Descendants("responseHeader")
-            //               select new
-            //               {
-            //                   status = r.Element("status").Value,
-            //                   QTime = r.Element("QTime").Value,
 
-            //                 };
-            //foreach(var r in selectedpage)
+
+            //------------------------------------------ 2nd approach --------------------------------------------------
+
+            //var selectedpage = from r in xdoc.Descendants("responseHeader")
+            //                   select new
+            //                   {
+            //                       status = r.Element("status").Value,
+            //                       QTime = r.Element("QTime").Value,
+            //                   };
+            //foreach (var r in selectedpage)
             //{
             //    tb1.Text = "Status = " + r.status;
             //    tb2.Text = "QTime" + r.status;
             //    inputString = "----------";
             //}
-            //----------------------------------------------------------------------------------------------------------------------------
-            var selectedpage = from r in xdoc.Descendants("reponseHeader").Where(r => (string)r.Attribute("status") == "0")
-                               select r.Element("QTime").Attribute("status").Value.FirstOrDefault();
 
-            //tb1.Text = selectedpage;  // ERROR 
+            //----------------------------------------------- 3rd approach ----------------------------------------------
+
+            //var selectedpage = from r in xdoc.Descendants("reponseHeader").Where(r => (string)r.Attribute("status") == "0")
+            //                   select r.Element("QTime").Attribute("status").Value.FirstOrDefault();
+            //foreach(var r in selectedpage)
+            //{
+            //       // ERROR 
+            //    inputString += selectedpage;  //  cant be saved 
+            //}
+
+            //------------------------------------------------ 4th approach --------------------------------------------------------------------
+            //    var feeds = from feed in xdoc.Descendants("responseHeader")
+            //                where feed.Attribute("status") == null || feed.Attribute("status").Value != "disabled"
+            //                select new
+            //                {
+            //                    status = feed.Element("status").Value,
+            //                    QTime = feed.Element("QTime").Value,
+
+            //};
+
+            //            foreach(var feed in feeds)
+            //    {
+            //       tb1.Text= feed.status;
+            //        tb2.Text = feed.QTime;
+            //        inputString = feed.status + "   " + feed.status;
+            //    }
+
+            //----------------------------  5th approach   working ------------------------------------------------------------------------
+            IEnumerable<XElement> employees = xdoc.Elements();
+
+            var result = xdoc.Element("response").Descendants();
+
+            foreach(var Header in employees )
+            {
+                // tb1.Text += Header;             // working  calling all as string           // WORKing
+                //  inputString += Header;          // element name cannot be seen if printed on label   // working
+
+                // must find code for getting specific value 
+
+            //    tb1.Text += Header.Attribute("responseHeader").Value;
+
+            }
+
+            foreach (XElement item in result )
+            {
+                tb2.Text += item.Value[1];
+            }
             return inputString;
         }
 
