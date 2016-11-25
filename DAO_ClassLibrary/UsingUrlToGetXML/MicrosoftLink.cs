@@ -279,7 +279,6 @@ namespace UsingUrlToGetXML
                 // must find code for getting specific value 
 
             //    tb1.Text += Header.Attribute("responseHeader").Value;
-
             }
 
             foreach (XElement item in result )
