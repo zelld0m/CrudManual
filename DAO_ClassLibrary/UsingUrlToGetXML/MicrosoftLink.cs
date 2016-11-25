@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Web;
+using System.Web.UI.WebControls;
 using System.Xml;
+using System.Xml.Linq;
+using System.Xml.XPath;
 
 namespace UsingUrlToGetXML
 {
     public class MicrosoftLink
     {
-
        
         public static String microsoftTutorial(int start)
         {
@@ -129,7 +131,7 @@ namespace UsingUrlToGetXML
             String put = "";
             String str = "";
             XmlReader reader = XmlReader.Create("data.xml");  // success on saving 
-
+            
             #region
             reader.Read();
             reader.ReadStartElement("response");  // if response has been changed 
@@ -137,23 +139,25 @@ namespace UsingUrlToGetXML
                                                   // str = "THE CONTENTES OF THE TITLE ELEMENT: "+reader.ReadString();
             while (reader.Read())
             {
-                
-                str = str + " " + reader.Value;
-                //  str = str + " " + reader.Name;  // int str  
-
-                while (reader.MoveToNextAttribute())
-                {
-                    str = str + " " + reader.Value ;    // QTime Params echoParams
-                    // str = str + " " + reader.Name;      Name only not important
-                    //str = str + " " + reader.ValueType; 
-                }
-               
-                str = str + "</br>";
+                str = str + " " + reader.Value;      // value 
+                                                     //  str = str + " " + reader.Name;  // int str  
+               while (reader.MoveToNextAttribute())
+                    {
+                        if (reader.Value == "QTime")              //Change this to find value
+                        { // The node is an element.
+                            put = put + " " + reader.Value + " HELLOWORLD:  "+ reader.ReadOuterXml();
+                        }
+                            str = str +  "</br>" + reader.Value  ;    // QTime Params echoParams
+                        // str = str + " " + reader.Name;      Name only not important
+                        //str = str + " " + reader.ValueType; 
+                    }
+                   //while (reader.MoveToNextAttribute()) ;
+                //str = str  + reader.Value + "</br>";
             }
             //   reader.ReadStartElement("");
             // str = str + " The content of the element : " + reader.ReadContentAsString();
             #endregion
-            put = str;
+            //put = str;
             
             return put;
         }
@@ -174,12 +178,69 @@ namespace UsingUrlToGetXML
             doc.LoadXml(downloadStringFromUrl("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0"));
             // save the document to a file. white space is preserved (no White space)
             doc.PreserveWhitespace = true;
-            doc.Save("data.xml");   //FAiLED
-          
+            doc.Save("data.xml");   //FAiLED     
+        }
+        public static void PullXMLFileAndMakingString()
+        {  // LINK http://stackoverflow.com/questions/3175790/how-can-i-download-an-xml-file-using-c
+            //1st Approach
+           
+            string url = "http://www.dreamincode.net/forums/xml.php?showuser=1253";
+            string xml;
+            using (var webClient = new WebClient())
+            {
+                xml = webClient.DownloadString(url);
+            }
+
+            XDocument doc = XDocument.Parse(xml);
+
+            // in the result profile with id name is 'Nate'
+            string name = doc.XPathSelectElement("/ipb/profile[id='1253']/name").Value;
+         //   Assert.That(name, Is.EqualTo("Nate"));
+
+            //2nd Appoach------------------------------------------------------------ 
+            var xml2 = XDocument.Load("http://www.dreamincode.net/forums/xml.php?showuser=1253");
+
+            // Use this link to apply LINQ and XML for easier way
+            //https://www.youtube.com/watch?v=sfDPdflXbiM
+        }
+        public static string implement(TextBox tb1, TextBox tb2)
+        {
+            var xdoc = XDocument.Load("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0");
+            String inputString = "mmm";
+            //xdoc.Descendants("responseHeader").Select(p => new
+            //{
+            //    status = p.Element("status").Value,
+            //    QTime = p.Element("QTime").Value
+
+            //}).ToList().ForEach(p =>
+            //{
+            //    tb1.Text = "Status = " + p.status;
+            //    tb2.Text = "QTime = " + p.QTime;
+            //    inputString = "----------";
+            //});
+
+            var selectedpage = from r in xdoc.Descendants("responseHeader")
+                               select new
+                               {
+                                   status = r.Element("status").Value,
+                                   QTime = r.Element("QTime").Value,
+                                   
+        };
+            foreach(var r in selectedpage)
+            {
+                tb1.Text = "Status = " + r.status;
+                tb2.Text = "QTime" + r.status;
+                inputString = "----------";
+            }
+ 
+
+
+            return inputString;
         }
 
     }
 
+   
 }
 
 

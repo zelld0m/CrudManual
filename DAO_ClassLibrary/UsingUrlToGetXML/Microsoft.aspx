@@ -56,7 +56,10 @@
         <table class="auto-style1">
             <tr>
                 <td>&nbsp;</td>
-                <td>&nbsp;</td>
+                <td>
+                    <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                    <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox>
+                </td>
             </tr>
             <tr>
                 <td>

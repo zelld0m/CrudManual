@@ -32,12 +32,12 @@ namespace UsingUrlToGetXML
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            MicrosoftLink.creatingXMLUsingString();
+           
         }
 
         protected void Button2_Click(object sender, EventArgs e)
         {
-            Lbl_Find.Text = MicrosoftLink.findReaderValue2();
+            Lbl_Find.Text = MicrosoftLink.implement(TextBox1,TextBox2);
         }
     }
 
