@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Xml;
@@ -12,7 +13,9 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            hello();
+            Console.WriteLine(savingXmlReaderFiletoString());
+           //Console.WriteLine( downloadStringFromUrl());
+         //   hello();
             //sample();
         }
 
@@ -57,6 +60,8 @@ namespace ConsoleApplication1
         {
             String URLString = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0";
             XmlTextReader reader = new XmlTextReader(URLString);
+            StringBuilder x = new StringBuilder();
+
 
             while (reader.Read())
             {
@@ -66,7 +71,7 @@ namespace ConsoleApplication1
                         Console.Write("<" + reader.Name);
 
                         while (reader.MoveToNextAttribute()) // Read the attributes.
-                        Console.Write(" " + reader.Name + "='" + reader.Value + "'");
+                            Console.Write(" " + reader.Name + "='" + reader.Value + "'");
                         Console.Write(">");
                         Console.WriteLine(">");
                         break;
@@ -79,7 +84,36 @@ namespace ConsoleApplication1
                         break;
                 }
             }
+
             Console.ReadLine();
           }
+
+
+
+
+       static StringBuilder savingXmlReaderFiletoString()
+        {
+            String URLString = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0";
+            XmlTextReader reader = new XmlTextReader(URLString);
+            StringBuilder x = new StringBuilder();
+
+            if (reader != null)
+            {
+                while (reader.Read())
+                    x.AppendLine(reader.ReadOuterXml());
+                Console.WriteLine(x);
+            }
+            return x;
+        }
+        static string downloadStringFromUrl()
+        {
+            string str;
+            using (WebClient client = new WebClient())
+            {
+                str = client.DownloadString("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0");
+            }
+            return str;
+           
+        }
     }
 }
