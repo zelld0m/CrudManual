@@ -218,23 +218,25 @@ namespace UsingUrlToGetXML
             //    tb2.Text = "QTime = " + p.QTime;
             //    inputString = "----------";
             //});
+            //------------------------------------------------------------------------------------------------
+            // var selectedpage = from r in xdoc.Descendants("responseHeader")
+            //               select new
+            //               {
+            //                   status = r.Element("status").Value,
+            //                   QTime = r.Element("QTime").Value,
 
-            var selectedpage = from r in xdoc.Descendants("responseHeader")
-                               select new
-                               {
-                                   status = r.Element("status").Value,
-                                   QTime = r.Element("QTime").Value,
-                                   
-        };
-            foreach(var r in selectedpage)
-            {
-                tb1.Text = "Status = " + r.status;
-                tb2.Text = "QTime" + r.status;
-                inputString = "----------";
-            }
- 
+            //                 };
+            //foreach(var r in selectedpage)
+            //{
+            //    tb1.Text = "Status = " + r.status;
+            //    tb2.Text = "QTime" + r.status;
+            //    inputString = "----------";
+            //}
+            //----------------------------------------------------------------------------------------------------------------------------
+            var selectedpage = from r in xdoc.Descendants("reponseHeader").Where(r => (string)r.Attribute("status") == "0")
+                               select r.Element("QTime").Attribute("status").Value.FirstOrDefault();
 
-
+            //tb1.Text = selectedpage;  // ERROR 
             return inputString;
         }
 
