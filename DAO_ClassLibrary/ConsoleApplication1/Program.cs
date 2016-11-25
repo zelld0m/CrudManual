@@ -13,10 +13,13 @@ namespace ConsoleApplication1
     {
         static void Main(string[] args)
         {
-            Console.WriteLine(savingXmlReaderFiletoString());
-           //Console.WriteLine( downloadStringFromUrl());
-         //   hello();
+           // Console.WriteLine(savingXmlReaderFiletoString());
+           Console.WriteLine( downloadStringFromUrl());
+
+            //hello();
             //sample();
+
+            Console.ReadLine();
         }
 
 
@@ -103,6 +106,7 @@ namespace ConsoleApplication1
                     x.AppendLine(reader.ReadOuterXml());
                 Console.WriteLine(x);
             }
+        
             return x;
         }
         static string downloadStringFromUrl()
