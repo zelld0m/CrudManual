@@ -82,8 +82,9 @@ namespace UsingStreamReader
         }
 
 
-        public static void carlsoncode(TextBox tb1, TextBox tb2,Label lbl1)
+        public static String carlsoncode()
         {
+            String text = "";
             System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             reader.WhitespaceHandling = WhitespaceHandling.Significant;
             while (reader.ReadToFollowing("int"))
@@ -91,21 +92,21 @@ namespace UsingStreamReader
                 string attr = reader.GetAttribute("name");
                 string valuetext = reader.ReadElementString("int");
 
-
-                if (tb1.Text == attr || tb2.Text == valuetext)   // finding value
-                {
-                    lbl1.Text = "  GOTCHA  " + attr + "    " + valuetext;  // Found
-                    /// SAVE What is searched
-                }
-
-
+                text = text +("Attribute Name: " + attr);
+                text = text + ("</br>");
+                text = text + ("Value:" + valuetext);
+                text = text + ("</br>");
+                text = text + ("</br>");
             }
-
+            return text;
+        }
+        public static void findcode(TextBox tb1, TextBox tb2, Label lbl1)
+        {
 
 
             System.Xml.XmlTextReader reader2 = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             reader2.WhitespaceHandling = WhitespaceHandling.Significant;
-            while (reader.ReadToFollowing("int"))
+            while (reader2.ReadToFollowing("int"))
             {
                 string attr = reader2.GetAttribute("name");
                 string valuetext = reader2.ReadElementString("int");
@@ -114,7 +115,7 @@ namespace UsingStreamReader
                     lbl1.Text = "GOTCHA  " + attr + "    " + valuetext;  // Found
                 }
 
-
+                // use this method to return value and pass it on the next page for Details on laptops
             }
 
         }

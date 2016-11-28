@@ -15,19 +15,7 @@ namespace UsingStreamReader
             //String x = "";
             //Label1.Text =sample.testreader(x);
 
-            System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
-            reader.WhitespaceHandling = WhitespaceHandling.Significant;
-            while (reader.ReadToFollowing("int"))
-            {
-                string attr = reader.GetAttribute("name");
-                string valuetext = reader.ReadElementString("int");
-
-                Response.Write("Attribute Name: " + attr);
-                Response.Write("</br>");
-                Response.Write("Value:" + valuetext);
-                Response.Write("</br>");
-                Response.Write("</br>");
-            }
+            Label1.Text= sample.carlsoncode();
         }
 
         protected void TextBox2_TextChanged(object sender, EventArgs e)
@@ -37,7 +25,7 @@ namespace UsingStreamReader
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            sample.carlsoncode(TextBox1, TextBox2, Label1);
+            sample.findcode(TextBox1, TextBox2, Label2);
 
 
         }
