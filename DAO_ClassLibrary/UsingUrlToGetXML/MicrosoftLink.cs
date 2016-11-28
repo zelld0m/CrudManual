@@ -73,7 +73,7 @@ namespace UsingUrlToGetXML
                                                  // Console.Write("</" + reader.Name);
                         str = str + "</";
                         //Console.WriteLine(">");
-                        str = str + "><br/";
+                        str = str + "><br/>";
                         break;
                 }
                 
@@ -147,7 +147,7 @@ namespace UsingUrlToGetXML
                         { // The node is an element.
                             put = put + " " + reader.Value + " HELLOWORLD:  "+ reader.ReadOuterXml();
                         }
-                            str = str +  "</br>" + reader.Value  ;    // QTime Params echoParams
+                            str = str +  "</br>" + reader.Value +  " " + reader.Name+ "----" +reader.ReadToNextSibling(" QTime")   ;    // QTime Params echoParams
                         // str = str + " " + reader.Name;      Name only not important
                         //str = str + " " + reader.ValueType; 
                     }
@@ -266,28 +266,52 @@ namespace UsingUrlToGetXML
             //        inputString = feed.status + "   " + feed.status;
             //    }
 
-            //----------------------------  5th approach   working ------------------------------------------------------------------------
+            ////----------------------------  5th approach   working --------------- finding elements---------------------------------------------------------
             IEnumerable<XElement> employees = xdoc.Elements();
 
             var result = xdoc.Element("response").Descendants();
 
-            foreach(var Header in employees )
+            foreach (var Header in employees)
             {
-                // tb1.Text += Header;             // working  calling all as string           // WORKing
-                //  inputString += Header;          // element name cannot be seen if printed on label   // working
+                tb1.Text += Header;             // working  calling all as string           // WORKing
+                inputString += Header;          // element name cannot be seen if printed on label   // working
+              
+                //must find code for getting specific value
 
-                // must find code for getting specific value 
 
-            //    tb1.Text += Header.Attribute("responseHeader").Value;
+                //    tb1.Text += Header.FirstAttribute("responseHeader").Value;
             }
+                tb2.Text = Convert.ToString( xdoc.Descendants().SingleOrDefault(p => p.Name.LocalName == "response"));
+            // 6th approach -------------------------------------------------------------
+            //  string url = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0";
+            //  string xml;
+            //  using (var webClient = new WebClient())
+            //  {
+            //      xml = webClient.DownloadString(url);
+            //  }
+            //  XElement elements = XElement.Parse( xml);
+            //  int count = 0;
+            //foreach(XElement record in elements.Elements("responseHeader"))
+            //  {
+            //      record.SetAttributeValue("", count);
+            //      count++;
+            //  }
+            //  var temp = from record in elements.Elements("responseHeader")
+            //             from field in record.Elements("status")
+            //             select new { Record = "responseHeader " + record.Attribute("id").Value, field = field.Value };
+            //  foreach(var item in temp)
+            //  {
+            //      inputString +="{0}:{1}", item.Record , item.field);
+            //  }
 
-            foreach (XElement item in result )
-            {
-                tb2.Text += item.Value[1];
-            }
+
             return inputString;
         }
 
+
+
+        // Study About Stream reader
+        //  Best practice for reader
     }
 
    

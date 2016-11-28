@@ -27,7 +27,7 @@
                     <asp:Label ID="Lbl_Find" runat="server" Text="Label"></asp:Label>
                 </td>
                 <td>
-                    <asp:Button ID="Btn_Find" runat="server" Text="Find1" OnClick="Btn_Find_Click" />
+                    <asp:Button ID="Btn_Find" runat="server" Text="Find1" OnClick="Btn_Find_Click" style="width: 48px" />
                     <asp:Button ID="Button2" runat="server" Text="Find2" OnClick="Button2_Click" style="height: 26px" />
                 </td>
             </tr>
