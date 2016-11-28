@@ -27,7 +27,7 @@ namespace UsingStreamReader
         {
             sample.findcode(TextBox1, TextBox2, Label2);
 
-
+            sample.getnumfound(Label3);
         }
     }
 }

@@ -87,10 +87,22 @@ namespace UsingStreamReader
             String text = "";
             System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             reader.WhitespaceHandling = WhitespaceHandling.Significant;
+
+            //while (reader.ReadToFollowing("int"))
+            //{
             while (reader.ReadToFollowing("int"))
             {
-                string attr = reader.GetAttribute("name");
-                string valuetext = reader.ReadElementString("int");
+
+           
+                    //string attr = reader.GetAttribute("result");
+                    //string valuetext = reader.ReadElementString("name");
+
+                    string attr = reader.GetAttribute("name");
+               // string attr2 = reader.GetAttribute("numFound");
+               // string attr3 = reader.GetAttribute("start");
+               string valuetext = reader.ReadElementString("int");
+              
+                text += "</br>";
 
                 text = text +("Attribute Name: " + attr);
                 text = text + ("</br>");
@@ -102,20 +114,35 @@ namespace UsingStreamReader
         }
         public static void findcode(TextBox tb1, TextBox tb2, Label lbl1)
         {
-
-
             System.Xml.XmlTextReader reader2 = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             reader2.WhitespaceHandling = WhitespaceHandling.Significant;
             while (reader2.ReadToFollowing("int"))
             {
                 string attr = reader2.GetAttribute("name");
                 string valuetext = reader2.ReadElementString("int");
+            
                 if (tb1.Text == attr && tb2.Text == valuetext)   // finding value
                 {
                     lbl1.Text = "GOTCHA  " + attr + "    " + valuetext;  // Found
                 }
 
                 // use this method to return value and pass it on the next page for Details on laptops
+            }
+
+        }
+        public static void getnumfound(Label lblNumfound)
+        {
+            System.Xml.XmlTextReader reader2 = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
+            reader2.WhitespaceHandling = WhitespaceHandling.Significant;
+
+           // string attr = reader2.GetAttribute("name");
+        //    string valuetext = reader2.ReadElementString("int");
+            while (reader2.MoveToAttribute("result"))
+            {
+                if (reader2.GetAttribute("name") == "numfound")
+                {
+                    lblNumfound.Text = "numfound : " + reader2.GetAttribute("name");
+                }
             }
 
         }
