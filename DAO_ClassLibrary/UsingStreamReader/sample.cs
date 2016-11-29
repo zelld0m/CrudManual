@@ -14,7 +14,7 @@ namespace UsingStreamReader
     /// <summary>
     /// https://www.dotnetperls.com/streamreader
     /// </summary>
-    /// 
+    /// http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10
 
     public class sample
     {
@@ -22,11 +22,11 @@ namespace UsingStreamReader
         /// <summary>
         /// READER
         /// </summary>
-        public static String testreader(String x) {
+        public static String Testreader(String x) {
 
             //=======================================  1st ============================================
             //var xmlDoc = new XmlDocument();
-            //xmlDoc.Load("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0");
+            //xmlDoc.Load("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             //var address = xmlDoc.GetElementsByTagName("responseHeader");// ERROR System.Xml.XmlElementList
             //x = Convert.ToString(address);
             //return x;
@@ -35,7 +35,7 @@ namespace UsingStreamReader
 
             //=======================================  2nd ============================================
             //var xmlDoc = new XmlDocument();
-            //xmlDoc.Load("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0");
+            //xmlDoc.Load("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             //StreamReader stream = new StreamReader(xmlDoc);
 
             //x = Convert.ToString(address);
@@ -61,28 +61,28 @@ namespace UsingStreamReader
             //    xmlDoc.LoadXml(reasponseReader);
             //} 
             //----------------------------------------- 4th ---------------------------------------
-        
-            // XMLTEXTREADER  From carlson
-            
-            //XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
-        //    reader.WhitespaceHandling = WhitespaceHandling.Significant;
-        //    while (reader.ReadToFollowing("int"))
-        //    {
-        //        string attr = reader.GetAttribute("name");
-        //        string valuetext = reader.ReadElementString("int");
 
-        //        Response.Write("Attribute Name: " + attr);
-        //        Response.Write("</br>");
-        //        Response.Write("Value:" + valuetext);
-        //        Response.Write("</br>");
-        //        Response.Write("</br>");
-        //    }
-           return x;
+            // XMLTEXTREADER  From carlson
+
+            //XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
+            //    reader.WhitespaceHandling = WhitespaceHandling.Significant;
+            //    while (reader.ReadToFollowing("int"))
+            //    {
+            //        string attr = reader.GetAttribute("name");
+            //        string valuetext = reader.ReadElementString("int");
+
+            //        Response.Write("Attribute Name: " + attr);
+            //        Response.Write("</br>");
+            //        Response.Write("Value:" + valuetext);
+            //        Response.Write("</br>");
+            //        Response.Write("</br>");
+            //    }
+            return x;
 
         }
 
 
-        public static String carlsoncode()
+        public static String ViewALL()
         {
             String text = "";
             System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
@@ -100,7 +100,7 @@ namespace UsingStreamReader
             }
             return text;
         }
-        public static void findcode(TextBox tb1, TextBox tb2, Label lbl1)
+        public static void Findcode(TextBox tb1, TextBox tb2, Label lbl1)
         {
             System.Xml.XmlTextReader reader2 = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
             reader2.WhitespaceHandling = WhitespaceHandling.Significant;
@@ -115,7 +115,7 @@ namespace UsingStreamReader
                 // use this method to return value and pass it on the next page for Details on laptops
             }
         }
-        public static string getnumfound() // FINDING VALUE
+        public static string Getnumfound() // FINDING VALUE
         {
             string lblNumfound = "";
             System.Xml.XmlTextReader reader2 = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=25&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
@@ -129,5 +129,47 @@ namespace UsingStreamReader
             }
             return lblNumfound;
         }
+
+        public static string ShowAllEDP()
+        {
+            string allEDP = "";
+            System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=10&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
+            while (reader.ReadToFollowing("result"))  
+            {
+                while (reader.ReadToFollowing("int"))
+                {
+                    //if (reader.GetAttribute("name") == "EDP")     // posible
+                        while (reader.GetAttribute("name") == "EDP")    //    possible
+                        {
+                        allEDP += "</br>" + reader.GetAttribute("name") + reader.Value + " " + reader.ReadElementString("int");// show all EDP
+                    }
+                  //  allEDP += "</br>" + reader.GetAttribute("name")+ reader.Value + " " + reader.ReadElementString("int");
+                }
+              
+            }
+            return allEDP;
+        }
+
+        public static List<int>  SaveALLEDP(String url)
+        {
+            List<int> saveEDP = new List<int>();
+            System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=10&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10" /*url*/);
+            while (reader.ReadToFollowing("result"))
+            {
+                while (reader.ReadToFollowing("int"))
+                {
+                    while (reader.GetAttribute("name") == "EDP")
+                        {
+                         saveEDP.Add ( Convert.ToInt32(reader.ReadElementString("int")));// show all EDP
+                        }
+                }
+
+            }
+        
+            return saveEDP;
+        }
+      
     }
+     
+   
 }
