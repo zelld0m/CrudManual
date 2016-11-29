@@ -14,8 +14,9 @@ namespace UsingStreamReader
         {
             //String x = "";
             //Label1.Text =sample.testreader(x);
-
-            Label1.Text= sample.carlsoncode();
+        
+           Label1.Text= sample.carlsoncode();
+            //Label3.Text = sample.getnumfound();
         }
 
         protected void TextBox2_TextChanged(object sender, EventArgs e)
@@ -25,9 +26,9 @@ namespace UsingStreamReader
 
         protected void Button1_Click(object sender, EventArgs e)
         {
-            sample.findcode(TextBox1, TextBox2, Label2);
+           // sample.findcode(TextBox1, TextBox2, Label2);
 
-            sample.getnumfound(Label3);
+    
         }
     }
 }
