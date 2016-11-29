@@ -25,14 +25,15 @@ namespace UsingStreamReader
           
         
             while (reader.Read()){
-
-                //while (reader.HasAttributes)
-                //{
+                while (reader.ReadToFollowing("item")){
+                    //while (reader.HasAttributes)
+                    //{
 
                     //if(reader.GetAttribute(""))
                     //   if(reader.GetAttribute("productDetails")=="manufacturer")
-                    productDetailsList.Add(reader.Value + "</br>" );// show all EDP
-                //}
+                    productDetailsList.Add(reader.Value + "</br>");// show all EDP
+                                                                   //}
+                }
             }
             
             Label1.Text = String.Join("", productDetailsList);
