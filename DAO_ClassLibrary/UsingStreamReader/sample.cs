@@ -145,7 +145,6 @@ namespace UsingStreamReader
                     }
                   //  allEDP += "</br>" + reader.GetAttribute("name")+ reader.Value + " " + reader.ReadElementString("int");
                 }
-              
             }
             return allEDP;
         }
@@ -162,10 +161,8 @@ namespace UsingStreamReader
                         {
                          saveEDP.Add ( Convert.ToInt32(reader.ReadElementString("int")));// show all EDP
                         }
-                }
-
+                }   
             }
-        
             return saveEDP;
         }
       
