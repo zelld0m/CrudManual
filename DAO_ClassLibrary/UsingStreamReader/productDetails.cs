@@ -12,22 +12,55 @@ namespace UsingStreamReader
     {
 
 
-        public static List<int> SaveALLEDP(String url)
+        public static void showDetails(String inputurl ,Label label_store , Label label_productName,
+            Label label_productdescription,Label label_Price, String str_image ,
+            Label label_Manufacturer ,Label label_availabilityDescription)
         {
-            List<int> saveEDP = new List<int>();
-            System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=10&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10" /*url*/);
-            reader.WhitespaceHandling = WhitespaceHandling.Significant;
-            while (reader.ReadToFollowing("result"))
+
+
+
+            inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=10290644&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
+            System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
+            // reader.WhitespaceHandling = WhitespaceHandling.Significant;
+            while (reader.Read())
             {
-                while (reader.ReadToFollowing("int"))
+                if (reader.Name == "store")
                 {
-                    while (reader.GetAttribute("name") == "EDP")
-                    {
-                        saveEDP.Add(Convert.ToInt32(reader.ReadElementString("int")));// show all EDP
-                    }
+
+                 label_store.Text = reader.ReadElementString("store");// show all EDP     
+
                 }
+                //============================
+                if (reader.Name == "name")
+                {
+                 label_productName.Text = reader.ReadElementString("name");// show all EDP     
+                }
+                if (reader.Name == "description")
+                {
+                    label_productdescription.Text = reader.ReadElementString("description");// show all EDP     
+
+                }
+                if (reader.Name == "finalPrice")
+                {
+                       label_Price .Text = reader.ReadElementString("finalPrice");// show all EDP     
+                }
+                if (reader.Name == "xlg")  // IMAGE  & SIZE  // String value
+                {
+                    str_image = reader.ReadElementString("xlg");// show all EDP     
+                }
+                if (reader.Name == "manufacturer")
+                {
+                    label_Manufacturer.Text = reader.ReadElementString("manufacturer");// show all EDP     
+                }
+                if (reader.Name == "availabilityDescription")
+                {
+                    label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");// show all EDP     
+                }
+
+                //reader.Name == "productDetails" ||reader.Name == "manufacturer"
             }
-            return saveEDP;
+       
+
         }
     }
 }
