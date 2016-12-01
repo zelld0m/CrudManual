@@ -12,14 +12,20 @@ namespace UsingStreamReader
     {
 
 
-        public static void showDetails(String inputurl ,Label label_store , Label label_productName,
-            Label label_productdescription,Label label_Price, String str_image ,
-            Label label_Manufacturer ,Label label_availabilityDescription)
+        public static void showDetails(String inputEdp ,
+            Label label_store , 
+            Label label_productName,
+            Label label_productdescription,
+            Label label_Price,
+            Label Label_Image ,
+            Label label_Manufacturer ,
+            Label label_availabilityDescription)
+            // 6 label , 2 string 
         {
 
 
 
-            inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=10290644&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
+            String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist="+inputEdp+"&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
             System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
             // reader.WhitespaceHandling = WhitespaceHandling.Significant;
             while (reader.Read())
@@ -46,7 +52,7 @@ namespace UsingStreamReader
                 }
                 if (reader.Name == "xlg")  // IMAGE  & SIZE  // String value
                 {
-                    str_image = reader.ReadElementString("xlg");// show all EDP     
+                    Label_Image.Text =  reader.ReadElementString("xlg");// show all EDP     
                 }
                 if (reader.Name == "manufacturer")
                 {

@@ -15,7 +15,28 @@
         <br />
         <br />
         <br />
-        <asp:Label ID="Label1" runat="server" Text="Label"></asp:Label>
+        <asp:Label ID="lbl_Store" runat="server" Text="Store"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="lbl_Name" runat="server" Text="Name"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="lbl_Description" runat="server" Text="Description"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="lbl_Price" runat="server" Text="Price"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="lbl_Manufacturer" runat="server" Text="Manufacturer"></asp:Label>
+          <br />
+          <br />
+        <asp:Label ID="lbl_image" runat="server" Text="Image"></asp:Label>
+        <br />
+        <br />
+        <asp:Label ID="lbl_Availability" runat="server" Text="Availability:"></asp:Label>
+        <br />
+        <br />
+        <br />
     </form>
 </body>
 </html>
