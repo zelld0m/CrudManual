@@ -15,7 +15,7 @@ namespace UsingStreamReader
             // use EDP as reference for the details
             string EDP= "10290644";
             //EDP = Convert.ToInt32(Request.QueryString["id"]);
-            productDetails.showDetails(EDP, lbl_Store, lbl_Name, lbl_Description, lbl_Price,lbl_image, lbl_Manufacturer, lbl_Availability);
+            productDetails.showDetails(EDP, lbl_Store, lbl_Name, lbl_Description, lbl_Price,Image, lbl_Manufacturer, lbl_Availability);
         }
 
         #region OLD CODE FOR TEST

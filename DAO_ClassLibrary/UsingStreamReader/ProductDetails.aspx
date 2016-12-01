@@ -30,9 +30,11 @@
         <asp:Label ID="lbl_Manufacturer" runat="server" Text="Manufacturer"></asp:Label>
           <br />
           <br />
-        <asp:Label ID="lbl_image" runat="server" Text="Image"></asp:Label>
+     
+        <asp:Image ID="Image" runat="server" />
+     
         <br />
-        <br />
+&nbsp;<br />
         <asp:Label ID="lbl_Availability" runat="server" Text="Availability:"></asp:Label>
         <br />
         <br />
