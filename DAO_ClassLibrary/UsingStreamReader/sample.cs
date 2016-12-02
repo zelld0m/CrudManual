@@ -148,6 +148,8 @@ namespace UsingStreamReader
             }
             return allEDP;
         }
+
+        
         #endregion NO USE Test only
         public static List<int>  SaveALLEDP(String url)
         {
@@ -165,7 +167,32 @@ namespace UsingStreamReader
             }
             return saveEDP;
         }
-       
+        public static string SaveAllBrand()  // GET ALL BRAND  ----------------------------------------- RIOT    TRY Using reader.skip() for faster movements
+        {
+            string allEDP = "";
+            int howManyBrand = 10;
+            System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + howManyBrand);
+            while (reader.ReadToFollowing("lst"))
+            {
+                reader.Skip();
+                reader.Skip();
+                while (reader.ReadToFollowing("lst"))
+                {
+                    if ((reader.GetAttribute("name") == "Manufacturer"))
+                    {
+                       
+                        while (reader.ReadToFollowing("int"))
+                        {
+                            allEDP += "</br>" + reader.GetAttribute("name") + reader.Value + " ";// show all EDP
+                        }  
+                    }
+                }
+                 
+            }
+            return allEDP;
+        }
+
+
     }
 
 

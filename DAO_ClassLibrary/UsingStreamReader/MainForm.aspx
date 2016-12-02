@@ -10,16 +10,10 @@
     <form id="form1" runat="server">
     <div>
     
-        <asp:Label ID="Label2" runat="server" Text="Label"></asp:Label>
-    
     </div>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-        <asp:Label ID="Label3" runat="server" Text="Label"></asp:Label>
         <br />
         <br />
-        <asp:TextBox ID="TextBox2" runat="server" OnTextChanged="TextBox2_TextChanged"></asp:TextBox>
         <br />
-        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
         <br />
         <br />
         <br />
