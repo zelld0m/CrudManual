@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
+//using System.Drawing;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -185,6 +185,21 @@ namespace UsingStreamReader
         //    }
         //}
         #endregion WriteAgain
+        public static void LabelCssClass(Control root)
+        {
+            foreach (Control control in root.Controls)
+            {
+                if (control is Label)
+                {
+                    var label = control as Label;
+                    label.CssClass = "control-label";
+                }
+                else
+                {
+                    LabelCssClass(control);
+                }
+            }
+        }
 
 
         private void MuiltipleDisplay()
@@ -196,17 +211,17 @@ namespace UsingStreamReader
        
             List<int> SAVE;
 
-            SAVE = sample.SaveALLEDP("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=-1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
+            SAVE = sample.SaveALLEDP("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows="+ 60+"&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
 
             for (int i = 0; i < SAVE.Count; i++)
             {
                
               
-                TextBox tbi = new TextBox();
-                tbi.ID = "txtData" + i;
+                //TextBox tbi = new TextBox();
+                //tbi.ID = "txtData" + i;
                 
                 NumberOfControls++;
-                PlaceHolder1.Controls.Add(tbi);
+                //PlaceHolder1.Controls.Add(tbi);
                 //<  ADDED
                 Label label_ProductName = new Label();
                 label_ProductName.ID = "label_ProductName" + i;
@@ -217,7 +232,7 @@ namespace UsingStreamReader
                 Label label_Price = new Label();
                 label_Price.ID = "label_Price" + i;
 
-                ImageButton Image_url = new ImageButton();
+                Image Image_url = new Image();
                 Image_url.ID = "Image_ID" + i;
                 Label label_Manufacturer = new Label();
                 label_Manufacturer.ID = "label_Manufacturer" + i;
@@ -229,16 +244,42 @@ namespace UsingStreamReader
                 ph.ID = "placeholderx" + i.ToString();
                 //tbi.Text = ":" + i.ToString();
                 //ph.Controls.Add(tbi);
-                ph.Controls.Add(label_ProductName);
-                ph.Controls.Add(label_Store);
-                ph.Controls.Add(label_Description);
-                ph.Controls.Add(label_Price);
-                
-                ph.Controls.Add(label_Manufacturer);
-                ph.Controls.Add(label_Availability);
-                ph.Controls.Add(Image_url);
+                Image_url.Height = 500;
+                Image_url.Width = 500;
+                Image_url.CssClass = "img-responsive ";
+                Image_url.AlternateText = "No Image";
 
-                ph.Controls.Add(spacer);
+                ph.Controls.Add(Image_url);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("Price: "));
+                ph.Controls.Add(label_Price);
+                ph.Controls.Add(new LiteralControl("</br>"));
+               
+                ph.Controls.Add(new LiteralControl("Name: "));
+                ph.Controls.Add(label_ProductName);
+
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("</br>"));
+
+                ph.Controls.Add(new LiteralControl("Store: "));
+                ph.Controls.Add(label_Store);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("Description: "));
+                ph.Controls.Add(label_Description);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("</br>"));
+             
+                ph.Controls.Add(new LiteralControl("Manufacturer: "));
+                ph.Controls.Add(label_Manufacturer);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("Availability: "));
+                ph.Controls.Add(label_Availability);
+                ph.Controls.Add(new LiteralControl("</br>"));
+
+                
+
+        
                 PlaceHolder1.Controls.Add(ph);
                 PlaceHolder1.Controls.Add(spacer);
                 //<  ADDED

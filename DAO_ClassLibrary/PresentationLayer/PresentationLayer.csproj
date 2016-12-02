@@ -103,6 +103,7 @@
     <Content Include="Bootstrap\css\Custom-Cs.css" />
     <Content Include="Bootstrap\js\bootstrap.js" />
     <Content Include="Bootstrap\js\bootstrap.min.js" />
+    <Content Include="Bootstrap\js\jquery.js" />
     <Content Include="Bootstrap\js\npm.js" />
     <Content Include="DeleteForm.aspx" />
     <Content Include="LoginForm.aspx" />
