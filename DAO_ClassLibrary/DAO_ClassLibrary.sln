@@ -28,6 +28,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingUrlToGetXML", "UsingUr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UsingStreamReader", "UsingStreamReader\UsingStreamReader.csproj", "{11749EB7-59DE-431F-923B-5DF31AD4F57E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CreatingMultipleItemUsingloop", "CreatingMultipleItemUsingloop\CreatingMultipleItemUsingloop.csproj", "{11089856-E8CC-4660-9B1F-C8FDCF7E5E8C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -78,6 +80,10 @@ Global
 		{11749EB7-59DE-431F-923B-5DF31AD4F57E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11749EB7-59DE-431F-923B-5DF31AD4F57E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11749EB7-59DE-431F-923B-5DF31AD4F57E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{11089856-E8CC-4660-9B1F-C8FDCF7E5E8C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{11089856-E8CC-4660-9B1F-C8FDCF7E5E8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{11089856-E8CC-4660-9B1F-C8FDCF7E5E8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{11089856-E8CC-4660-9B1F-C8FDCF7E5E8C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

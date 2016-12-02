@@ -12,12 +12,12 @@ namespace UsingStreamReader
     {
 
 
-        public static void showDetails(String inputEdp ,
-            Label label_store , 
+        public static void showDetails(String inputEdp,
+            Label label_store ,
             Label label_productName,
             Label label_productdescription,
             Label label_Price,
-            Image imageSource ,
+            Image imageSourceUrl,
             Label label_Manufacturer ,
             Label label_availabilityDescription)
             // 6 label , 2 string 
@@ -31,7 +31,6 @@ namespace UsingStreamReader
                 {
                  label_store.Text = reader.ReadElementString("store");// show Store   
                 }
-                //============================
                 if (reader.Name == "name")
                 {
                  label_productName.Text = reader.ReadElementString("name");  // Show ProductName
@@ -42,21 +41,20 @@ namespace UsingStreamReader
                 }
                 if (reader.Name == "finalPrice")
                 {
-                       label_Price .Text = reader.ReadElementString("finalPrice");   // 
+                       label_Price.Text = reader.ReadElementString("finalPrice");   // 
                 }
                 if (reader.Name == "xlg")  // IMAGE  & SIZE  // String value
                 {
-                    imageSource.ImageUrl =  reader.ReadElementString("xlg");// show all EDP      // IMAGE SOURCE
+                    imageSourceUrl.ImageUrl =  reader.ReadElementString("xlg");// show all EDP      // IMAGE SOURCE
                 }
                 if (reader.Name == "manufacturer")
                 {
-                    label_Manufacturer.Text = reader.ReadElementString("manufacturer");
+                  label_Manufacturer.Text = reader.ReadElementString("manufacturer");
                 }
                 if (reader.Name == "availabilityDescription")
                 {
                     label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");    
                 }
-
                 //reader.Name == "productDetails" ||reader.Name == "manufacturer"
             }
         }

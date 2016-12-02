@@ -8,37 +8,22 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <div>
-    
-    </div>
-        <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+
+        
+        <br />
+        <br />
+                <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
         <br />
         <br />
         <br />
-        <asp:Label ID="lbl_Store" runat="server" Text="Store"></asp:Label>
         <br />
-        <br />
-        <asp:Label ID="lbl_Name" runat="server" Text="Name"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="lbl_Description" runat="server" Text="Description"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="lbl_Price" runat="server" Text="Price"></asp:Label>
-        <br />
-        <br />
-        <asp:Label ID="lbl_Manufacturer" runat="server" Text="Manufacturer"></asp:Label>
-          <br />
-          <br />
+                <asp:Button ID="btnCreate" runat="server" Text="Create" OnClick="btnCreate_Click" />
+        <!--  TEST -->
+            
+                
+
+                <!-- END TEST -->
      
-        <asp:Image ID="Image" runat="server" />
-     
-        <br />
-&nbsp;<br />
-        <asp:Label ID="lbl_Availability" runat="server" Text="Availability:"></asp:Label>
-        <br />
-        <br />
-        <br />
     </form>
 </body>
 </html>

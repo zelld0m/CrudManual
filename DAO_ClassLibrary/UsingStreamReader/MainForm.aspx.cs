@@ -22,7 +22,8 @@ namespace UsingStreamReader
 
 
             // save is an arraylist that contains EDP #
-            SAVE =sample.SaveALLEDP("Change this to real Url then of sa project and go to sample class and fix the code on SaveALLEDP ");
+            int rows = 20;
+            SAVE =sample.SaveALLEDP("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows="+rows+"&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10");
 
             Label1.Text = String.Join("</br> </br>",SAVE);   // to show EDP uncomment this
             // plan to use SAve and make it a hyperlink then proceed to next website that shows Details of the product
