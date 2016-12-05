@@ -16,7 +16,7 @@
             <div class="col-sm-12">
                 <div class="col-sm-4">
                     <div class="well">
-                        <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" CssClass=" checkbox"></asp:RadioButtonList>
+                        <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" CssClass=" checkbox" OnSelectedIndexChanged="rdbtnlst_Brand_SelectedIndexChanged" AutoPostBack="True" style="left: 0px; top: 0px" ></asp:RadioButtonList>
                     </div>
                 </div>
                 <div class="col-sm-4">

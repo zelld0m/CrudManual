@@ -164,6 +164,7 @@ namespace UsingStreamReader
                     while (reader.GetAttribute("name") == "EDP")
                     {
                         saveEDP.Add(Convert.ToInt32(reader.ReadElementString("int")));// show all EDP
+                        break;
                     }
                 }
             }
