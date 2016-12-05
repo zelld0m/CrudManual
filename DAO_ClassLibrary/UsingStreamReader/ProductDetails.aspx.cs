@@ -11,8 +11,14 @@ namespace UsingStreamReader
 {
     public partial class ProductDetails : System.Web.UI.Page
     {
+        // Rows Changable value        
+       
+        string url = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=100&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10";
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            rdbtnlst_Brand.DataSource = sample.AllBrand();
+            rdbtnlst_Brand.DataBind();
             #region TestMultiplier
           //  TextBox[] textBoxes = new TextBox[5];
           //  Label [] labels = new Label[5];
@@ -110,9 +116,7 @@ namespace UsingStreamReader
              } */
             #endregion
             //string EDP = "10290644";
-            //                                                                                                                                                                     // Rows Changable value        
-            //string url = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=3&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10";
-            //List<int> x=  sample.SaveALLEDP(url);
+            //   //List<int> x=  sample.SaveALLEDP(url);
             //for(int i =0; i < x.Count; i++)
             //{
             //     EDP = Convert.ToString(x[i]);
@@ -153,7 +157,24 @@ namespace UsingStreamReader
 
         protected void btnCreate_Click(object sender, EventArgs e)          // Create's Textbox  // Inside a placeholder-object
         {
-            MuiltipleDisplay();
+            brandmultipleDisplay(btnCreate);
+            //MuiltipleDisplay();
+        }
+
+        protected void brandmultipleDisplay(Button btntext)
+        {
+            List<int> x = sample.SaveALLEDP(url);
+            List<int> filtered = new List<int>(300);
+            // Scanning 
+            for (int i = 0; i < x.Count; i++)
+            {
+             sample.Get_EDP_FromBrand(btntext.Text, x[i],filtered);
+              //  Response.Write(filtered[i]);
+            }
+            for (int i = 0; i < filtered.Count; i++)
+            {
+              BrandSelectedMultipleDisplay(filtered);
+            }
         }
         //protected void btnRead_Click(object sender, EventArgs e)// 
         //{
@@ -191,12 +212,27 @@ namespace UsingStreamReader
             {
                 if (control is Label)
                 {
-                    var label = control as Label;
+                    var label = control as Label; 
                     label.CssClass = "control-label";
                 }
                 else
                 {
                     LabelCssClass(control);
+                }
+            }
+        }
+        public static void ButtonCssClass(Control root)
+        {
+            foreach (Control control in root.Controls)
+            {
+                if (control is Button)
+                {
+                    var Button = control as Button;
+                    Button.CssClass = "btn btn-info";
+                }
+                else
+                {
+                    ButtonCssClass(control);
                 }
             }
         }
@@ -210,13 +246,11 @@ namespace UsingStreamReader
             // save is an arraylist that contains EDP #
        
             List<int> SAVE;
-            int howmanyProducts = 10;
+            int howmanyProducts = 100;
             SAVE = sample.SaveALLEDP("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows="+ howmanyProducts+"&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
 
             for (int i = 0; i < SAVE.Count; i++)
             {
-               
-              
                 //TextBox tbi = new TextBox();
                 //tbi.ID = "txtData" + i;
                 
@@ -278,58 +312,95 @@ namespace UsingStreamReader
                 //<  ADDED
             }
         }
+        // <---- textboxCreation --- > -----------2-----------------------------------------
+
+        private void BrandSelectedMultipleDisplay(List< int> EDP)
+        {
+            // save is an arraylist that contains EDP #
+            for (int i = 0; i < EDP.Count; i++)
+            {
+                //TextBox tbi = new TextBox();
+                //tbi.ID = "txtData" + i;
+
+                NumberOfControls++;
+                //PlaceHolder1.Controls.Add(tbi);
+                //<  ADDED
+                Label label_ProductName = new Label();
+                label_ProductName.ID = "label_ProductName" + i;
+                Label label_Store = new Label();
+                label_Store.ID = "label_Store" + i;
+                Label label_Description = new Label();
+                label_Description.ID = "label_Description" + i;
+                Label label_Price = new Label();
+                label_Price.ID = "label_Price" + i;
+
+                Image Image_url = new Image();
+                Image_url.ID = "Image_ID" + i;
+                Label label_Manufacturer = new Label();
+                label_Manufacturer.ID = "label_Manufacturer" + i;
+                Label label_Availability = new Label();
+                label_Availability.ID = "label_Availability" + i;
+                sample.showDetails(Convert.ToString(EDP[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
+
+                PlaceHolder ph = new PlaceHolder();
+                ph.ID = "placeholderx" + i.ToString();
+                //tbi.Text = ":" + i.ToString();
+                //ph.Controls.Add(tbi);
+                Image_url.Height = 500;
+                Image_url.Width = 500;
+                Image_url.CssClass = "img-responsive ";
+                Image_url.AlternateText = "No Image";
+
+                ph.Controls.Add(Image_url);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("Price: "));
+                ph.Controls.Add(label_Price);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("Name: "));
+                ph.Controls.Add(label_ProductName);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("Store: "));
+                ph.Controls.Add(label_Store);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("Description: "));
+                ph.Controls.Add(label_Description);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("Manufacturer: "));
+                ph.Controls.Add(label_Manufacturer);
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("Availability: "));
+                ph.Controls.Add(label_Availability);
+                ph.Controls.Add(new LiteralControl("</br>"));
+
+                PlaceHolder1.Controls.Add(ph);
+             
+                //<  ADDED
+            }
+        }
         // <---- textboxCreation --- > ----------------------------------------------------------------------------------
 
         #endregion CREATION
 
 
-        #region OLD CODE FOR TEST
+        #region Buttons
 
-        //List<String> productDetailsList = new List<string>(10000);
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            brandmultipleDisplay(Btn_Lenovo);
+        }
 
-        //String url = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=10290644&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
-        //System.Xml.XmlTextReader reader = new XmlTextReader(url);
-        //// reader.WhitespaceHandling = WhitespaceHandling.Significant;
-        //while (reader.Read())
-        //{
-        //    if ( reader.Name == "status"  )
-        //    {
+        protected void BtnALL_Click(object sender, EventArgs e)
+        {
+            MuiltipleDisplay();
+        }
 
-        //        //while (reader.HasAttributes)
-        //        //{
-        //        //if(reader.GetAttribute(""))
-        //        //if(reader.GetAttribute("productDetails")=="manufacturer")
-        //        productDetailsList.Add(reader.Name + " " + reader.ReadElementString("status")  + "</br>");// show all EDP     
-
-        //    }
-        //    if (reader.Name == "store")
-        //    {
-        //        productDetailsList.Add(reader.ReadElementString("store") + "</br>");// show all EDP     
-        //    }
-        //    //============================
-        //    if (reader.Name == "name")
-        //    {
-        //        productDetailsList.Add(reader.ReadElementString("name") + "</br>");// show all EDP     
-        //    }
-        //    if (reader.Name == "description")
-        //    {
-        //        productDetailsList.Add(reader.ReadElementString("description")+ "</br>");// show all EDP     
-        //    }
-        //    if (reader.Name == "finalPrice")
-        //    {
-        //       productDetailsList.Add(reader.ReadElementString("finalPrice") + "</br>");// show all EDP     
-        //    }
-        //    if (reader.Name == "xlg")  // IMAGE  & SIZE 
-        //    {
-        //        productDetailsList.Add(reader.ReadElementString("xlg") + "</br>");// show all EDP     
-        //    }
-        //    if (reader.Name == "manufacturer")
-        //    {
-        //        productDetailsList.Add(reader.ReadElementString("manufacturer") + "</br>");// show all EDP     
-        //    }
-        //    //reader.Name == "productDetails" ||reader.Name == "manufacturer"
-        //}
-        //Label1.Text = String.Join("", productDetailsList);
-        #endregion OLD CODE FOR TEST
+        protected void Btn_Quatech_Click(object sender, EventArgs e)
+        {
+            brandmultipleDisplay(Btn_Quatech);
+        }
+        #endregion buttons
     }
 }

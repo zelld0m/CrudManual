@@ -153,9 +153,9 @@ namespace UsingStreamReader
 
 
         #region IMPORTANT WORKING
-        public static List<int> SaveALLEDP(String url)
+        public static List<int> SaveALLEDP(String url)     // Getting All EDP
         {
-            List<int> saveEDP = new List<int>(500);
+            List<int> saveEDP = new List<int>(300);
             System.Xml.XmlTextReader reader = new XmlTextReader(url);
             while (reader.ReadToFollowing("result"))
             {
@@ -169,34 +169,9 @@ namespace UsingStreamReader
             }
             return saveEDP;
         }
-        //TEST 
-        public static string SaveAllBrand_EDP(List<string> Brandname)  // GET ALL BRAND  ----------------------- RIOT    TRY Using reader.skip() for faster movements
-        {
-           // Brandname = new List<string>(300);
-            string allEDP = "";
-            int howManyBrand = 10;
-            System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + howManyBrand);
-            while (reader.ReadToFollowing("lst"))
-            {
-                reader.Skip();
-                reader.Skip();
-                while (reader.ReadToFollowing("lst"))
-                {
-                    if((reader.GetAttribute("name") == "Manufacturer"))
-                    {
-                        while (reader.ReadToFollowing("int")&&(reader.GetAttribute("name") !="true") && (reader.GetAttribute("name")!="false"))
-                        {
-                            allEDP += "</br>" + reader.GetAttribute("name")  + reader.Value + reader.XmlLang;// show all EDP
-                            Brandname.Add(reader.GetAttribute("name"));
-                        }
-                    }
-                }  
-            }
-            return allEDP;
-        }
- 
+      
         // Working Getting ALL brand Change howmanyBrand to howmuch brand u want to show
-        public static List<String> AllBrand()  // GET ALL BRAND  ----------------------------------------- RIOT    TRY Using reader.skip() for faster movements
+        public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand
         {
             List<String> allEDP = new List<String>(100); ;
             int howManyBrand = 10;
@@ -219,7 +194,6 @@ namespace UsingStreamReader
             return allEDP;
         }
 
-        
         // Working Getting ALL Details of ALL Products
         public static void showDetails(String inputEdp,Label label_store,Label label_productName,Label label_productdescription,
             Label label_Price,Image imageSourceUrl,Label label_Manufacturer,Label label_availabilityDescription){ // 6 label , 2 string 
@@ -260,21 +234,16 @@ namespace UsingStreamReader
         }
         #endregion end importantWORKING
 
-
-
-
-
-
-        public static int Get_EDP_FromBrand(String BrandName,int EdpTestNumber)  // GET EDP USING Manufacturer
+        // Returns edp of Brand that Matches
+        public static void Get_EDP_FromBrand(String BrandName,int EdpTestNumber ,List<int> EDP_Storage)  // GET EDP USING Manufacturer
         { // scan all product with the same Brand name then return  eDP if same Brand 
             String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + EdpTestNumber + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
             System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
-            int Edp = 0;
+           
             string brandx;
             int edp_tempo=0;
             while (reader.Read())
             {
-
                 if(reader.Name == "edp")
                 {
                     edp_tempo = Convert.ToInt32( reader.ReadElementString("edp"));
@@ -282,14 +251,13 @@ namespace UsingStreamReader
                 if (reader.Name == "manufacturer")
                 {
                     brandx = reader.ReadElementString("manufacturer");
-                    if(brandx == BrandName)
+                    if (brandx == BrandName)
                     {
-                        Edp = edp_tempo;break;
+                        EDP_Storage.Add ( edp_tempo); break;
                     }
+                    else break;
                 }
             }
-            // Brandname.Add(reader.GetAttribute("name"));
-            return Edp;
         }
     
     }
