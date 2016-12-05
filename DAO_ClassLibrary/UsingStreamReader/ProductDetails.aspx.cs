@@ -201,7 +201,7 @@ namespace UsingStreamReader
             }
         }
 
-
+        // Success MULTIPLE DISPLAY OF PRODUCT 
         private void MuiltipleDisplay()
         {
             Label spacer = new Label();
@@ -210,8 +210,8 @@ namespace UsingStreamReader
             // save is an arraylist that contains EDP #
        
             List<int> SAVE;
-
-            SAVE = sample.SaveALLEDP("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows="+ 60+"&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
+            int howmanyProducts = 10;
+            SAVE = sample.SaveALLEDP("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows="+ howmanyProducts+"&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
 
             for (int i = 0; i < SAVE.Count; i++)
             {
@@ -238,7 +238,7 @@ namespace UsingStreamReader
                 label_Manufacturer.ID = "label_Manufacturer" + i;
                 Label label_Availability = new Label();
                 label_Availability.ID = "label_Availability" + i;
-                productDetails.showDetails(Convert.ToString( SAVE[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
+                sample.showDetails(Convert.ToString( SAVE[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
 
                 PlaceHolder ph = new PlaceHolder();
                 ph.ID = "placeholderx" + i.ToString();
@@ -254,13 +254,10 @@ namespace UsingStreamReader
                 ph.Controls.Add(new LiteralControl("Price: "));
                 ph.Controls.Add(label_Price);
                 ph.Controls.Add(new LiteralControl("</br>"));
-               
                 ph.Controls.Add(new LiteralControl("Name: "));
                 ph.Controls.Add(label_ProductName);
-
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("</br>"));
-
                 ph.Controls.Add(new LiteralControl("Store: "));
                 ph.Controls.Add(label_Store);
                 ph.Controls.Add(new LiteralControl("</br>"));
@@ -269,17 +266,13 @@ namespace UsingStreamReader
                 ph.Controls.Add(label_Description);
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("</br>"));
-             
                 ph.Controls.Add(new LiteralControl("Manufacturer: "));
                 ph.Controls.Add(label_Manufacturer);
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("Availability: "));
                 ph.Controls.Add(label_Availability);
                 ph.Controls.Add(new LiteralControl("</br>"));
-
                 
-
-        
                 PlaceHolder1.Controls.Add(ph);
                 PlaceHolder1.Controls.Add(spacer);
                 //<  ADDED
