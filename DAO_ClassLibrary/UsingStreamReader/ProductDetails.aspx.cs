@@ -12,20 +12,35 @@ namespace UsingStreamReader
     public partial class ProductDetails : System.Web.UI.Page
     {
         // Rows Changable value        
-
-        string url = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=20&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10";
-
+        int howmanyProducts = 100;
+        string url = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows="+100+"&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10";
+        int numberofBrand = 250;
         protected void Page_Load(object sender, EventArgs e)
         {
-            rdbtnlst_Brand.DataSource = sample.AllBrand(20);
-            rdbtnlst_Brand.DataBind();
+            //rdbtnlst_Brand.DataSource = sample.AllBrand(20);
+           // rdbtnlst_Brand.DataBind();
+
+
+
+      
+        List<string> ListManufact = new List<string>(200);
+            ListManufact = sample.AllBrand(numberofBrand);
+            #region postback
             if (!IsPostBack)
             {
+                rdbtnlst_Brand.ClearSelection();
+                rdbtnlst_Brand.Controls.Clear();
+                for (int i = 0; i < ListManufact.Count; i++)
+                {
+                    rdbtnlst_Brand.Items.Add(new ListItem( ListManufact[i]));
+                }
                 rdbtnlst_Brand.AutoPostBack = true;
             }
+            #endregion postback
 
         }
-        
+
+
         #region CREATION
         // <---- textboxCreation --- > --------------------------------------------------------------------------------------------
         protected int NumberOfControls
@@ -44,6 +59,7 @@ namespace UsingStreamReader
         }
         protected void brandmultipleDisplay(String brandName)
         {
+            
             List<int> x = sample.SaveALLEDP(url);
             List<int> filtered = new List<int>(300);
             // Scanning 
@@ -63,7 +79,7 @@ namespace UsingStreamReader
             {
                 if (control is Label)
                 {
-                    var label = control as Label;
+                    var label = control as  Label;
                     label.CssClass = "control-label";
                 }
                 else
@@ -88,17 +104,13 @@ namespace UsingStreamReader
             }
         }
         // Success MULTIPLE DISPLAY OF PRODUCT 
-        private void MuiltipleDisplayAllProducts()
+        private void MultipleDisplayAllProducts()
         {
-            Label spacer = new Label();
-            spacer.ID = "space";
-            spacer.Text = "</br>";
+      
             // save is an arraylist that contains EDP #
 
             List<int> SAVE;
-            int howmanyProducts = 100;
             SAVE = sample.SaveALLEDP("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
-
             for (int i = 0; i < SAVE.Count; i++)
             {
                 //TextBox tbi = new TextBox();
@@ -166,6 +178,7 @@ namespace UsingStreamReader
         private void BrandSelectedMultipleDisplay(List<int> EDP)
         {
             // save is an arraylist that contains EDP #
+            
             for (int i = 0; i < EDP.Count; i++)
             {
                 
@@ -185,10 +198,10 @@ namespace UsingStreamReader
                 Label label_Availability = new Label();
                 label_Availability.ID = "label_Availability" + i;
                 sample.showDetails(Convert.ToString(EDP[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
+
                 PlaceHolder ph = new PlaceHolder();
                 ph.ID = "placeholderx" + i.ToString();
-                //tbi.Text = ":" + i.ToString();
-                //ph.Controls.Add(tbi);
+        
                 Image_url.Height = 500;
                 Image_url.Width = 500;
                 Image_url.CssClass = "img-responsive ";
@@ -219,7 +232,7 @@ namespace UsingStreamReader
                 ph.Controls.Add(new LiteralControl("</br>"));
 
                 PlaceHolder1.Controls.Add(ph);
-
+                ph.Controls.Remove(ph);
                 //<  ADDED
             }
         }
@@ -231,9 +244,8 @@ namespace UsingStreamReader
         protected void btnCreate_Click(object sender, EventArgs e)          // Create's Textbox  // Inside a placeholder-object
         {
             brandmultipleDisplay(btnCreate.Text);
-            //MuiltipleDisplay();
+    
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             brandmultipleDisplay(Btn_Lenovo.Text);
@@ -241,8 +253,8 @@ namespace UsingStreamReader
 
         protected void BtnALL_Click(object sender, EventArgs e)
         {
-            radioButtonBrandCreation(10);
-           // MuiltipleDisplayAllProducts();
+         
+            MultipleDisplayAllProducts();
         }
 
         protected void Btn_Quatech_Click(object sender, EventArgs e)
@@ -253,23 +265,22 @@ namespace UsingStreamReader
 
         protected void rdbtnlst_Brand_SelectedIndexChanged(object sender, EventArgs e)
         {
-           // string RadioText = ;
-         //   brandmultipleDisplay(rdbtnlst_Brand.Text);
-            radioButtonBrandCreation(10);
+            String  SelectedManufact = rdbtnlst_Brand.Text;
+            brandmultipleDisplay(SelectedManufact);
         }
 
-        public  void radioButtonBrandCreation(int howManyBrand)
-        {
-            List<String> brandNames = sample.AllBrand(howManyBrand);
+        //public  void radioButtonBrandCreation(int howManyBrand)
+        //{
+        //    List<String> brandNames = sample.AllBrand(howManyBrand);
 
-            for (int i = 0; i < brandNames.Count; i++)
-            {
-                NumberOfControls++;
-                RadioButton rd = new RadioButton();
-                rd.ID = rd + i.ToString();
-                rd.Text = brandNames[i];
-                PlaceHolder2.Controls.Add(rd);
-            }
-        }
+        //    for (int i = 0; i < brandNames.Count; i++)
+        //    {
+        //        NumberOfControls++;
+        //        RadioButton rd = new RadioButton();
+        //        rd.ID = rd + i.ToString();
+        //        rd.Text = brandNames[i];
+        //        PlaceHolder2.Controls.Add(rd);
+        //    }
+        //}
     }
 }

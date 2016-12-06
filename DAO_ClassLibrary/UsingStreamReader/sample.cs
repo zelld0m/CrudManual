@@ -180,7 +180,7 @@ namespace UsingStreamReader
             while (reader.ReadToFollowing("lst"))
             {
                 reader.Skip();
-           //     reader.Skip();
+           //    reader.Skip();
                 while (reader.ReadToFollowing("lst"))
                 {
                     while ((reader.GetAttribute("name") == "Manufacturer"))
@@ -234,7 +234,6 @@ namespace UsingStreamReader
             }
         }
         
-
         // Returns edp of Brand that Matches
         public static void Get_EDP_FromBrand(String BrandName,int EdpTestNumber ,List<int> EDP_Storage)  // GET EDP USING Manufacturer
         { // scan all product with the same Brand name then return  eDP if same Brand 

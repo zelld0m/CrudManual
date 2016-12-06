@@ -29,6 +29,7 @@
                 <div class="col-sm-4">
                     <div class="well">
                         <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" CssClass=" checkbox" OnSelectedIndexChanged="rdbtnlst_Brand_SelectedIndexChanged" AutoPostBack="True" style="left: 0px; top: 0px" ></asp:RadioButtonList>
+                        <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
                     </div>
                 </div>
                 <div class="col-sm-4">
@@ -42,7 +43,6 @@
                 </div>
                 <div class="auto-style1">
                     <asp:Panel ID="Panel1" runat="server">
-                        <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
                     </asp:Panel>
                 </div>
             </div>
