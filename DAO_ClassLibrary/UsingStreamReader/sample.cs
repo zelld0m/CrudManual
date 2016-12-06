@@ -172,10 +172,10 @@ namespace UsingStreamReader
         }
       
         // Working Getting ALL brand Change howmanyBrand to howmuch brand u want to show
-        public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand
+        public static List<String> AllBrand(int howManyBrand)  // GET ALL BRAND   Use This to show all brand
         {
             List<String> allEDP = new List<String>(100); ;
-            int howManyBrand = 10;
+           
             System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + howManyBrand);
             while (reader.ReadToFollowing("lst"))
             {
@@ -233,7 +233,7 @@ namespace UsingStreamReader
                 }
             }
         }
-        #endregion end importantWORKING
+        
 
         // Returns edp of Brand that Matches
         public static void Get_EDP_FromBrand(String BrandName,int EdpTestNumber ,List<int> EDP_Storage)  // GET EDP USING Manufacturer
@@ -260,6 +260,12 @@ namespace UsingStreamReader
                 }
             }
         }
-    
+        #endregion end importantWORKING
+
+
+      
+
+
+
     }
 }
