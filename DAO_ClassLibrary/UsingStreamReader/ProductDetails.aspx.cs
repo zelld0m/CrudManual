@@ -104,9 +104,9 @@ namespace UsingStreamReader
             }
         }
         // Success MULTIPLE DISPLAY OF PRODUCT 
-        private void MultipleDisplayAllProducts()
+        public void MultipleDisplayAllProducts()
         {
-      
+
             // save is an arraylist that contains EDP #
 
             List<int> SAVE;
@@ -175,7 +175,7 @@ namespace UsingStreamReader
             }
         }
         // <---- textboxCreation --- > -----------2-----------------------------------------
-        private void BrandSelectedMultipleDisplay(List<int> EDP)
+        public void BrandSelectedMultipleDisplay(List<int> EDP)
         {
             // save is an arraylist that contains EDP #
             
@@ -230,9 +230,9 @@ namespace UsingStreamReader
                 ph.Controls.Add(new LiteralControl("Availability: "));
                 ph.Controls.Add(label_Availability);
                 ph.Controls.Add(new LiteralControl("</br>"));
-
+                
                 PlaceHolder1.Controls.Add(ph);
-                ph.Controls.Remove(ph);
+              
                 //<  ADDED
             }
         }
@@ -254,7 +254,7 @@ namespace UsingStreamReader
         protected void BtnALL_Click(object sender, EventArgs e)
         {
          
-            MultipleDisplayAllProducts();
+            //MultipleDisplayAllProducts();
         }
 
         protected void Btn_Quatech_Click(object sender, EventArgs e)
@@ -269,18 +269,6 @@ namespace UsingStreamReader
             brandmultipleDisplay(SelectedManufact);
         }
 
-        //public  void radioButtonBrandCreation(int howManyBrand)
-        //{
-        //    List<String> brandNames = sample.AllBrand(howManyBrand);
-
-        //    for (int i = 0; i < brandNames.Count; i++)
-        //    {
-        //        NumberOfControls++;
-        //        RadioButton rd = new RadioButton();
-        //        rd.ID = rd + i.ToString();
-        //        rd.Text = brandNames[i];
-        //        PlaceHolder2.Controls.Add(rd);
-        //    }
-        //}
+       
     }
 }

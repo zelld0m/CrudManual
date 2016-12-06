@@ -153,6 +153,8 @@ namespace UsingStreamReader
 
 
         #region IMPORTANT WORKING
+
+        //Speedup
         public static List<int> SaveALLEDP(String url)     // Getting All EDP
         {
             List<int> saveEDP = new List<int>(300);
@@ -170,24 +172,28 @@ namespace UsingStreamReader
             }
             return saveEDP;
         }
-      
+
         // Working Getting ALL brand Change howmanyBrand to howmuch brand u want to show
+        // Speeed UP 
         public static List<String> AllBrand(int howManyBrand)  // GET ALL BRAND   Use This to show all brand
         {
             List<String> allEDP = new List<String>(100); ;
-           
             System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + howManyBrand);
             while (reader.ReadToFollowing("lst"))
             {
-                reader.Skip();
-           //    reader.Skip();
                 while (reader.ReadToFollowing("lst"))
                 {
-                    while ((reader.GetAttribute("name") == "Manufacturer"))
+                    while (reader.ReadToFollowing("lst"))
                     {
-                        while (reader.ReadToFollowing("int") && (reader.GetAttribute("name") != "true") && (reader.GetAttribute("name") != "false"))
+                        while (reader.ReadToFollowing("lst"))
                         {
-                            allEDP.Add(Convert.ToString( reader.GetAttribute("name")));// show all EDP
+                            while ((reader.GetAttribute("name") == "Manufacturer"))
+                            {
+                                while (reader.ReadToFollowing("int") && (reader.GetAttribute("name") != "true") && (reader.GetAttribute("name") != "false"))
+                                {
+                                    allEDP.Add(Convert.ToString(reader.GetAttribute("name")));// show all EDP
+                                }
+                            }
                         }
                     }
                 }
@@ -201,35 +207,84 @@ namespace UsingStreamReader
             String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + inputEdp + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
             System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
             // reader.WhitespaceHandling = WhitespaceHandling.Significant;
+
+
             while (reader.Read())
             {
-                if (reader.Name == "store")
+                while (reader.ReadToFollowing("getProductInfo"))
                 {
-                    label_store.Text = reader.ReadElementString("store");// show Store   
-                }
-                if (reader.Name == "name")
-                {
-                    label_productName.Text = reader.ReadElementString("name");  // Show ProductName
-                }
-                if (reader.Name == "description")
-                {
-                    label_productdescription.Text = reader.ReadElementString("description");   // Show Description
-                }
-                if (reader.Name == "finalPrice")
-                {
-                    label_Price.Text = reader.ReadElementString("finalPrice");   // 
-                }
-                if (reader.Name == "xlg")  // IMAGE  & SIZE  // String value
-                {
-                    imageSourceUrl.ImageUrl = reader.ReadElementString("xlg");// show all EDP      // IMAGE SOURCE
-                }
-                if (reader.Name == "manufacturer")
-                {
-                    label_Manufacturer.Text = reader.ReadElementString("manufacturer");
-                }
-                if (reader.Name == "availabilityDescription")
-                {
-                    label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");
+                    while (reader.ReadToFollowing("result"))
+                    {
+                        while (reader.ReadToFollowing("item"))
+                        {
+                            #region product Details GOOD 
+                            while (reader.ReadToFollowing("productDetails"))
+                            {
+                                while (reader.ReadToFollowing("manufacturer"))
+                                {
+                                    if (reader.Name == "manufacturer")  // 1st 
+                                    {
+                                        label_Manufacturer.Text = reader.ReadElementString("manufacturer");
+                                    }
+                                    while (reader.ReadToFollowing("storeSpecific"))   // FIX THIS < ---------------------------------------------------------------------
+                                    {
+                                        while (reader.Read())
+                                        {
+                                            if (reader.Name == "store")
+                                            {
+                                                label_store.Text = reader.ReadElementString("store");// show Store   
+                                            }
+                                            if (reader.Name == "name")
+                                            {
+                                                label_productName.Text = reader.ReadElementString("name");  // Show ProductName
+                                            }
+                                            if (reader.Name == "description")
+                                            {
+                                                label_productdescription.Text = reader.ReadElementString("description");  // Show Description
+                                            }
+                                            while (reader.ReadToFollowing("prices"))
+                                            {
+                                                while (reader.ReadToFollowing("price"))
+                                                {
+                                                    while (reader.ReadToFollowing("finalPrice"))
+                                                    {
+                                                        if (reader.Name == "finalPrice")
+                                                        {
+                                                            label_Price.Text = reader.ReadElementString("finalPrice"); break;   // 
+                                                        }
+                                                    }
+                                                    while (reader.ReadToFollowing("availabilityDescription"))
+                                                    {
+                                                        if (reader.Name == "availabilityDescription")
+                                                        {
+                                                            label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");                                                             
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        reader.ReadToFollowing("images");   // LAST 
+                                        {
+                                            while (reader.ReadToFollowing("image"))
+                                            {
+                                                if (reader.Name == "xlg")  // IMAGE  & SIZE  // String value
+                                                {
+                                                    imageSourceUrl.ImageUrl = reader.ReadElementString("xlg");// show all EDP      // IMAGE SOURCE
+                                                }
+                                            }
+
+
+                                        }
+                                    }
+                                }
+                            }
+                            #endregion ProductDetailsGOOD
+
+                           
+                        }
+
+                        
+                    }
                 }
             }
         }
@@ -244,19 +299,27 @@ namespace UsingStreamReader
             int edp_tempo=0;
             while (reader.Read())
             {
-                if(reader.Name == "edp")
+                while (reader.ReadToFollowing("edp"))
                 {
-                    edp_tempo = Convert.ToInt32( reader.ReadElementString("edp"));
-                }
-                if (reader.Name == "manufacturer")
-                {
-                    brandx = reader.ReadElementString("manufacturer");
-                    if (brandx == BrandName)
+                    if (reader.Name == "edp")
                     {
-                        EDP_Storage.Add ( edp_tempo); break;
+                        edp_tempo = Convert.ToInt32(reader.ReadElementString("edp"));
                     }
-                    else break;
+                    while (reader.ReadToFollowing("manufacturer"))
+                    {
+                        if (reader.Name == "manufacturer")
+                        {
+                            brandx = reader.ReadElementString("manufacturer");
+                            if (brandx == BrandName)
+                            {
+                                EDP_Storage.Add(edp_tempo); break;
+                            }
+                        }
+                    }
                 }
+             
+                    
+                
             }
         }
         #endregion end importantWORKING
