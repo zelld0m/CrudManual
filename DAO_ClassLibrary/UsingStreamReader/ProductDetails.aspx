@@ -35,10 +35,7 @@
                 <div class="col-sm-4">
                     <div class="well">
                         <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-                        <asp:Button ID="btnCreate" runat="server" Text="Anthro Corp" OnClick="btnCreate_Click" />
-                        <asp:Button ID="Btn_Lenovo" runat="server" OnClick="Button1_Click" Text="Lenovo" />
                         <asp:Button ID="BtnALL" runat="server" OnClick="BtnALL_Click" Text="ALL" />
-                        <asp:Button ID="Btn_Quatech" runat="server" OnClick="Btn_Quatech_Click" Text="Quatech" />
                     </div>
                 </div>
                 <div class="auto-style1">

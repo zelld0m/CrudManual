@@ -47,7 +47,7 @@ namespace UsingStreamReader
         {
             for(int i = 0; i < SAVE.Count; i++)
             {
-                sample.Get_EDP_FromBrand(Button1.Text, SAVE[i],SAVE);
+               // sample.Filtering_EDP_Brand(Button1.Text, SAVE[i],SAVE);
             }
             
 
@@ -55,7 +55,7 @@ namespace UsingStreamReader
         public void Test()
         {
             ProductDetails prod = new ProductDetails();
-            prod.MultipleDisplayAllProducts();
+        //    prod.MultipleDisplayAllProducts();
            
         }
     }

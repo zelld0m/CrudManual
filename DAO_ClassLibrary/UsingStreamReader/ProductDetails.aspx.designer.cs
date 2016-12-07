@@ -49,24 +49,6 @@ namespace UsingStreamReader {
         protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
         
         /// <summary>
-        /// btnCreate control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnCreate;
-        
-        /// <summary>
-        /// Btn_Lenovo control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Lenovo;
-        
-        /// <summary>
         /// BtnALL control.
         /// </summary>
         /// <remarks>
@@ -74,15 +56,6 @@ namespace UsingStreamReader {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button BtnALL;
-        
-        /// <summary>
-        /// Btn_Quatech control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button Btn_Quatech;
         
         /// <summary>
         /// Panel1 control.

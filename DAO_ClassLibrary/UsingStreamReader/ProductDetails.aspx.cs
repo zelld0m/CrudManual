@@ -11,264 +11,38 @@ namespace UsingStreamReader
 {
     public partial class ProductDetails : System.Web.UI.Page
     {
-        // Rows Changable value        
-        int howmanyProducts = 100;
-        string url = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows="+100+"&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=10";
-        int numberofBrand = 250;
+        static List<int> ALLEDP = new List<int>();
+        static List<String> ListBrand = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
-            //rdbtnlst_Brand.DataSource = sample.AllBrand(20);
-           // rdbtnlst_Brand.DataBind();
 
-
-
-      
-        List<string> ListManufact = new List<string>(200);
-            ListManufact = sample.AllBrand(numberofBrand);
-            #region postback
+           sample.SaveALLEDP();
+            ListBrand = sample.AllBrand();
+            #region postback FOR BRAND SELECTION
             if (!IsPostBack)
             {
+               // PlaceHolder1.Controls.Clear();
                 rdbtnlst_Brand.ClearSelection();
                 rdbtnlst_Brand.Controls.Clear();
-                for (int i = 0; i < ListManufact.Count; i++)
+                for (int i = 0; i < ListBrand.Count; i++)
                 {
-                    rdbtnlst_Brand.Items.Add(new ListItem( ListManufact[i]));
+                    rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
                 }
                 rdbtnlst_Brand.AutoPostBack = true;
             }
             #endregion postback
-
         }
-
-
-        #region CREATION
-        // <---- textboxCreation --- > --------------------------------------------------------------------------------------------
-        protected int NumberOfControls
+      
+        public  void BtnALL_Click(object sender, EventArgs e)
         {
-            get { return Convert.ToInt32(Session["noCon"]); }
-            set { Session["noCon"] = value.ToString(); }
+            sample.MultipleDisplay_All_Products( PlaceHolder1);
         }
-        private void Page_Init(object sender, System.EventArgs e)
-        {
-            if (!Page.IsPostBack)
-                //Initiate the counter of dynamically added controls
-                this.NumberOfControls = 0;
-                //      else
-                //Controls must be repeatedly be created on postback
-                // this.createControls();
-        }
-        protected void brandmultipleDisplay(String brandName)
-        {
-            
-            List<int> x = sample.SaveALLEDP(url);
-            List<int> filtered = new List<int>(300);
-            // Scanning 
-            for (int i = 0; i < x.Count; i++)
-            {
-                sample.Get_EDP_FromBrand(brandName, x[i], filtered);
-                //  Response.Write(filtered[i]);
-            }
-            for (int i = 0; i < filtered.Count; i++)
-            {
-                BrandSelectedMultipleDisplay(filtered);
-            }
-        }
-        public static void LabelCssClass(Control root)          // CSS 
-        {
-            foreach (Control control in root.Controls)
-            {
-                if (control is Label)
-                {
-                    var label = control as  Label;
-                    label.CssClass = "control-label";
-                }
-                else
-                {
-                    LabelCssClass(control);
-                }
-            }
-        }
-        public static void ButtonCssClass(Control root)         // CSS 
-        {
-            foreach (Control control in root.Controls)
-            {
-                if (control is Button)
-                {
-                    var Button = control as Button;
-                    Button.CssClass = "btn btn-info";
-                }
-                else
-                {
-                    ButtonCssClass(control);
-                }
-            }
-        }
-        // Success MULTIPLE DISPLAY OF PRODUCT 
-        public void MultipleDisplayAllProducts()
-        {
-
-            // save is an arraylist that contains EDP #
-
-            List<int> SAVE;
-            SAVE = sample.SaveALLEDP("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
-            for (int i = 0; i < SAVE.Count; i++)
-            {
-                //TextBox tbi = new TextBox();
-                //tbi.ID = "txtData" + i;
-
-                NumberOfControls++;
-                //PlaceHolder1.Controls.Add(tbi);
-                //<  ADDED
-                Label label_ProductName = new Label();
-                label_ProductName.ID = "label_ProductName" + i;
-                Label label_Store = new Label();
-                label_Store.ID = "label_Store" + i;
-                Label label_Description = new Label();
-                label_Description.ID = "label_Description" + i;
-                Label label_Price = new Label();
-                label_Price.ID = "label_Price" + i;
-
-                Image Image_url = new Image();
-                Image_url.ID = "Image_ID" + i;
-                Label label_Manufacturer = new Label();
-                label_Manufacturer.ID = "label_Manufacturer" + i;
-                Label label_Availability = new Label();
-                label_Availability.ID = "label_Availability" + i;
-                sample.showDetails(Convert.ToString(SAVE[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
-
-                PlaceHolder ph = new PlaceHolder();
-                ph.ID = "placeholderx" + i.ToString();
-                //tbi.Text = ":" + i.ToString();
-                //ph.Controls.Add(tbi);
-                Image_url.Height = 500;
-                Image_url.Width = 500;
-                Image_url.CssClass = "img-responsive ";
-                Image_url.AlternateText = "No Image";
-
-                ph.Controls.Add(Image_url);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Price: "));
-                ph.Controls.Add(label_Price);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Name: "));
-                ph.Controls.Add(label_ProductName);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Store: "));
-                ph.Controls.Add(label_Store);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Description: "));
-                ph.Controls.Add(label_Description);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Manufacturer: "));
-                ph.Controls.Add(label_Manufacturer);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Availability: "));
-                ph.Controls.Add(label_Availability);
-                ph.Controls.Add(new LiteralControl("</br>"));
-
-                PlaceHolder1.Controls.Add(ph);
-
-                //<  ADDED
-            }
-        }
-        // <---- textboxCreation --- > -----------2-----------------------------------------
-        public void BrandSelectedMultipleDisplay(List<int> EDP)
-        {
-            // save is an arraylist that contains EDP #
-            
-            for (int i = 0; i < EDP.Count; i++)
-            {
-                
-                NumberOfControls++;
-                Label label_ProductName = new Label();
-                label_ProductName.ID = "label_ProductName" + i;
-                Label label_Store = new Label();
-                label_Store.ID = "label_Store" + i;
-                Label label_Description = new Label();
-                label_Description.ID = "label_Description" + i;
-                Label label_Price = new Label();
-                label_Price.ID = "label_Price" + i;
-                Image Image_url = new Image();
-                Image_url.ID = "Image_ID" + i;
-                Label label_Manufacturer = new Label();
-                label_Manufacturer.ID = "label_Manufacturer" + i;
-                Label label_Availability = new Label();
-                label_Availability.ID = "label_Availability" + i;
-                sample.showDetails(Convert.ToString(EDP[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
-
-                PlaceHolder ph = new PlaceHolder();
-                ph.ID = "placeholderx" + i.ToString();
-        
-                Image_url.Height = 500;
-                Image_url.Width = 500;
-                Image_url.CssClass = "img-responsive ";
-                Image_url.AlternateText = "No Image";
-                //<----------  IMPLEMENT ----------->
-                ph.Controls.Add(Image_url);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Price: "));
-                ph.Controls.Add(label_Price);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Name: "));
-                ph.Controls.Add(label_ProductName);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Store: "));
-                ph.Controls.Add(label_Store);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Description: "));
-                ph.Controls.Add(label_Description);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Manufacturer: "));
-                ph.Controls.Add(label_Manufacturer);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Availability: "));
-                ph.Controls.Add(label_Availability);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                
-                PlaceHolder1.Controls.Add(ph);
-              
-                //<  ADDED
-            }
-        }
-        // <---- textboxCreation --- > ----------------------------------------------------------------------------------
-
-        #endregion CREATION
-        #region Buttons
-
-        protected void btnCreate_Click(object sender, EventArgs e)          // Create's Textbox  // Inside a placeholder-object
-        {
-            brandmultipleDisplay(btnCreate.Text);
-    
-        }
-        protected void Button1_Click(object sender, EventArgs e)
-        {
-            brandmultipleDisplay(Btn_Lenovo.Text);
-        }
-
-        protected void BtnALL_Click(object sender, EventArgs e)
-        {
-         
-            //MultipleDisplayAllProducts();
-        }
-
-        protected void Btn_Quatech_Click(object sender, EventArgs e)
-        {
-            brandmultipleDisplay(Btn_Quatech.Text);
-        }
-        #endregion buttons
-
         protected void rdbtnlst_Brand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            String  SelectedManufact = rdbtnlst_Brand.Text;
-            brandmultipleDisplay(SelectedManufact);
+            PlaceHolder1.Controls.Clear();
+            
+            String selectedBrand = rdbtnlst_Brand.Text;
+            sample.brandmultipleDisplay(selectedBrand, PlaceHolder1);
         }
-
-       
     }
 }
