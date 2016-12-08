@@ -13,16 +13,15 @@ namespace UsingStreamReader
 
     public class sample
     {
-
+        #region Declarations 
         static int howmanyProducts = 2 ;
         static int numberofBrand = 500;
         static List<int> ALL_EDP = new List<int>(howmanyProducts);
         static List<string> BrandList = new List<string>(numberofBrand);
         static List<int> Filtered_EDP_Brand = new List<int>(howmanyProducts);
-
         static String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
+        #endregion
 
-    
 
         #region IMPORTANT WORKING
 
@@ -65,7 +64,7 @@ namespace UsingStreamReader
         }
 
         // Working Getting ALL Details of ALL Products
-        #region ProductDetailsGOOD 
+        #region ProductDetailsGOOD  FIX IMAGE RETRIEVAL --------------------------------------------------------------------------------------------------------------------------------------
         public static void showDetails(String inputEdp, Label label_store, Label label_productName, Label label_productdescription,  
             Label label_Price, Image imageSourceUrl, Label label_Manufacturer, Label label_availabilityDescription) // VERSION 3
         { // 6 label , 2 string 
@@ -110,7 +109,7 @@ namespace UsingStreamReader
 
             reader.Dispose();
         }
-        #endregion ProductDetailsGOOD
+        #endregion 
 
 
         #endregion end importantWORKING
