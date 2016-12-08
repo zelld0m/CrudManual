@@ -74,7 +74,7 @@ namespace UsingStreamReader
             while (reader.Read())
             {
                 reader.ReadToFollowing("productDetails");
-                ///<--------------------------------------------------------------MAKE THIS FASTER------------------------------------------------------------------------------->//
+               
                  while (reader.ReadToFollowing("manufacturer"))
                  {
                     label_Manufacturer.Text = reader.ReadElementString("manufacturer");
@@ -93,6 +93,8 @@ namespace UsingStreamReader
                     {
                         label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");break;
                     }
+
+                    // FIX IMAGE <------------------------------------------------------SERVER DOWN  4:00pm  DEC 8  2016  ------------------------------------>
                     reader.ReadToFollowing("image");
                     reader.ReadToFollowing("xlg");
                     
@@ -101,8 +103,8 @@ namespace UsingStreamReader
                         imageSourceUrl.ImageUrl = reader.ReadElementString("xlg"); break;
 
                     }
-                        
-                    
+                    // FIX IMAGE <----------------------------------------------------------------------------------------------------------------------------------->
+
                 }
             }
 
@@ -233,7 +235,6 @@ namespace UsingStreamReader
                 #endregion IMPLEMENTATION
                 placeholder1.Controls.Add(ph);
             }
-          
         }
         #endregion DIPLAY SHOW ALL PRODUCT
 
