@@ -11,25 +11,25 @@ namespace UsingStreamReader
 {
     public partial class ProductDetails : System.Web.UI.Page
     {
-        static List<int> ALLEDP = new List<int>();
+        
         static List<String> ListBrand = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
 
-           sample.SaveALLEDP();
+            //sample.SaveALLEDP();
             ListBrand = sample.AllBrand();
             #region postback FOR BRAND SELECTION
             if (!IsPostBack)
             {
-               // PlaceHolder1.Controls.Clear();
                 rdbtnlst_Brand.ClearSelection();
                 rdbtnlst_Brand.Controls.Clear();
                 for (int i = 0; i < ListBrand.Count; i++)
                 {
                     rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
                 }
-                rdbtnlst_Brand.AutoPostBack = true;
+                rdbtnlst_Brand.AutoPostBack = true; PlaceHolder1.Controls.Clear();
             }
+           // PlaceHolder1.Controls.Clear();
             #endregion postback
         }
       
@@ -39,10 +39,15 @@ namespace UsingStreamReader
         }
         protected void rdbtnlst_Brand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            PlaceHolder1.Controls.Clear();
-            
+            //PlaceHolder1.Controls.Clear();
             String selectedBrand = rdbtnlst_Brand.Text;
-            sample.brandmultipleDisplay(selectedBrand, PlaceHolder1);
+            sample.brandmultipleDisplay(selectedBrand,PlaceHolder1);
+
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            sample.SaveALLEDP();
         }
     }
 }

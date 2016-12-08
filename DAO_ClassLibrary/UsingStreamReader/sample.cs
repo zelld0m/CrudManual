@@ -14,10 +14,10 @@ namespace UsingStreamReader
     public class sample
     {
 
-        static int howmanyProducts = 10;
+        static int howmanyProducts = 2 ;
         static int numberofBrand = 500;
         static List<int> ALL_EDP = new List<int>(howmanyProducts);
-        static List<string> BrandList = new List<string>(1000);
+        static List<string> BrandList = new List<string>(numberofBrand);
         static List<int> Filtered_EDP_Brand = new List<int>(howmanyProducts);
 
         static String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
@@ -27,9 +27,9 @@ namespace UsingStreamReader
         #region IMPORTANT WORKING
 
         //Speedup Version 2
-        public static void SaveALLEDP()     // Getting All EDP
+        public static void SaveALLEDP()     // Getting All EDP  // Version 3
         {
-            string x = "";
+            ALL_EDP.Clear();
             // List<int> saveEDP = new List<int>(10000);
             System.Xml.XmlTextReader reader = new XmlTextReader(url);
             reader.ReadToFollowing("result");
@@ -42,11 +42,10 @@ namespace UsingStreamReader
             }
             
         }
-        public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand
+        public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  
         {
             List<String> ListBrand = new List<String>(100); ;
             System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + numberofBrand);
-
             reader.ReadToFollowing("lst");
             reader.ReadToFollowing("lst");
             reader.ReadToFollowing("lst");
@@ -67,66 +66,58 @@ namespace UsingStreamReader
 
         // Working Getting ALL Details of ALL Products
         #region ProductDetailsGOOD 
-        public static void showDetails(String inputEdp, Label label_store, Label label_productName, Label label_productdescription,
-            Label label_Price, Image imageSourceUrl, Label label_Manufacturer, Label label_availabilityDescription) { // 6 label , 2 string 
+        public static void showDetails(String inputEdp, Label label_store, Label label_productName, Label label_productdescription,  
+            Label label_Price, Image imageSourceUrl, Label label_Manufacturer, Label label_availabilityDescription) // VERSION 3
+        { // 6 label , 2 string 
             String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + inputEdp + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
             System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
             while (reader.Read())
             {
                 reader.ReadToFollowing("productDetails");
-                while (reader.ReadToFollowing("manufacturer"))
-                {
-                    if (reader.Name == "manufacturer")  // 1st 
+                ///<--------------------------------------------------------------MAKE THIS FASTER------------------------------------------------------------------------------->//
+                 while (reader.ReadToFollowing("manufacturer"))
+                 {
+                    label_Manufacturer.Text = reader.ReadElementString("manufacturer");
+                    reader.ReadToFollowing("storeSpecific");
+                    reader.ReadToFollowing("store");
+                    label_store.Text = reader.ReadElementString("store");// show Store   
+                    label_productName.Text = reader.ReadElementString("name");  // Show ProductName
+                    label_productdescription.Text = reader.ReadElementString("description");
+                    while (reader.ReadToFollowing("finalPrice"))
                     {
-                        label_Manufacturer.Text = reader.ReadElementString("manufacturer");
+                        label_Price.Text = reader.ReadElementString("finalPrice");break;
                     }
-                    while (reader.ReadToFollowing("storeSpecific"))   // FIX THIS < ---------------------------------------------------------------------
+                    //reader.ReadToFollowing("availability");
+                    reader.ReadToFollowing("availabilityDescription");
+                    if (reader.Name =="availabilityDescription") //
                     {
-                        reader.ReadToFollowing("store");
-                        if (reader.Name == "store")
-                        {
-                            label_store.Text = reader.ReadElementString("store");// show Store   
-                        }
-                        if (reader.Name == "name")
-                        {
-                            label_productName.Text = reader.ReadElementString("name");  // Show ProductName
-                        }
-                        if (reader.Name == "description")
-                        {
-                            label_productdescription.Text = reader.ReadElementString("description");  // Show Description
-                        }
+                        label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");break;
+                    }
+                    reader.ReadToFollowing("image");
+                    reader.ReadToFollowing("xlg");
+                    
+                    if (reader.Name == "xlg") //
+                    {
+                        imageSourceUrl.ImageUrl = reader.ReadElementString("xlg"); break;
 
-                        reader.ReadToFollowing("finalPrice");
-                        if (reader.Name == "finalPrice")
-                        {
-                            label_Price.Text = reader.ReadElementString("finalPrice");
-                            reader.ReadToFollowing("availabilityDescription");
-                        }
-                        if (reader.Name == "availabilityDescription")
-                        {
-                            label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");
-                        }
-                        reader.ReadToFollowing("xlg");
-                        {
-                            if (reader.Name == "xlg")  // IMAGE  & SIZE  // String value
-                            {
-                                imageSourceUrl.ImageUrl = reader.ReadElementString("xlg"); break; // show all EDP      // IMAGE SOURCE
-                            }
-                        }
                     }
+                        
+                    
                 }
             }
+
+            reader.Dispose();
         }
         #endregion ProductDetailsGOOD
 
-       
+
         #endregion end importantWORKING
 
 
-        #region DIPLAY 
+        #region DIPLAY   // PERFECT 
         public static void MultipleDisplay_All_Products(PlaceHolder PlaceHolder1)
         {
-
+            PlaceHolder1.Controls.Clear();
             for (int i = 0; i < ALL_EDP.Count; i++)
             {
                 //   NumberOfControls++;
@@ -160,6 +151,7 @@ namespace UsingStreamReader
                 ph.Controls.Add(new LiteralControl("Price: "));
                 ph.Controls.Add(label_Price);
                 ph.Controls.Add(new LiteralControl("</br>"));
+
                 ph.Controls.Add(new LiteralControl("Name: "));
                 ph.Controls.Add(label_ProductName);
                 ph.Controls.Add(new LiteralControl("</br>"));
@@ -183,11 +175,13 @@ namespace UsingStreamReader
             }
         }
 
-        public static void BrandSelectedMultipleDisplay(List<int> Filtered_EDP, PlaceHolder PlaceHolder1)
+        public static  void BrandSelectedMultipleDisplay(List<int> Filtered_Brand_EDP, PlaceHolder placeholder1)
         {
             // save is an arraylist that contains EDP #
-            for (int i = 0; i < Filtered_EDP.Count; i++)
-            { 
+            placeholder1.Controls.Clear();
+            for (int i = 0; i < Filtered_Brand_EDP.Count; i++)
+            {
+                #region Naming , Creation of LAbel
                 Label label_ProductName = new Label();
                 label_ProductName.ID = "label_ProductName" + i;
                 Label label_Store = new Label();
@@ -202,7 +196,10 @@ namespace UsingStreamReader
                 label_Manufacturer.ID = "label_Manufacturer" + i;
                 Label label_Availability = new Label();
                 label_Availability.ID = "label_Availability" + i;
-                sample.showDetails(Convert.ToString(Filtered_EDP[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
+                PlaceHolder ph = new PlaceHolder();
+                ph.ID = "placeHold" + i;
+                #endregion Naming , Creation of LAbel
+                sample.showDetails(Convert.ToString(Filtered_Brand_EDP[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
 
                 #region  IMPLEMENTATION
                 Image_url.Height = 500;
@@ -210,9 +207,6 @@ namespace UsingStreamReader
                 Image_url.CssClass = "img-responsive ";
                 Image_url.AlternateText = "No Image";
                 //<----------  IMPLEMENT ----------->
-                PlaceHolder ph = new PlaceHolder();
-                ph.ID = "placeholderr" + i;
-
                 ph.Controls.Add(Image_url);
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("Price: "));
@@ -235,20 +229,17 @@ namespace UsingStreamReader
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("Availability: "));
                 ph.Controls.Add(label_Availability);
-                ph.Controls.Add(new LiteralControl("</br>"));
-               
-                PlaceHolder1.Controls.Add(ph);
-                //ph.Controls.Clear();
+                ph.Controls.Add(new LiteralControl("</br>")); 
                 #endregion IMPLEMENTATION
-
-
+                placeholder1.Controls.Add(ph);
             }
-            //return PlaceHolder1;
+          
         }
         #endregion DIPLAY SHOW ALL PRODUCT
 
-        public static void Filtering_EDP_Brand(string BrandName)  // GET EDP USING Manufacturer
+        public static void Filtering_EDP_Brand(string BrandName)  // GET EDP USING Manufacturer   Version 3
         { // scan all product with the same Brand name then return  eDP if same Brand 
+            Filtered_EDP_Brand.Clear();                 /// ALWATS CLEAR EDP SAVE LIST 
             for (int i = 0; i < ALL_EDP.Count; i++)
             {
                 String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + ALL_EDP[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
@@ -265,13 +256,10 @@ namespace UsingStreamReader
                         }
                         while (reader.ReadToFollowing("manufacturer"))
                         {
-                            if (reader.Name == "manufacturer")
+                            brandx = reader.ReadElementString("manufacturer");
+                            if (brandx == BrandName)
                             {
-                                brandx = reader.ReadElementString("manufacturer");
-                                if (brandx == BrandName)
-                                {
-                                    Filtered_EDP_Brand.Add(edp_tempo); 
-                                }
+                                Filtered_EDP_Brand.Add(edp_tempo); 
                             }
                         }
                     }
@@ -280,12 +268,10 @@ namespace UsingStreamReader
             
         }
 
-        public static void brandmultipleDisplay(String brandName, PlaceHolder PlaceHolder1)  // ERROR   ID REPEATING
+        public static void brandmultipleDisplay(String brandName ,PlaceHolder PlaceHolder1)  // ERROR   ID REPEATING
         {
-            PlaceHolder1.Controls.Clear();                      // EERROR   doubles EDP.COUNT
             Filtering_EDP_Brand(brandName);
-            BrandSelectedMultipleDisplay(Filtered_EDP_Brand, PlaceHolder1);
-            //  Response.Write(filtered[i]);
+            BrandSelectedMultipleDisplay(Filtered_EDP_Brand,PlaceHolder1);
         }
 
         

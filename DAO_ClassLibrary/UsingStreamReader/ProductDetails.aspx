@@ -14,8 +14,32 @@
             min-height: 1px;
             float: left;
             width: 33.33333333%;
-            left: 0px;
+            left: 2px;
             top: -91px;
+            padding-left: 15px;
+            padding-right: 15px;
+        }
+        .auto-style2 {
+            min-height: 20px;
+            padding: 19px;
+            margin-bottom: 20px;
+            background-color: #f5f5f5;
+            border: 1px solid #e3e3e3;
+            border-radius: 4px;
+            -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+            margin-left: 40px;
+            width: 288px;
+            height: 67px;
+        }
+        .auto-style3 {
+            position: relative;
+            min-height: 1px;
+            float: left;
+            width: 40%;
+            left: 1px;
+            top: 4px;
+            height: 131px;
             padding-left: 15px;
             padding-right: 15px;
         }
@@ -32,14 +56,23 @@
                         <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
                     </div>
                 </div>
-                <div class="col-sm-4">
-                    <div class="well">
-                        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
-                        <asp:Button ID="BtnALL" runat="server" OnClick="BtnALL_Click" Text="ALL" />
+                <div class="auto-style3">
+                    <div class="auto-style2">
+                        <asp:Button ID="BtnALL" runat="server" OnClick="BtnALL_Click" Text="ALL" Height="30px" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="LOAD EDP" Height="30px" />
+                        <br />
+                        <br />
+                        <br />
                     </div>
                 </div>
                 <div class="auto-style1">
-                    <asp:Panel ID="Panel1" runat="server">
+                    <br />
+                    <br />
+                    
+                    <br />
+                    <asp:Panel ID="Panel1" runat="server" BackColor="WhiteSmoke"  BorderColor="WindowFrame">
+                        <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
                     </asp:Panel>
                 </div>
             </div>
