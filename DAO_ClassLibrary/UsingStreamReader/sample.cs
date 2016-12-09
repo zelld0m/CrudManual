@@ -14,11 +14,13 @@ namespace UsingStreamReader
     public class sample
     {
         #region Declarations 
-        static int howmanyProducts = 2 ;
-        static int numberofBrand = 500;
-        static List<int> ALL_EDP = new List<int>(howmanyProducts);
-        static List<string> BrandList = new List<string>(numberofBrand);
-        static List<int> Filtered_EDP_Brand = new List<int>(howmanyProducts);
+        static int numberofBrand = 10;
+        static int howmanyProducts =10 ;
+      
+        static List<int> GLOBAL_ALL_EDP = new List<int>(howmanyProducts);
+        static List<int> GLOBAL_FilteredSearch_EDP = new List<int>(howmanyProducts);
+        static List<string> ShowBrandList = new List<string>(100);
+      
         static String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
         #endregion
 
@@ -28,22 +30,23 @@ namespace UsingStreamReader
         //Speedup Version 2
         public static void SaveALLEDP()     // Getting All EDP  // Version 3
         {
-            ALL_EDP.Clear();
+            GLOBAL_ALL_EDP.Clear();
             // List<int> saveEDP = new List<int>(10000);
             System.Xml.XmlTextReader reader = new XmlTextReader(url);
             reader.ReadToFollowing("result");
             reader.ReadToFollowing("int");
             while (reader.GetAttribute("name") == "EDP")
             {
-                ALL_EDP.Add(Convert.ToInt32(reader.ReadElementString("int")));
+                GLOBAL_ALL_EDP.Add(Convert.ToInt32(reader.ReadElementString("int")));
                
                 reader.ReadToFollowing("int");
             }
             
         }
+        #region  Unused GetALL Brand
         public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  
         {
-            List<String> ListBrand = new List<String>(100); ;
+            List<String> ListBrand = new List<String>(100); 
             System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + numberofBrand);
             reader.ReadToFollowing("lst");
             reader.ReadToFollowing("lst");
@@ -62,7 +65,7 @@ namespace UsingStreamReader
             }
             return ListBrand;
         }
-
+        #endregion
         // Working Getting ALL Details of ALL Products
         #region ProductDetailsGOOD  FIX IMAGE RETRIEVAL --------------------------------------------------------------------------------------------------------------------------------------
         public static void showDetails(String inputEdp, Label label_store, Label label_productName, Label label_productdescription,  
@@ -90,7 +93,7 @@ namespace UsingStreamReader
                     reader.ReadToFollowing("availabilityDescription");
                     if (reader.Name =="availabilityDescription") //
                     {
-                        label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");break;
+                        label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");
                     }
 
                     // FIX IMAGE <------------------------------------------------------SERVER DOWN  4:00pm  DEC 8  2016  ------------------------------------>
@@ -119,7 +122,7 @@ namespace UsingStreamReader
         public static void MultipleDisplay_All_Products(PlaceHolder PlaceHolder1)
         {
             PlaceHolder1.Controls.Clear();
-            for (int i = 0; i < ALL_EDP.Count; i++)
+            for (int i = 0; i < GLOBAL_ALL_EDP.Count; i++)
             {
                 //   NumberOfControls++;
                 // PlaceHolder1.Controls.Clear();
@@ -138,7 +141,7 @@ namespace UsingStreamReader
                 label_Manufacturer.ID = "label_Manufacturer" + i;
                 Label label_Availability = new Label();
                 label_Availability.ID = "label_Availability" + i;
-                sample.showDetails(Convert.ToString(ALL_EDP[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
+                sample.showDetails(Convert.ToString(GLOBAL_ALL_EDP[i]), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
 
                 PlaceHolder ph = new PlaceHolder();
                 ph.ID = "placeholderxe" + i.ToString();
@@ -237,15 +240,26 @@ namespace UsingStreamReader
         }
         #endregion DIPLAY SHOW ALL PRODUCT
 
-        public static void Filtering_EDP_Brand(string BrandName)  // GET EDP USING Manufacturer   Version 3
+
+        #region used in  search button
+        public static List<int> Filtering_EDP_FromSearch(string find)  // GET EDP USING Manufacturer   Version 3
         { // scan all product with the same Brand name then return  eDP if same Brand 
-            Filtered_EDP_Brand.Clear();                 /// ALWATS CLEAR EDP SAVE LIST 
-            for (int i = 0; i < ALL_EDP.Count; i++)
+            List<int> filtered_EDP_fromSearch = new List<int>(GLOBAL_ALL_EDP.Count);
+            filtered_EDP_fromSearch.Clear();
+            GLOBAL_FilteredSearch_EDP.Clear();
+            ShowBrandList.Clear();
+                       /// ALWATS CLEAR EDP SAVE LIST 
+                       /// 
+            for (int i = 0; i < GLOBAL_ALL_EDP.Count; i++)
             {
-                String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + ALL_EDP[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
+                String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + GLOBAL_ALL_EDP[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
                 System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
-                string brandx;
+                string brandx ="";
+                string category="";
+                string class1 = "";
+                string name = "";
                 int edp_tempo = 0;
+             //   StringComparison comp = StringComparison.OrdinalIgnoreCase;
                 while (reader.Read())
                 {
                     while (reader.ReadToFollowing("edp"))
@@ -254,31 +268,59 @@ namespace UsingStreamReader
                         {
                             edp_tempo = Convert.ToInt32(reader.ReadElementString("edp"));
                         }
-                        while (reader.ReadToFollowing("manufacturer"))
+                        if (reader.ReadToFollowing("manufacturer"))
                         {
                             brandx = reader.ReadElementString("manufacturer");
-                            if (brandx == BrandName)
+                            reader.ReadToFollowing("category");
+                            //if (reader.ReadToFollowing("category")) // SAVE category save brand save edp
                             {
-                                Filtered_EDP_Brand.Add(edp_tempo); 
+                                category = reader.ReadElementString("category");
+                                reader.ReadToFollowing("class");
+                                if (reader.Name =="class")
+                                {
+                                    class1 = reader.ReadElementString("class");
+                                }
+                                reader.ReadToFollowing("store");
+                                reader.ReadToFollowing("name");
+                                if (reader.Name == "name")
+                                {
+                                    name = reader.ReadElementString("name");
+                                }
                             }
+                        }
+                    }
+                    if (brandx.ToLower().Contains(find.ToLower()) || category.ToLower().Contains(find.ToLower()) || class1.ToLower().Contains(find.ToLower()) || name.ToLower().Contains(find.ToLower()))
+                    {
+
+                        filtered_EDP_fromSearch.Add(edp_tempo);
+                        if ("" != find)
+                        {
+                            if (ShowBrandList.Contains(brandx))
+                            {
+
+                            }
+                            else ShowBrandList.Add(brandx);
                         }
                     }
                 }
             }
             
+            return filtered_EDP_fromSearch;
         }
 
-        public static void brandmultipleDisplay(String brandName ,PlaceHolder PlaceHolder1)  // ERROR   ID REPEATING
+        public static void brandmultipleDisplay(String find ,PlaceHolder PlaceHolder1)  // 
         {
-            Filtering_EDP_Brand(brandName);
-            BrandSelectedMultipleDisplay(Filtered_EDP_Brand,PlaceHolder1);
+            GLOBAL_FilteredSearch_EDP = Filtering_EDP_FromSearch(find);
+            BrandSelectedMultipleDisplay(GLOBAL_FilteredSearch_EDP, PlaceHolder1);
         }
 
+
+
         
-        
-
-
-
-    
+        public static List<string> getBrandSearched() 
+        { 
+            return ShowBrandList;
+        }
+        #endregion
     }
 }
