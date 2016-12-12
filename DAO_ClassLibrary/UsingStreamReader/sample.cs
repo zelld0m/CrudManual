@@ -19,6 +19,7 @@ namespace UsingStreamReader
       
         static List<int> GLOBAL_ALL_EDP = new List<int>(howmanyProducts);
         static List<int> GLOBAL_FilteredSearch_EDP = new List<int>(howmanyProducts);
+        static List<int> GLOBAL_FilteredByBrand_EDP = new List<int>(howmanyProducts);
         //static List<string> ShowBrandList = new List<string>(100);
       
         static String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
@@ -103,7 +104,6 @@ namespace UsingStreamReader
                     if (reader.Name == "xlg") //
                     {
                         imageSourceUrl.ImageUrl = reader.ReadElementString("xlg"); break;
-
                     }
                     // FIX IMAGE <----------------------------------------------------------------------------------------------------------------------------------->
 
@@ -118,8 +118,13 @@ namespace UsingStreamReader
         #endregion end importantWORKING
 
 
+      
+
+
+      
+
         #region DIPLAY   // PERFECT 
-        public static void MultipleDisplay_All_Products(PlaceHolder PlaceHolder1)
+        public static void Display_All_Products(PlaceHolder PlaceHolder1)
         {
             PlaceHolder1.Controls.Clear();
             for (int i = 0; i < GLOBAL_ALL_EDP.Count; i++)
@@ -179,7 +184,7 @@ namespace UsingStreamReader
             }
         }
 
-        public static  void BrandSelectedMultipleDisplay(List<int> Filtered_Brand_EDP, PlaceHolder placeholder1)
+        public static void SelectedMultipleDisplay(List<int> Filtered_Brand_EDP, PlaceHolder placeholder1)
         {
             // save is an arraylist that contains EDP #
             placeholder1.Controls.Clear();
@@ -233,94 +238,20 @@ namespace UsingStreamReader
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("Availability: "));
                 ph.Controls.Add(label_Availability);
-                ph.Controls.Add(new LiteralControl("</br>")); 
+                ph.Controls.Add(new LiteralControl("</br>"));
                 #endregion IMPLEMENTATION
                 placeholder1.Controls.Add(ph);
             }
         }
         #endregion DIPLAY SHOW ALL PRODUCT
 
-
-        #region used in  search button
-        public static List<int> Filtering_EDP_FromSearch(string find , List<string> ShowBrandList)  // GET EDP USING Manufacturer   Version 3
+        #region used in  FILTERING EDP AND BRANDING 
+        public static List<int> Filtering_EDP_FromSearch(string find, List<string> ShowBrandList)  // GET EDP USING Manufacturer   Version 3
         { // scan all product with the same Brand name then return  eDP if same Brand 
             List<int> filtered_EDP_fromSearch = new List<int>(GLOBAL_ALL_EDP.Count);
             filtered_EDP_fromSearch.Clear();
             GLOBAL_FilteredSearch_EDP.Clear();
             ShowBrandList.Clear();
-                       /// ALWATS CLEAR EDP SAVE LIST 
-                       /// 
-            for (int i = 0; i < GLOBAL_ALL_EDP.Count; i++)
-            {
-                String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + GLOBAL_ALL_EDP[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
-                System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
-                string brandx ="";
-                string category="";
-                string class1 = "";
-                string name = "";
-                int edp_tempo = 0;
-             //   StringComparison comp = StringComparison.OrdinalIgnoreCase;
-                while (reader.Read())
-                {
-                    while (reader.ReadToFollowing("edp"))
-                    {
-                        if (reader.Name == "edp")
-                        {
-                            edp_tempo = Convert.ToInt32(reader.ReadElementString("edp"));
-                        }
-                        if (reader.ReadToFollowing("manufacturer"))
-                        {
-                            brandx = reader.ReadElementString("manufacturer");
-
-                            reader.ReadToFollowing("category");
-                            //if (reader.ReadToFollowing("category")) // SAVE category save brand save edp
-                            {
-                                category = reader.ReadElementString("category");
-                                reader.ReadToFollowing("class");
-                                if (reader.Name =="class")
-                                {
-                                    class1 = reader.ReadElementString("class");
-                                }
-                                reader.ReadToFollowing("store");
-                                reader.ReadToFollowing("name");
-                                if (reader.Name == "name")
-                                {
-                                    name = reader.ReadElementString("name");
-                                }
-                            }
-                        }
-                    }
-                    if (brandx.ToLower().Contains(find.ToLower()) || category.ToLower().Contains(find.ToLower()) || class1.ToLower().Contains(find.ToLower()) || name.ToLower().Contains(find.ToLower()))
-                    {
-
-                        filtered_EDP_fromSearch.Add(edp_tempo);
-                        if ("" != find)
-                        {
-                            if (ShowBrandList.Contains(brandx))
-                            {
-
-                            }
-                            else ShowBrandList.Add(brandx);
-                        }
-                    }
-                }
-            }
-            
-            return filtered_EDP_fromSearch;
-        }
-
-        public static void brandmultipleDisplay(String find ,PlaceHolder PlaceHolder1 , List<string>showBrandlist)  // 
-        {
-            GLOBAL_FilteredSearch_EDP = Filtering_EDP_FromSearch(find ,showBrandlist);
-            BrandSelectedMultipleDisplay(GLOBAL_FilteredSearch_EDP, PlaceHolder1);
-        }
-
-        public static void filterByBrand(List<int> filteredEDPbySearch)
-        {
-            List<int> filtered_EDP_fromSearch = new List<int>(GLOBAL_ALL_EDP.Count);
-            filtered_EDP_fromSearch.Clear();
-            GLOBAL_FilteredSearch_EDP.Clear();
-           
             /// ALWATS CLEAR EDP SAVE LIST 
             /// 
             for (int i = 0; i < GLOBAL_ALL_EDP.Count; i++)
@@ -378,10 +309,90 @@ namespace UsingStreamReader
                     }
                 }
             }
+
+            return filtered_EDP_fromSearch;
         }
 
-        
-       
+
+
+        public static List<int> FilterByBrand(List<int> filteredEDPbySearch, String find_BrandSelected)
+        {
+            List<int> filtered_EDP_byBrand = new List<int>(filteredEDPbySearch.Count);
+            filtered_EDP_byBrand.Clear();
+
+            if (filteredEDPbySearch == null)
+            {
+                filtered_EDP_byBrand = GLOBAL_ALL_EDP;
+            }
+            else
+            {
+                for (int i = 0; i < filteredEDPbySearch.Count; i++)
+                {
+                    String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + filteredEDPbySearch[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
+                    System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
+                    string brandx = "";
+                    int edp_tempo = 0;
+                    //   StringComparison comp = StringComparison.OrdinalIgnoreCase;
+                    while (reader.Read())
+                    {
+                        while (reader.ReadToFollowing("edp"))
+                        {
+                            if (reader.Name == "edp")
+                            {
+                                edp_tempo = Convert.ToInt32(reader.ReadElementString("edp"));
+                            }
+                            if (reader.ReadToFollowing("manufacturer"))
+                            {
+                                brandx = reader.ReadElementString("manufacturer");
+
+                                //reader.ReadToFollowing("category");
+                                ////if (reader.ReadToFollowing("category")) // SAVE category save brand save edp
+                                //{
+                                //    category = reader.ReadElementString("category");
+                                //    reader.ReadToFollowing("class");
+                                //    if (reader.Name == "class")
+                                //    {
+                                //        class1 = reader.ReadElementString("class");
+                                //    }
+                                //    reader.ReadToFollowing("store");
+                                //    reader.ReadToFollowing("name");
+                                //    if (reader.Name == "name")
+                                //    {
+                                //        name = reader.ReadElementString("name");
+                                //    }
+                                //}
+                            }
+                        }
+                        if (brandx.ToLower().Contains(find_BrandSelected.ToLower()))
+                        {
+                            filtered_EDP_byBrand.Add(edp_tempo);
+                        }
+                    }
+                }
+            }
+            return filtered_EDP_byBrand;
+        }
+
+
+
+        #endregion
+
+
+
+        #region IMPLEMENTATION
+        public static void SearchmultipleDisplay(String find, PlaceHolder PlaceHolder1, List<string> showBrandlist)  // 
+        {
+            GLOBAL_FilteredSearch_EDP = Filtering_EDP_FromSearch(find, showBrandlist);
+            SelectedMultipleDisplay(GLOBAL_FilteredSearch_EDP, PlaceHolder1);
+        }
+
+        public static void brandmultipleDisplay(String findBrand,PlaceHolder placeholder1)
+        {
+            GLOBAL_FilteredByBrand_EDP= FilterByBrand(GLOBAL_FilteredSearch_EDP, findBrand);
+            SelectedMultipleDisplay(GLOBAL_FilteredByBrand_EDP, placeholder1);
+
+        }
+
         #endregion
     }
 }

@@ -11,11 +11,10 @@ namespace UsingStreamReader
 {
     public partial class ProductDetails : System.Web.UI.Page
     {
-        
+        static List<string> EDP_filteredByBrand_2nd = new List<string>();
         static List<String> ListBrand = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
-        {
-                       
+        {           
             sample.SaveALLEDP();
             //if (IsPostBack)
             //{
@@ -24,8 +23,7 @@ namespace UsingStreamReader
             //}
             #region postback FOR BRAND SELECTION
             //if (!IsPostBack)  // 1st LOAD
-            //{
-                
+            //{   
             //   // rdbtnlst_Brand.ClearSelection();
             //   // rdbtnlst_Brand.Controls.Clear();
             //   // rdbtnlst_Brand.Items.Clear();
@@ -35,7 +33,6 @@ namespace UsingStreamReader
             //   // }
             //   // rdbtnlst_Brand.AutoPostBack = true; 
             //}
-        
             rdbtnlst_Brand.AutoPostBack = true;
             PlaceHolder1.Controls.Clear();
             #endregion postback
@@ -43,11 +40,11 @@ namespace UsingStreamReader
       
         public  void BtnALL_Click(object sender, EventArgs e)
         {
-            sample.MultipleDisplay_All_Products( PlaceHolder1);
+            sample.Display_All_Products( PlaceHolder1);
         }
         protected void rdbtnlst_Brand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            sample.brandmultipleDisplay(rdbtnlst_Brand.Text, PlaceHolder1 , ListBrand);
+            sample.brandmultipleDisplay(rdbtnlst_Brand.Text, PlaceHolder1 );
            // ListBrand = sample.getBrandSearched();
         }
 
@@ -60,7 +57,7 @@ namespace UsingStreamReader
         protected void Button1_Click1(object sender, EventArgs e)
         {
 
-            sample.brandmultipleDisplay(TB_Search.Text, PlaceHolder1, ListBrand);
+            sample.SearchmultipleDisplay(TB_Search.Text, PlaceHolder1, ListBrand);
             if (IsPostBack)
             {
                 rdbtnlst_Brand.ClearSelection();
