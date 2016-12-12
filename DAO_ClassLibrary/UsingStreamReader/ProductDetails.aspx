@@ -102,6 +102,8 @@
                     <div class="panel panel-danger">
                         <div class="panel-body">
                             <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" OnSelectedIndexChanged="rdbtnlst_Brand_SelectedIndexChanged" AutoPostBack="True" Style="left: 0px; top: 0px"></asp:RadioButtonList>
+                            <br />
+                            <asp:Label ID="NumberFound" runat="server" Text="Found: "></asp:Label>
                         </div>
                     </div>
                 </div>

@@ -14,14 +14,14 @@ namespace UsingStreamReader
     public class sample
     {
         #region Declarations 
-       
-        static int howmanyProducts =5 ;
-      
+
+        static int howmanyProducts = 5;
+        static int count = 0;
         static List<int> GLOBAL_ALL_EDP = new List<int>(howmanyProducts);
         static List<int> GLOBAL_FilteredSearch_EDP = new List<int>(howmanyProducts);
         static List<int> GLOBAL_FilteredByBrand_EDP = new List<int>(howmanyProducts);
         //static List<string> ShowBrandList = new List<string>(100);
-      
+
         #endregion
 
 
@@ -30,7 +30,7 @@ namespace UsingStreamReader
         //Speedup Version 2
         public static void SaveALLEDP()     // Getting All EDP  // Version 3
         {
-             String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
+            String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
 
             GLOBAL_ALL_EDP.Clear();
             System.Xml.XmlTextReader reader = new XmlTextReader(url);
@@ -39,10 +39,10 @@ namespace UsingStreamReader
             while (reader.GetAttribute("name") == "EDP")
             {
                 GLOBAL_ALL_EDP.Add(Convert.ToInt32(reader.ReadElementString("int")));
-               
+
                 reader.ReadToFollowing("int");
             }
-            
+
         }
         #region  Unused GetALL Brand
         //public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  
@@ -69,7 +69,7 @@ namespace UsingStreamReader
         #endregion
         // Working Getting ALL Details of ALL Products
         #region ProductDetailsGOOD  FIX IMAGE RETRIEVAL --------------------------------------------------------------------------------------------------------------------------------------
-        public static void showDetails(String inputEdp, Label label_store, Label label_productName, Label label_productdescription,  
+        public static void showDetails(String inputEdp, Label label_store, Label label_productName, Label label_productdescription,
             Label label_Price, Image imageSourceUrl, Label label_Manufacturer, Label label_availabilityDescription) // VERSION 3
         { // 6 label , 2 string 
             String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + inputEdp + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
@@ -77,9 +77,9 @@ namespace UsingStreamReader
             while (reader.Read())
             {
                 reader.ReadToFollowing("productDetails");
-               
-                 while (reader.ReadToFollowing("manufacturer"))
-                 {
+
+                while (reader.ReadToFollowing("manufacturer"))
+                {
                     label_Manufacturer.Text = reader.ReadElementString("manufacturer");
                     reader.ReadToFollowing("storeSpecific");
                     reader.ReadToFollowing("store");
@@ -88,11 +88,11 @@ namespace UsingStreamReader
                     label_productdescription.Text = reader.ReadElementString("description");
                     while (reader.ReadToFollowing("finalPrice"))
                     {
-                        label_Price.Text = reader.ReadElementString("finalPrice");break;
+                        label_Price.Text = reader.ReadElementString("finalPrice"); break;
                     }
                     //reader.ReadToFollowing("availability");
                     reader.ReadToFollowing("availabilityDescription");
-                    if (reader.Name =="availabilityDescription") //
+                    if (reader.Name == "availabilityDescription") //
                     {
                         label_availabilityDescription.Text = reader.ReadElementString("availabilityDescription");
                     }
@@ -100,7 +100,7 @@ namespace UsingStreamReader
                     // FIX IMAGE <------------------------------------------------------SERVER DOWN  4:00pm  DEC 8  2016  ------------------------------------>
                     reader.ReadToFollowing("image");
                     reader.ReadToFollowing("xlg");
-                    
+
                     if (reader.Name == "xlg") //
                     {
                         imageSourceUrl.ImageUrl = reader.ReadElementString("xlg"); break;
@@ -341,7 +341,7 @@ namespace UsingStreamReader
             }
             return filtered_EDP_byBrand;
         }
-        
+
         #endregion
 
 
@@ -353,9 +353,9 @@ namespace UsingStreamReader
             SelectedMultipleDisplay(GLOBAL_FilteredSearch_EDP, PlaceHolder1);
         }
 
-        public static void brandmultipleDisplay(String findBrand,PlaceHolder placeholder1)
+        public static void brandmultipleDisplay(String findBrand, PlaceHolder placeholder1)
         {
-            GLOBAL_FilteredByBrand_EDP= FilterByBrand(GLOBAL_FilteredSearch_EDP, findBrand);
+            GLOBAL_FilteredByBrand_EDP = FilterByBrand(GLOBAL_FilteredSearch_EDP, findBrand);
             SelectedMultipleDisplay(GLOBAL_FilteredByBrand_EDP, placeholder1);
 
         }
@@ -371,6 +371,46 @@ namespace UsingStreamReader
         {
             howmanyProducts = Convert.ToInt32(dropdownlist1.Text);
             SaveALLEDP();
+        }
+        public static int getCount()
+        {
+        
+        
+            //===========================================
+
+            if (GLOBAL_ALL_EDP.Count != 0)
+            {
+                count = GLOBAL_ALL_EDP.Count;
+                if (GLOBAL_FilteredSearch_EDP.Count != 0)
+                {
+                    count = GLOBAL_FilteredSearch_EDP.Count;
+                    if (GLOBAL_FilteredByBrand_EDP.Count != 0)
+                    {
+                        count = GLOBAL_FilteredByBrand_EDP.Count;
+                    }else { }
+                }
+               
+            }
+            else { count = GLOBAL_ALL_EDP.Count;
+            }
+
+            return count;
+        }
+        public static int getCountALL()
+        {
+          
+            count = GLOBAL_ALL_EDP.Count;
+            return count;
+        }
+        public static int getCount_Brand()
+        {   
+            count = GLOBAL_FilteredByBrand_EDP.Count();
+            return count;
+        }
+        public static int getCount_Search()
+        {
+            count = GLOBAL_FilteredSearch_EDP.Count;
+            return count;
         }
     }
 }
