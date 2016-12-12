@@ -14,15 +14,14 @@ namespace UsingStreamReader
     public class sample
     {
         #region Declarations 
-        static int numberofBrand = 10;
-        static int howmanyProducts =10 ;
+       
+        static int howmanyProducts =5 ;
       
         static List<int> GLOBAL_ALL_EDP = new List<int>(howmanyProducts);
         static List<int> GLOBAL_FilteredSearch_EDP = new List<int>(howmanyProducts);
         static List<int> GLOBAL_FilteredByBrand_EDP = new List<int>(howmanyProducts);
         //static List<string> ShowBrandList = new List<string>(100);
       
-        static String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
         #endregion
 
 
@@ -31,8 +30,9 @@ namespace UsingStreamReader
         //Speedup Version 2
         public static void SaveALLEDP()     // Getting All EDP  // Version 3
         {
+             String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
+
             GLOBAL_ALL_EDP.Clear();
-            // List<int> saveEDP = new List<int>(10000);
             System.Xml.XmlTextReader reader = new XmlTextReader(url);
             reader.ReadToFollowing("result");
             reader.ReadToFollowing("int");
@@ -45,27 +45,27 @@ namespace UsingStreamReader
             
         }
         #region  Unused GetALL Brand
-        public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  
-        {
-            List<String> ListBrand = new List<String>(100); 
-            System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + numberofBrand);
-            reader.ReadToFollowing("lst");
-            reader.ReadToFollowing("lst");
-            reader.ReadToFollowing("lst");
-            reader.ReadToFollowing("lst");
-            reader.ReadToFollowing("lst");
-            while (reader.Read())
-            {
-                if ((reader.GetAttribute("name") == "Manufacturer"))
-                {
-                    while (reader.ReadToFollowing("int") && (reader.GetAttribute("name") != "true") && (reader.GetAttribute("name") != "false"))
-                    {
-                        ListBrand.Add(Convert.ToString(reader.GetAttribute("name")));// show all EDP
-                    }
-                }
-            }
-            return ListBrand;
-        }
+        //public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  
+        //{
+        //    List<String> ListBrand = new List<String>(100); 
+        //    System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + numberofBrand);
+        //    reader.ReadToFollowing("lst");
+        //    reader.ReadToFollowing("lst");
+        //    reader.ReadToFollowing("lst");
+        //    reader.ReadToFollowing("lst");
+        //    reader.ReadToFollowing("lst");
+        //    while (reader.Read())
+        //    {
+        //        if ((reader.GetAttribute("name") == "Manufacturer"))
+        //        {
+        //            while (reader.ReadToFollowing("int") && (reader.GetAttribute("name") != "true") && (reader.GetAttribute("name") != "false"))
+        //            {
+        //                ListBrand.Add(Convert.ToString(reader.GetAttribute("name")));// show all EDP
+        //            }
+        //        }
+        //    }
+        //    return ListBrand;
+        //}
         #endregion
         // Working Getting ALL Details of ALL Products
         #region ProductDetailsGOOD  FIX IMAGE RETRIEVAL --------------------------------------------------------------------------------------------------------------------------------------
@@ -116,12 +116,6 @@ namespace UsingStreamReader
 
 
         #endregion end importantWORKING
-
-
-      
-
-
-      
 
         #region DIPLAY   // PERFECT 
         public static void Display_All_Products(PlaceHolder PlaceHolder1)
@@ -275,7 +269,6 @@ namespace UsingStreamReader
                         if (reader.ReadToFollowing("manufacturer"))
                         {
                             brandx = reader.ReadElementString("manufacturer");
-
                             reader.ReadToFollowing("category");
                             //if (reader.ReadToFollowing("category")) // SAVE category save brand save edp
                             {
@@ -296,24 +289,17 @@ namespace UsingStreamReader
                     }
                     if (brandx.ToLower().Contains(find.ToLower()) || category.ToLower().Contains(find.ToLower()) || class1.ToLower().Contains(find.ToLower()) || name.ToLower().Contains(find.ToLower()))
                     {
-
                         filtered_EDP_fromSearch.Add(edp_tempo);
                         if ("" != find)
                         {
-                            if (ShowBrandList.Contains(brandx))
-                            {
-
-                            }
+                            if (ShowBrandList.Contains(brandx)) { }
                             else ShowBrandList.Add(brandx);
                         }
                     }
                 }
             }
-
             return filtered_EDP_fromSearch;
         }
-
-
 
         public static List<int> FilterByBrand(List<int> filteredEDPbySearch, String find_BrandSelected)
         {
@@ -344,23 +330,6 @@ namespace UsingStreamReader
                             if (reader.ReadToFollowing("manufacturer"))
                             {
                                 brandx = reader.ReadElementString("manufacturer");
-
-                                //reader.ReadToFollowing("category");
-                                ////if (reader.ReadToFollowing("category")) // SAVE category save brand save edp
-                                //{
-                                //    category = reader.ReadElementString("category");
-                                //    reader.ReadToFollowing("class");
-                                //    if (reader.Name == "class")
-                                //    {
-                                //        class1 = reader.ReadElementString("class");
-                                //    }
-                                //    reader.ReadToFollowing("store");
-                                //    reader.ReadToFollowing("name");
-                                //    if (reader.Name == "name")
-                                //    {
-                                //        name = reader.ReadElementString("name");
-                                //    }
-                                //}
                             }
                         }
                         if (brandx.ToLower().Contains(find_BrandSelected.ToLower()))
@@ -372,9 +341,7 @@ namespace UsingStreamReader
             }
             return filtered_EDP_byBrand;
         }
-
-
-
+        
         #endregion
 
 
@@ -392,7 +359,18 @@ namespace UsingStreamReader
             SelectedMultipleDisplay(GLOBAL_FilteredByBrand_EDP, placeholder1);
 
         }
-
+        public static void startup(PlaceHolder placeholder)
+        {
+            SaveALLEDP();
+            SelectedMultipleDisplay(GLOBAL_ALL_EDP, placeholder);
+        }
         #endregion
+
+
+        public static void ProductSize_dropdownList_control(DropDownList dropdownlist1)
+        {
+            howmanyProducts = Convert.ToInt32(dropdownlist1.Text);
+            SaveALLEDP();
+        }
     }
 }

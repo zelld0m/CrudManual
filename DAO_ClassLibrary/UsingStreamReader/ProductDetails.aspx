@@ -80,6 +80,15 @@
                     <div class="panel panel-info">
                         <div class="panel-body">
                             <div class="form-inline text-center">
+                                <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" OnSelectedIndexChanged="DropDownList1_SelectedIndexChanged">
+                                    <asp:ListItem Selected="True">5</asp:ListItem>
+                                    <asp:ListItem>10</asp:ListItem>
+                                    <asp:ListItem>25</asp:ListItem>
+                                    <asp:ListItem>50</asp:ListItem>
+                                    <asp:ListItem>75</asp:ListItem>
+                                    <asp:ListItem>100</asp:ListItem>
+                                    <asp:ListItem>150</asp:ListItem>
+                                </asp:DropDownList>
                                 <asp:Button ID="BtnALL" runat="server" OnClick="BtnALL_Click" Text="All" CssClass="btn btn-success" />
                                 <asp:TextBox ID="TB_Search" runat="server" OnTextChanged="TB_Search_TextChanged" CssClass="form-control"></asp:TextBox>
                                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="Search" CssClass="btn btn-info" />
