@@ -24,15 +24,16 @@ namespace UsingStreamReader
                 rdbtnlst_Brand.ClearSelection();
                 rdbtnlst_Brand.Controls.Clear();
                 rdbtnlst_Brand.Items.Clear();
-                NumberFound.Text = "Found : " + Convert.ToString(sample.getCount());
+                NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCount());
                 for (int i = 0; i < ListBrand.Count; i++)
                 {
                     rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
                 }
                 rdbtnlst_Brand.AutoPostBack = true;
             }
-           
-
+            //---------------------------- enter on  SEARCH ---------------------------
+          
+            //----------------------------------------------------------------------------------------
             //ListBrand.Clear();
             #endregion
             //if (IsPostBack)
@@ -75,7 +76,7 @@ namespace UsingStreamReader
         public  void BtnALL_Click(object sender, EventArgs e)
         {
             sample.SearchmultipleDisplay("a", PlaceHolder1, ListBrand);
-            NumberFound.Text ="Found : "+ Convert.ToString(sample.getCountALL());
+            NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCountALL());
             if (IsPostBack)
             {
                 rdbtnlst_Brand.ClearSelection();
@@ -96,7 +97,7 @@ namespace UsingStreamReader
         {
             sample.brandmultipleDisplay(rdbtnlst_Brand.Text, PlaceHolder1 );
 
-            NumberFound.Text = "Found : " + Convert.ToString(sample.getCount_Brand());
+            NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCount_Brand());
         }
 
       
@@ -121,7 +122,7 @@ namespace UsingStreamReader
             }
             ListBrand.Clear();
             rdbtnlst_Brand.ClearSelection();
-            NumberFound.Text = "Found : " + Convert.ToString(sample.getCount_Search());
+            NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCount_Search());
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
@@ -129,7 +130,7 @@ namespace UsingStreamReader
             sample.ProductSize_dropdownList_control(DropDownList1);
             #region postback
             sample.SearchmultipleDisplay("a", PlaceHolder1, ListBrand);
-            NumberFound.Text = "Found : " + Convert.ToString(sample.getCountALL());
+            NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCountALL());
             if (IsPostBack)
             {
                 rdbtnlst_Brand.ClearSelection();

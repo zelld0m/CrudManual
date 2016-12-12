@@ -26,8 +26,7 @@ namespace PresentationLayer
 
                 GridView1.DataSource = svc.Validation(Tb_Name.Text, Tb_AuthorityName.Text);
                 GridView1.DataBind();
-                try
-                {
+               
                     if (GridView1.Rows.Count > 0)//Sucess Login In
                     {
                         int AccessLevel = Convert.ToInt32(svc.Validation(Tb_Name.Text, Tb_AuthorityName.Text).Tables[0].Rows[0][4]);
@@ -40,8 +39,8 @@ namespace PresentationLayer
 
 
                     }
-                }
-              
+                
+             
                 
                 else
                 {
