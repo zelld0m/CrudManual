@@ -15,44 +15,27 @@ namespace UsingStreamReader
         static List<String> ListBrand = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
-
+                       
             sample.SaveALLEDP();
-            if (IsPostBack)
-            {
-                rdbtnlst_Brand.ClearSelection();
-                rdbtnlst_Brand.Controls.Clear();
-            }
+            //if (IsPostBack)
+            //{
+            //    rdbtnlst_Brand.ClearSelection();
+            //    rdbtnlst_Brand.Controls.Clear();
+            //}
             #region postback FOR BRAND SELECTION
-            if (!IsPostBack)  // 1st LOAD
-            {
-                //Button1_Click1(sender, e);   // Shows Brand  on rdbtnlst
+            //if (!IsPostBack)  // 1st LOAD
+            //{
                 
-                rdbtnlst_Brand.ClearSelection();
-                rdbtnlst_Brand.Controls.Clear();
-                ListBrand = sample.getBrandSearched();
-                rdbtnlst_Brand.Items.Clear();
-                for (int i = 0; i < ListBrand.Count; i++)
-                {
-                    rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
-                }
-                rdbtnlst_Brand.AutoPostBack = true; 
-            }
-            else 
-            {
-
-                rdbtnlst_Brand.ClearSelection();
-                rdbtnlst_Brand.Controls.Clear();
-                ListBrand = sample.getBrandSearched();
-                rdbtnlst_Brand.Items.Clear();
-                for (int i = 0; i < ListBrand.Count; i++)
-                {
-                    rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
-                }
-                rdbtnlst_Brand.AutoPostBack = true;
-     
-                ListBrand.Clear();
-
-            }
+            //   // rdbtnlst_Brand.ClearSelection();
+            //   // rdbtnlst_Brand.Controls.Clear();
+            //   // rdbtnlst_Brand.Items.Clear();
+            //   // for (int i = 0; i < ListBrand.Count; i++)
+            //   // {
+            //   //     rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
+            //   // }
+            //   // rdbtnlst_Brand.AutoPostBack = true; 
+            //}
+        
             rdbtnlst_Brand.AutoPostBack = true;
             PlaceHolder1.Controls.Clear();
             #endregion postback
@@ -64,8 +47,8 @@ namespace UsingStreamReader
         }
         protected void rdbtnlst_Brand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            sample.brandmultipleDisplay(rdbtnlst_Brand.Text, PlaceHolder1);
-            ListBrand = sample.getBrandSearched();
+            sample.brandmultipleDisplay(rdbtnlst_Brand.Text, PlaceHolder1 , ListBrand);
+           // ListBrand = sample.getBrandSearched();
         }
 
       
@@ -76,12 +59,21 @@ namespace UsingStreamReader
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
-            
-            sample.brandmultipleDisplay(TB_Search.Text, PlaceHolder1);
-           // ListBrand.Clear();
-           
 
-          
+            sample.brandmultipleDisplay(TB_Search.Text, PlaceHolder1, ListBrand);
+            if (IsPostBack)
+            {
+                rdbtnlst_Brand.ClearSelection();
+                rdbtnlst_Brand.Controls.Clear();
+                // ListBrand = sample.getBrandSearched();
+                rdbtnlst_Brand.Items.Clear();
+                for (int i = 0; i < ListBrand.Count; i++)
+                {
+                    rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
+                }
+                rdbtnlst_Brand.AutoPostBack = true;
+            }
+            ListBrand.Clear();
         }
     }
 }
