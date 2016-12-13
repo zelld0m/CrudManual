@@ -31,7 +31,7 @@ namespace UsingStreamReader
         public static void SaveALLEDP()     // Getting All EDP  // Version 3
         {
             String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
-            GLOBAL_ALL_EDP.Clear();
+          GLOBAL_ALL_EDP.Clear();
             System.Xml.XmlTextReader reader = new XmlTextReader(url);
 
 
@@ -43,7 +43,7 @@ namespace UsingStreamReader
                 GLOBAL_ALL_EDP.Add(Convert.ToInt32(reader.ReadElementString("int")));
                 reader.ReadToFollowing("int");
             }
-            reader.ReadToFollowing("result");
+            
         }
         #region  Unused GetALL Brand
         //public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  

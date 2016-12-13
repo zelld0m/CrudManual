@@ -16,7 +16,15 @@ namespace UsingStreamReader
         static List<String> listBrand = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
+           
+          
+           // Controls_EDP.getEDPfromSearchManager();// working 
+          //  Controls_EDP.SearchFiltering_EDP("lenovo"); //  working
+          //  Controls_URL cURL = new Controls_URL();
+           // cURL.changeFind("Cat");
+          
 
+            // Working new Controls
             sample.SaveALLEDP();
             #region postback
             if (!IsPostBack)
