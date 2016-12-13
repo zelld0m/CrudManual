@@ -21,7 +21,7 @@ namespace UsingStreamReader
         static List<int> GLOBAL_FilteredSearch_EDP = new List<int>(howmanyProducts);
         static List<int> GLOBAL_FilteredByBrand_EDP = new List<int>(howmanyProducts);
         //static List<string> ShowBrandList = new List<string>(100);
-
+        static int foundnumber = 0;
         #endregion
 
 
@@ -33,13 +33,17 @@ namespace UsingStreamReader
             String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
             GLOBAL_ALL_EDP.Clear();
             System.Xml.XmlTextReader reader = new XmlTextReader(url);
+
+
             reader.ReadToFollowing("result");
+            foundnumber = Convert.ToInt32( reader.GetAttribute("numFound"));
             reader.ReadToFollowing("int");
             while (reader.GetAttribute("name") == "EDP")
             {
                 GLOBAL_ALL_EDP.Add(Convert.ToInt32(reader.ReadElementString("int")));
                 reader.ReadToFollowing("int");
             }
+            reader.ReadToFollowing("result");
         }
         #region  Unused GetALL Brand
         //public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  
