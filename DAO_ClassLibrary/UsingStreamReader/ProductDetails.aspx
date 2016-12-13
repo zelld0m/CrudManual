@@ -44,6 +44,8 @@
                             <asp:Label ID="NumberFound" runat="server" Text="Found: "></asp:Label>
                             <br />
                             <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" OnSelectedIndexChanged="rdbtnlst_Brand_SelectedIndexChanged" AutoPostBack="True" Style="left: 0px; top: 0px"></asp:RadioButtonList>
+                            <br />
+                            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />
                         </div>
                     </div>
                 </div>

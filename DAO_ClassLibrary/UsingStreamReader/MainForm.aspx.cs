@@ -15,8 +15,7 @@ namespace UsingStreamReader
         List<string> testValue = new List<string>(300);
         protected void Page_Load(object sender, EventArgs e)
         {
-            String BrandName = "HP Inc.";
-
+           
 
             Test();
             

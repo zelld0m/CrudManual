@@ -31,7 +31,6 @@ namespace UsingStreamReader
         public static void SaveALLEDP()     // Getting All EDP  // Version 3
         {
             String url = ("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=" + howmanyProducts + "&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=0");
-
             GLOBAL_ALL_EDP.Clear();
             System.Xml.XmlTextReader reader = new XmlTextReader(url);
             reader.ReadToFollowing("result");
@@ -39,10 +38,8 @@ namespace UsingStreamReader
             while (reader.GetAttribute("name") == "EDP")
             {
                 GLOBAL_ALL_EDP.Add(Convert.ToInt32(reader.ReadElementString("int")));
-
                 reader.ReadToFollowing("int");
             }
-
         }
         #region  Unused GetALL Brand
         //public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  
@@ -106,10 +103,8 @@ namespace UsingStreamReader
                         imageSourceUrl.ImageUrl = reader.ReadElementString("xlg"); break;
                     }
                     // FIX IMAGE <----------------------------------------------------------------------------------------------------------------------------------->
-
                 }
             }
-
             reader.Dispose();
         }
         #endregion 
@@ -246,8 +241,7 @@ namespace UsingStreamReader
             filtered_EDP_fromSearch.Clear();
             GLOBAL_FilteredSearch_EDP.Clear();
             ShowBrandList.Clear();
-            /// ALWATS CLEAR EDP SAVE LIST 
-            /// 
+          
             for (int i = 0; i < GLOBAL_ALL_EDP.Count; i++)
             {
                 String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + GLOBAL_ALL_EDP[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
@@ -301,11 +295,11 @@ namespace UsingStreamReader
             return filtered_EDP_fromSearch;
         }
 
-        public static List<int> FilterByBrand(List<int> filteredEDPbySearch, String find_BrandSelected)
-        {
+        public static List<int> FilterByBrand(List<int> filteredEDPbySearch, String find_BrandSelected,List<string>Brand)
+        {//------------------ADDED BRAND FILTER ---------------------
             List<int> filtered_EDP_byBrand = new List<int>(filteredEDPbySearch.Count);
             filtered_EDP_byBrand.Clear();
-
+            Brand.Clear();
             if (filteredEDPbySearch == null)
             {
                 filtered_EDP_byBrand = GLOBAL_ALL_EDP;
@@ -335,6 +329,7 @@ namespace UsingStreamReader
                         if (brandx.ToLower().Contains(find_BrandSelected.ToLower()))
                         {
                             filtered_EDP_byBrand.Add(edp_tempo);
+                            Brand.Add(brandx);
                         }
                     }
                 }
@@ -353,9 +348,9 @@ namespace UsingStreamReader
             SelectedMultipleDisplay(GLOBAL_FilteredSearch_EDP, PlaceHolder1);
         }
 
-        public static void brandmultipleDisplay(String findBrand, PlaceHolder placeholder1)
+        public static void brandmultipleDisplay(String findBrand, PlaceHolder placeholder1 , List<string>BrandList)
         {
-            GLOBAL_FilteredByBrand_EDP = FilterByBrand(GLOBAL_FilteredSearch_EDP, findBrand);
+            GLOBAL_FilteredByBrand_EDP = FilterByBrand(GLOBAL_FilteredSearch_EDP, findBrand, BrandList);
             SelectedMultipleDisplay(GLOBAL_FilteredByBrand_EDP, placeholder1);
 
         }
@@ -372,30 +367,7 @@ namespace UsingStreamReader
             howmanyProducts = Convert.ToInt32(dropdownlist1.Text);
             SaveALLEDP();
         }
-        public static int getCount()
-        {
-        
-        
-            //===========================================
-
-            if (GLOBAL_ALL_EDP.Count != 0)
-            {
-                count = GLOBAL_ALL_EDP.Count;
-                if (GLOBAL_FilteredSearch_EDP.Count != 0)
-                {
-                    count = GLOBAL_FilteredSearch_EDP.Count;
-                    if (GLOBAL_FilteredByBrand_EDP.Count != 0)
-                    {
-                        count = GLOBAL_FilteredByBrand_EDP.Count;
-                    }else { }
-                }
-               
-            }
-            else { count = GLOBAL_ALL_EDP.Count;
-            }
-
-            return count;
-        }
+      
         public static int getCountALL()
         {
           

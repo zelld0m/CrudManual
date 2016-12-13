@@ -11,93 +11,72 @@ namespace UsingStreamReader
 {
     public partial class ProductDetails : System.Web.UI.Page
     {
-        
-        static List<String> ListBrand = new List<string>();
+        static String search = ""; 
+        List<String> searchHistory = new List<string>(); 
+        static List<String> listBrand = new List<string>();
         protected void Page_Load(object sender, EventArgs e)
         {
 
             sample.SaveALLEDP();
-            #region test to show all
+            #region postback
             if (!IsPostBack)
-            {  sample.SearchmultipleDisplay("a", PlaceHolder1, ListBrand);
-          
+            {
+                sample.SearchmultipleDisplay("a", PlaceHolder1, listBrand);
                 rdbtnlst_Brand.ClearSelection();
                 rdbtnlst_Brand.Controls.Clear();
                 rdbtnlst_Brand.Items.Clear();
-                NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCount());
-                for (int i = 0; i < ListBrand.Count; i++)
+                NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCountALL());
+                for (int i = 0; i < listBrand.Count; i++)
                 {
-                    rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
+                    rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
                 }
                 rdbtnlst_Brand.AutoPostBack = true;
             }
             //---------------------------- enter on  SEARCH ---------------------------
-          
+          //        User textbox as Button when enter is pressed 
             //----------------------------------------------------------------------------------------
             //ListBrand.Clear();
             #endregion
-            //if (IsPostBack)
-            //{
-            //    rdbtnlst_Brand.ClearSelection();
-            //    rdbtnlst_Brand.Controls.Clear();
-            //}
-            #region postback FOR BRAND SELECTION
-            //if (!IsPostBack)  // 1st LOAD
-            //{ 
-            //    rdbtnlst_Brand.ClearSelection();
-            //    rdbtnlst_Brand.Controls.Clear();
-            //    rdbtnlst_Brand.Items.Clear();
-            //    sample.startup(PlaceHolder1);
-            //    for (int i = 0; i < ListBrand.Count; i++)
-            //    {
-            //        rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
-            //    }
-            //    rdbtnlst_Brand.AutoPostBack = true;
-            //}
-            //else
-            //{
-
-            //    rdbtnlst_Brand.ClearSelection();
-            //    rdbtnlst_Brand.Controls.Clear();
-            //    rdbtnlst_Brand.Items.Clear();
-            //    sample.startup(PlaceHolder1);
-            //    for (int i = 0; i < ListBrand.Count; i++)
-            //    {
-            //        rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
-            //    }
-            //    rdbtnlst_Brand.AutoPostBack = true;
-
-            //}
-            //rdbtnlst_Brand.AutoPostBack = true;
-            //PlaceHolder1.Controls.Clear();
-            #endregion postback
         }
 
         public  void BtnALL_Click(object sender, EventArgs e)
         {
-            sample.SearchmultipleDisplay("a", PlaceHolder1, ListBrand);
+            sample.SearchmultipleDisplay("a", PlaceHolder1, listBrand);
             NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCountALL());
+            #region postback
             if (IsPostBack)
             {
                 rdbtnlst_Brand.ClearSelection();
                 rdbtnlst_Brand.Controls.Clear();
                 rdbtnlst_Brand.Items.Clear();
-                for (int i = 0; i < ListBrand.Count; i++)
+                for (int i = 0; i < listBrand.Count; i++)
                 {
-                    rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
+                    rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
                 }
                 rdbtnlst_Brand.AutoPostBack = true;
             }
-            ListBrand.Clear();
+            #endregion
+            listBrand.Clear();
             TB_Search.Text = string.Empty;
             rdbtnlst_Brand.ClearSelection();
-          
         }
         protected void rdbtnlst_Brand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            sample.brandmultipleDisplay(rdbtnlst_Brand.Text, PlaceHolder1 );
-
+            sample.brandmultipleDisplay(rdbtnlst_Brand.Text, PlaceHolder1 , listBrand);
             NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCount_Brand());
+             if (IsPostBack)
+            {
+                rdbtnlst_Brand.ClearSelection();
+                rdbtnlst_Brand.Controls.Clear();
+                rdbtnlst_Brand.Items.Clear();
+                for (int i = 0; i < listBrand.Count; i++)
+                {
+                    rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
+                }
+                rdbtnlst_Brand.AutoPostBack = true;
+            }
+            listBrand.Clear();
+
         }
 
       
@@ -108,45 +87,79 @@ namespace UsingStreamReader
 
         protected void Button1_Click1(object sender, EventArgs e)
         {
-            sample.SearchmultipleDisplay(TB_Search.Text, PlaceHolder1, ListBrand);
-            if (IsPostBack)
-            {
-                rdbtnlst_Brand.ClearSelection();
-                rdbtnlst_Brand.Controls.Clear();
-                rdbtnlst_Brand.Items.Clear();
-                for (int i = 0; i < ListBrand.Count; i++)
+            searchHistory.Add(TB_Search.Text);
+                sample.SearchmultipleDisplay(TB_Search.Text, PlaceHolder1, listBrand);
+                #region postback
+                if (IsPostBack)
                 {
-                    rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
+                    rdbtnlst_Brand.ClearSelection();
+                    rdbtnlst_Brand.Controls.Clear();
+                    rdbtnlst_Brand.Items.Clear();
+                    for (int i = 0; i < listBrand.Count; i++)
+                    {
+                        rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
+                    }
+                    rdbtnlst_Brand.AutoPostBack = true;
                 }
-                rdbtnlst_Brand.AutoPostBack = true;
-            }
-            ListBrand.Clear();
+            search = TB_Search.Text;
+            #endregion
+            listBrand.Clear();
             rdbtnlst_Brand.ClearSelection();
             NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCount_Search());
+          
         }
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
             sample.ProductSize_dropdownList_control(DropDownList1);
             #region postback
-            sample.SearchmultipleDisplay("a", PlaceHolder1, ListBrand);
+
+            sample.SearchmultipleDisplay("a", PlaceHolder1, listBrand);
             NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCountALL());
             if (IsPostBack)
             {
                 rdbtnlst_Brand.ClearSelection();
                 rdbtnlst_Brand.Controls.Clear();
                 rdbtnlst_Brand.Items.Clear();
-                for (int i = 0; i < ListBrand.Count; i++)
+                for (int i = 0; i < listBrand.Count; i++)
                 {
-                    rdbtnlst_Brand.Items.Add(new ListItem(ListBrand[i]));
+                    rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
                 }
                 rdbtnlst_Brand.AutoPostBack = true;
             }
-            ListBrand.Clear();
+            listBrand.Clear();
             TB_Search.Text = string.Empty;
             rdbtnlst_Brand.ClearSelection();
-      
             #endregion
+        }
+
+        protected void Button2_Click(object sender, EventArgs e)  // FIXING CLEAR SELECTION 
+        {
+            if (search.Equals(String.Empty) || search == "")
+            {
+                sample.SearchmultipleDisplay("a", PlaceHolder1, listBrand);
+            }
+            else
+            {
+                sample.SearchmultipleDisplay(search, PlaceHolder1, listBrand);
+            }
+            NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCount_Search());
+            if (IsPostBack)
+            {
+                rdbtnlst_Brand.ClearSelection();
+                rdbtnlst_Brand.Controls.Clear();
+                rdbtnlst_Brand.Items.Clear();
+                for (int i = 0; i < listBrand.Count; i++)
+                {
+                    rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
+                }
+                rdbtnlst_Brand.AutoPostBack = true;
+            }
+            
+            listBrand.Clear();
+            
+            rdbtnlst_Brand.ClearSelection();
+            rdbtnlst_Brand.ClearSelection();
         }
     }
 }
