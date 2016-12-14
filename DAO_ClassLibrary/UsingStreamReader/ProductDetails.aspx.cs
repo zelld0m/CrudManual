@@ -15,9 +15,7 @@ namespace UsingStreamReader
         List<String> searchHistory = new List<string>(); 
         static List<String> listBrand = new List<string>();
         Controls_EDP con_EDP = new Controls_EDP();
-        Controls_URL con_URL = new Controls_URL();
-        ControlDisplay con_dis = new ControlDisplay();
-        Implementation imp = new Implementation();
+       Implementation imp = new Implementation();
         protected void Page_Load(object sender, EventArgs e)
          
         {
