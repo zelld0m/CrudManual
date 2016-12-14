@@ -12,9 +12,10 @@ namespace UsingStreamReader
         static List<int> Search_EDP = new List<int>();
         static List<int> BrandFiltered_EDP = new List<int>();
         static List<string> BrandList = new List<string>();
+        static List<string> TempoBrand = new List<string>();
         static  int numfoundFromSearch = 0;
         #region SETTER
-        public static void getEDPfromSearchManager() {              // SUCCESS   
+        public  void getEDPfromSearchManager() {              // SUCCESS   
             ALL_EDP.Clear();
             string url =   Controls_URL.SearchManagerPage_URL();   // SERVICE MANAGER WAS USED 
             System.Xml.XmlTextReader reader = new XmlTextReader(url);
@@ -28,18 +29,14 @@ namespace UsingStreamReader
             }
         }
 
-        public static void SearchFiltering_EDP(string find)
+        public  void generateBrandList()    
         {
-            Search_EDP.Clear();
             BrandList.Clear();
             for (int i = 0; i < ALL_EDP.Count; i++)
             {
                 String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + ALL_EDP[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
                 System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
                 string brandx = "";
-                string category = "";
-                string class1 = "";
-                string name = "";
                 int edp_tempo = 0;
                 //   StringComparison comp = StringComparison.OrdinalIgnoreCase;
                 while (reader.Read())
@@ -53,42 +50,22 @@ namespace UsingStreamReader
                         if (reader.ReadToFollowing("manufacturer"))
                         {
                             brandx = reader.ReadElementString("manufacturer");
-                            reader.ReadToFollowing("category");
-                            //if (reader.ReadToFollowing("category")) // SAVE category save brand save edp
-                            {
-                                category = reader.ReadElementString("category");
-                                reader.ReadToFollowing("class");
-                                if (reader.Name == "class")
-                                {
-                                    class1 = reader.ReadElementString("class");
-                                }
-                                reader.ReadToFollowing("store");
-                                reader.ReadToFollowing("name");
-                                if (reader.Name == "name")
-                                {
-                                    name = reader.ReadElementString("name");
-                                }
-                            }
-                        }
-                    }
-                    if (brandx.ToLower().Contains(find.ToLower()) || category.ToLower().Contains(find.ToLower()) || class1.ToLower().Contains(find.ToLower()) || name.ToLower().Contains(find.ToLower()))
-                    {
-                        Search_EDP.Add(edp_tempo);
-                        if ("" != find)
+                        }                        
+                        if (BrandList.Contains(brandx))
                         {
-                            if (BrandList.Contains(brandx)) { }
-                            else BrandList.Add(brandx);
                         }
+                        else BrandList.Add(brandx);
+                        
                     }
                 }
             }
         }
       
-        public static void BrandFiltering_EDP(string findBrand)
+        public  void BrandSelected_Generate_EDP(string findBrand)
         {
+            TempoBrand.Clear();
             BrandFiltered_EDP.Clear();
-            BrandList.Clear();
-            if (Search_EDP == null)
+            if (Search_EDP.Count == 0)
             {
                 Search_EDP = ALL_EDP;
             }
@@ -117,7 +94,10 @@ namespace UsingStreamReader
                         if (brandx.ToLower().Contains(findBrand.ToLower()))
                         {
                             BrandFiltered_EDP.Add(edp_tempo);
-                            BrandList.Add(brandx);
+                            if (TempoBrand.Contains(brandx))
+                            {
+                            }
+                            else TempoBrand.Add(brandx);
                         }
                     }
                 
@@ -131,20 +111,28 @@ namespace UsingStreamReader
 
 
         #region GETTER
-        public static List<int> getAll_EDP()
+        public  List<int> getAll_EDP()
         {
             getEDPfromSearchManager();
             return ALL_EDP;
         }
         
-        public static List<int> getsearch_EDP(string find)
+        public  List<string> getBrand()
         {
-            SearchFiltering_EDP(find);
-            return Search_EDP;
+            generateBrandList();
+            return BrandList;
         }
-        public static List<int> getBrandFiltered_EDP()
+        public  List<int> getBranded_EDP()
         {
             return BrandFiltered_EDP;
+        }
+        public int getNumfound()
+        {
+            return numfoundFromSearch;
+        }
+        public List<string> getTempoBrand()
+        {
+            return TempoBrand;
         }
         #endregion
     }

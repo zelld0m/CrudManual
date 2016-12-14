@@ -8,25 +8,26 @@ namespace UsingStreamReader
     public class Controls_URL
     {
 
-
+        #region Declaration
         static String Findproduct = "laptop";
         static int Currentpage = 0;
         static int ProductLimitView = 10;
         static int BrandLimit = 10;
-        
+        #endregion
+
         #region Change VALUE
-        public void changeFind(String find)
+        public  void changeFind(String find)
         {
             Findproduct = find;
         }
-        void changePage(int page)
+        public void changePage(int page)
         {
             Currentpage = page;
         }
-        void changeProductLimitView(int productLimitView) {
+        public void changeProductLimitView(int productLimitView) {
             ProductLimitView = productLimitView;
         }
-        void changeBrandLimit(int limit)
+       public void changeBrandLimit(int limit)
         {
             BrandLimit = limit;
         }

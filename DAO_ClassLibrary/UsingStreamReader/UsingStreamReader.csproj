@@ -129,9 +129,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Controls_EDP.cs" />
+    <Compile Include="ControlDisplay.cs" />
+    <Compile Include="Implementation.cs" />
+    <Compile Include="Postback_Refresh.cs" />
     <Compile Include="ProductDetails.aspx.cs">
-      <DependentUpon>ProductDetails.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
+      <DependentUpon>ProductDetails.aspx</DependentUpon>
     </Compile>
     <Compile Include="ProductDetails.aspx.designer.cs">
       <DependentUpon>ProductDetails.aspx</DependentUpon>

@@ -32,6 +32,7 @@
                                 <asp:Button ID="BtnALL" runat="server" OnClick="BtnALL_Click" Text="All" CssClass="btn btn-success" />
                                 <asp:TextBox ID="TB_Search" runat="server" OnTextChanged="TB_Search_TextChanged" CssClass="form-control" placeholder="SEARCH"></asp:TextBox>
                                 <asp:Button ID="Button1" runat="server" OnClick="Button1_Click1" Text="Search" CssClass="btn btn-info" />
+                                <asp:Button ID="Button3" runat="server" OnClick="Button3_Click" Text="searchTest" />
                             </div>
                         </div>
                     </div>
@@ -45,7 +46,8 @@
                             <br />
                             <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" OnSelectedIndexChanged="rdbtnlst_Brand_SelectedIndexChanged" AutoPostBack="True" Style="left: 0px; top: 0px"></asp:RadioButtonList>
                             <br />
-                            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" />
+                            <asp:Button ID="Button2" runat="server" OnClick="Button2_Click" Text="Button" Width="61px" />
+                            <asp:Button ID="Button4" runat="server" Text="Test" OnClick="Button4_Click" />
                         </div>
                     </div>
                 </div>

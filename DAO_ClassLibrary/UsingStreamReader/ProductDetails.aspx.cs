@@ -14,7 +14,12 @@ namespace UsingStreamReader
         static String search = ""; 
         List<String> searchHistory = new List<string>(); 
         static List<String> listBrand = new List<string>();
+        Controls_EDP con_EDP = new Controls_EDP();
+        Controls_URL con_URL = new Controls_URL();
+        ControlDisplay con_dis = new ControlDisplay();
+        Implementation imp = new Implementation();
         protected void Page_Load(object sender, EventArgs e)
+         
         {
            
           
@@ -70,20 +75,29 @@ namespace UsingStreamReader
         }
         protected void rdbtnlst_Brand_SelectedIndexChanged(object sender, EventArgs e)
         {
-            sample.brandmultipleDisplay(rdbtnlst_Brand.Text, PlaceHolder1 , listBrand);
-            NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCount_Brand());
-             if (IsPostBack)
+            // TEST//
+            if (IsPostBack)
             {
-                rdbtnlst_Brand.ClearSelection();
-                rdbtnlst_Brand.Controls.Clear();
-                rdbtnlst_Brand.Items.Clear();
-                for (int i = 0; i < listBrand.Count; i++)
-                {
-                    rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
-                }
-                rdbtnlst_Brand.AutoPostBack = true;
+                imp.radioButton_button(rdbtnlst_Brand.Text, rdbtnlst_Brand, PlaceHolder1);
             }
-            listBrand.Clear();
+            NumberFound.Text = con_EDP.getNumfound().ToString();
+
+
+            //-------------
+            //sample.brandmultipleDisplay(rdbtnlst_Brand.Text, PlaceHolder1 , listBrand);
+            //NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCount_Brand());
+            // if (IsPostBack)
+            //{
+            //    rdbtnlst_Brand.ClearSelection();
+            //    rdbtnlst_Brand.Controls.Clear();
+            //    rdbtnlst_Brand.Items.Clear();
+            //    for (int i = 0; i < listBrand.Count; i++)
+            //    {
+            //        rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
+            //    }
+            //    rdbtnlst_Brand.AutoPostBack = true;
+            //}
+            //listBrand.Clear();
 
         }
 
@@ -119,30 +133,42 @@ namespace UsingStreamReader
 
         protected void DropDownList1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            sample.ProductSize_dropdownList_control(DropDownList1);
+
+            //--------TEST ------DROPDOWNLISt-----------
+            imp.dropdownList_NumViews(DropDownList1);
+            Button3_Click(sender, e);       // Success searchbutton
+
+            //-------------------------
+            //sample.ProductSize_dropdownList_control(DropDownList1);
             #region postback
 
-            sample.SearchmultipleDisplay("a", PlaceHolder1, listBrand);
-            NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCountALL());
-            if (IsPostBack)
-            {
-                rdbtnlst_Brand.ClearSelection();
-                rdbtnlst_Brand.Controls.Clear();
-                rdbtnlst_Brand.Items.Clear();
-                for (int i = 0; i < listBrand.Count; i++)
-                {
-                    rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
-                }
-                rdbtnlst_Brand.AutoPostBack = true;
-            }
-            listBrand.Clear();
-            TB_Search.Text = string.Empty;
-            rdbtnlst_Brand.ClearSelection();
+            //sample.SearchmultipleDisplay("a", PlaceHolder1, listBrand);
+            //NumberFound.Text = "Items Found : " + Convert.ToString(sample.getCountALL());
+            //if (IsPostBack)
+            //{
+            //    rdbtnlst_Brand.ClearSelection();
+            //    rdbtnlst_Brand.Controls.Clear();
+            //    rdbtnlst_Brand.Items.Clear();
+            //    for (int i = 0; i < listBrand.Count; i++)
+            //    {
+            //        rdbtnlst_Brand.Items.Add(new ListItem(listBrand[i]));
+            //    }
+            //    rdbtnlst_Brand.AutoPostBack = true;
+            //}
+            //listBrand.Clear();
+            //TB_Search.Text = string.Empty;
+            //rdbtnlst_Brand.ClearSelection();
             #endregion
         }
 
         protected void Button2_Click(object sender, EventArgs e)  // FIXING CLEAR SELECTION 
         {
+            // -- TEST -----------CLEAR BRAND FILTER ---------------
+
+
+            //0---------------------------------------------
+
+
             if (search.Equals(String.Empty) || search == "")
             {
                 sample.SearchmultipleDisplay("a", PlaceHolder1, listBrand);
@@ -163,11 +189,29 @@ namespace UsingStreamReader
                 }
                 rdbtnlst_Brand.AutoPostBack = true;
             }
-            
             listBrand.Clear();
-            
             rdbtnlst_Brand.ClearSelection();
             rdbtnlst_Brand.ClearSelection();
         }
+
+
+        #region TEST new 
+        protected void Button3_Click(object sender, EventArgs e)/// SEARCH BUTTON
+        {
+            if (IsPostBack)
+            {
+                imp.searchButton(TB_Search.Text, rdbtnlst_Brand, PlaceHolder1);
+            }
+        }
+
+        protected void Button4_Click(object sender, EventArgs e)   /// CLEAR FILTER
+        {
+            if (IsPostBack)
+            {
+                Button3_Click(sender,e);
+                rdbtnlst_Brand.ClearSelection();
+            }
+        }
+        #endregion 
     }
 }

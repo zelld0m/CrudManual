@@ -26,7 +26,10 @@ namespace UsingStreamReader
 
 
         #region IMPORTANT WORKING
-
+        public static void getEDPFromControls(List<int> edp) // TEST USING CONTROLS
+        {
+            GLOBAL_ALL_EDP = edp;
+        }
         //Speedup Version 2
         public static void SaveALLEDP()     // Getting All EDP  // Version 3
         {
