@@ -37,11 +37,22 @@
                         <div class="panel-body">
                             <div class="form-inline">
                                 <div class="pull-left">
+                                      <asp:Label CssClass="control-label" ID="lbl_Min" runat="server" Text="Min"></asp:Label>
+                                   &nbsp;
+                                    <asp:Label CssClass="control-label" ID="labelnone" runat="server" Text="To"> </asp:Label>
+                                    &nbsp;
+                                   
+                                    <asp:Label CssClass="control-label" ID="lbl_MAX" runat="server" Text="MAX"> </asp:Label>
+                                     &nbsp;
+                                     
                                     <label style="font-size: small" class="control-label">Product Found:</label>
                                     <asp:Label CssClass="control-label" ID="lbl_NumFound" runat="server" Text='' Font-Size="Small">0</asp:Label>
                                 </div>
                                 <div class="pull-right">
+                                    
+                                  
                                     <label style="font-size: small" class="control-label">View: </label>
+                                  
                                     <asp:DropDownList ID="drpdwnlst_View" runat="server" CssClass="form-control" AutoPostBack="true" Font-Size="Small" OnSelectedIndexChanged="drpdwnlst_View_SelectedIndexChanged">
                                         <asp:ListItem>5</asp:ListItem>
                                         <asp:ListItem>10</asp:ListItem>
@@ -49,12 +60,11 @@
                                         <asp:ListItem>50</asp:ListItem>
                                         <asp:ListItem>100</asp:ListItem>
                                     </asp:DropDownList>
-                                      <asp:Label ID="ProductNumber" runat="server" Text="Product # Out of  product found"></asp:Label>
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <asp:LinkButton ID="Btn_PagePrevious" runat="server" CssClass=" btn btn-info" OnClick="Btn_PagePrevious_Click"><</asp:LinkButton>
                                         </span>
-                                        <asp:Label ID="tb_PageNumber" runat="server" CssClass=" form-control">0</asp:Label>
+                                        <asp:Label ID="tb_PageNumber" runat="server" CssClass=" form-control">1</asp:Label>
                                         <span class="input-group-btn">
                                             <asp:LinkButton ID="btn_PageNext" runat="server" CssClass=" btn btn-info" OnClick="btn_PageNext_Click">></asp:LinkButton>
                                         </span>
@@ -73,7 +83,7 @@
                     <div class="panel  panel-default">
                         <div class="panel-body">
                             <label style="font-size: small">Search Keyword:</label>
-                            <asp:Label CssClass="form-control-label" ID="lbl_KeyWordSearch" runat="server" Text='' Font-Size="Small">Leptep</asp:Label>
+                            <asp:Label CssClass="form-control-label" ID="lbl_KeyWordSearch" runat="server" Text='' Font-Size="Small">None</asp:Label>
                         </div>
                     </div>
                     <!--CONTROLS DETAILS-->

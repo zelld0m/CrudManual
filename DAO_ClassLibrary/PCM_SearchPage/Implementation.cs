@@ -68,6 +68,10 @@ namespace PCM_SearchPage
         {
             return con_EDP.getNumfound();
         }
+        public int getPage()
+        {
+            return con_URL.getpage();
+        }
 
     }
 }

@@ -40,6 +40,33 @@ namespace PCM_SearchPage {
         protected global::System.Web.UI.WebControls.RadioButtonList rdbtnlst_Brand;
         
         /// <summary>
+        /// lbl_Min control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_Min;
+        
+        /// <summary>
+        /// labelnone control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label labelnone;
+        
+        /// <summary>
+        /// lbl_MAX control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lbl_MAX;
+        
+        /// <summary>
         /// lbl_NumFound control.
         /// </summary>
         /// <remarks>
@@ -56,15 +83,6 @@ namespace PCM_SearchPage {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList drpdwnlst_View;
-        
-        /// <summary>
-        /// ProductNumber control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label ProductNumber;
         
         /// <summary>
         /// Btn_PagePrevious control.

@@ -66,7 +66,7 @@ namespace PCM_SearchPage
                 ph.Controls.Add(new LiteralControl("Manufacturer: "));
                 ph.Controls.Add(label_Manufacturer);
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Availability: "));
+                ph.Controls.Add(new LiteralControl("<label style='color:red'>Availability: </label>"));
                 ph.Controls.Add(label_Availability);
                 ph.Controls.Add(new LiteralControl("</br>"));
                 #endregion IMPLEMENTATION

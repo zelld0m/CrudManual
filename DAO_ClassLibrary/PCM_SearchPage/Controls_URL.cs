@@ -49,6 +49,12 @@ namespace PCM_SearchPage
             return productDetails_URL;
         }
         // GET NUMFOUND
+
+
+        public  int  getpage()
+        {
+            return Currentpage;
+        }
         #endregion
 
 
