@@ -43,6 +43,9 @@ namespace PCM_SearchPage
                 Image_url.CssClass = "img-responsive ";
                 Image_url.AlternateText = "No Image";
                 //<----------  IMPLEMENT ----------->
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(Image_url);
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("Price: "));

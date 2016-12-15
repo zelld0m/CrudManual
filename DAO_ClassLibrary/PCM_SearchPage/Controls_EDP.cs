@@ -106,8 +106,8 @@ namespace PCM_SearchPage
         #region  Unused GetALL Brand
         public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  
         {
-            List<String> ListBrand = new List<String>(100);
-            System.Xml.XmlTextReader reader = new XmlTextReader("http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=laptop&fl=EDP&store=pcmall&rows=1&start=0&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + numberofBrand);
+           
+            System.Xml.XmlTextReader reader = new XmlTextReader(Controls_URL.SearchManagerPage_URL());
             reader.ReadToFollowing("lst");
             reader.ReadToFollowing("lst");
             reader.ReadToFollowing("lst");
@@ -119,11 +119,11 @@ namespace PCM_SearchPage
                 {
                     while (reader.ReadToFollowing("int") && (reader.GetAttribute("name") != "true") && (reader.GetAttribute("name") != "false"))
                     {
-                        ListBrand.Add(Convert.ToString(reader.GetAttribute("name")));// show all EDP
+                        BrandList.Add(Convert.ToString(reader.GetAttribute("name")));// show all EDP
                     }
                 }
             }
-            return ListBrand;
+            return BrandList;
         }
         #endregion
         #endregion

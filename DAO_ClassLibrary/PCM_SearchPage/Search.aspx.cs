@@ -17,17 +17,19 @@ namespace PCM_SearchPage
         static int foundProduct = 0;
         protected void Page_Load(object sender, EventArgs e)
         {
-            foundProduct = imp.getNumfound();
-            Lbl_SearchFound.Text = "ProductFound :" + foundProduct;
+            if (IsPostBack)
+            {
+                foundProduct = imp.getNumfound();
+                Lbl_SearchFound.Text = "ProductFound :" + foundProduct;
+            }
         }
 
-        protected void Btn_search_Click(object sender, EventArgs e)
+        protected void Btn_search_Click(object sender, EventArgs e)// search button
         {
             if (IsPostBack)
             {
                 imp.searchButton(TB_Search.Text, rdbtnlst_Brand, PlaceHolder1);
-                Lbl_SearchFound.Text = "ProductFound :" + imp.getNumfound();
-
+              //  Lbl_SearchFound.Text = "ProductFound :" + imp.getNumfound();
             }
         }
 

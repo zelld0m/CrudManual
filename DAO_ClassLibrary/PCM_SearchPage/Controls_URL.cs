@@ -11,7 +11,7 @@ namespace PCM_SearchPage
         #region Declaration
         static String Findproduct = "laptop";
         static int Currentpage = 0;
-        static int ProductLimitView = 10;
+        static int ProductLimitView = 5;
         static int BrandLimit = 10;
         #endregion
 
@@ -25,6 +25,8 @@ namespace PCM_SearchPage
             page = page * ProductLimitView;
             Currentpage = page;
         }
+
+
         public void LimitView(int productLimitView) {
             ProductLimitView = productLimitView;
         }

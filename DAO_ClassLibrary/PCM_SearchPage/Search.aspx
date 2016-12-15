@@ -5,6 +5,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <title></title>
+      <link href="Bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet" />
+    <script src="Bootstrap/js/bootstrap.js" type="text/javascript"></script>
+    <script src="Bootstrap/js/jquery.js" type="text/javascript"></script>
 </head>
 <body>
     <form id="form1" runat="server">
@@ -66,6 +69,10 @@
              <div class=" col-sm-5">
                     <asp:Panel ID="Panel1" runat="server" CssClass="panel panel-success">
                         <div class="panel-body">
+                            Showing Results for keyword:
+                            <asp:Label ID="Lbl_KeySearch" runat="server" Text="SearchSelected"></asp:Label>
+                            <br />
+                            <br />
                             <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
                         </div>
                     </asp:Panel>
