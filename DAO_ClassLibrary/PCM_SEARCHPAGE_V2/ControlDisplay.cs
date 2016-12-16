@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Xml;
 
-namespace PCM_SearchPage
+namespace PCM_SEARCHPAGE_V2
 {
     public class ControlDisplay
     {
