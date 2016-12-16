@@ -94,13 +94,13 @@ namespace PCM_SearchPage {
         protected global::System.Web.UI.WebControls.LinkButton Btn_PagePrevious;
         
         /// <summary>
-        /// tb_PageNumber control.
+        /// lbl_PageNumber control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label tb_PageNumber;
+        protected global::System.Web.UI.WebControls.Label lbl_PageNumber;
         
         /// <summary>
         /// btn_PageNext control.

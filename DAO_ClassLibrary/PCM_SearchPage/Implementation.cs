@@ -72,6 +72,38 @@ namespace PCM_SearchPage
         {
             return con_URL.getpage();
         }
+        public void nextPage(Label lbl_PageNumber, DropDownList drpdwnlst_View, Label lbl_Min, Label lbl_MAX)
+        {
+            ///----------------------------------------
+
+
+            int pagenumber = Convert.ToInt32(lbl_PageNumber.Text) + 1;
+
+            int min = Convert.ToInt32(drpdwnlst_View.SelectedValue) * pagenumber;
+            int max = Convert.ToInt32(drpdwnlst_View.SelectedValue) + min;
+            lbl_Min.Text = "" + min;
+            lbl_MAX.Text = "" + max;
+            PagingControl(Convert.ToInt32(pagenumber));
+            lbl_PageNumber.Text = "" + pagenumber;
+
+        }
+        public void previousPage(Label lbl_PageNumber, DropDownList drpdwnlst_View, Label lbl_Min, Label lbl_MAX)
+        {
+            ///----------------------------------------
+            int pagenumber = Convert.ToInt32(lbl_PageNumber.Text);
+            if (pagenumber > 0)
+            {
+                pagenumber = Convert.ToInt32(lbl_PageNumber.Text) - 1;
+                int min = Convert.ToInt32(drpdwnlst_View.SelectedValue) * pagenumber;
+                int max = Convert.ToInt32(drpdwnlst_View.SelectedValue) + min;
+                lbl_Min.Text = "" + min;
+                lbl_MAX.Text = "" + max;
+                PagingControl(Convert.ToInt32(pagenumber));
+
+                lbl_PageNumber.Text = "" + pagenumber;
+            }
+        }
+
 
     }
 }

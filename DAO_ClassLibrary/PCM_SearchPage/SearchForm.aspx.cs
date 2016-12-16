@@ -30,7 +30,7 @@ namespace PCM_SearchPage
             {
                 imp.PagingControl(0);
                 imp.searchButton(txt_Search.Text, rdbtnlst_Brand, PlaceHolder1);
-                tb_PageNumber.Text = ""+imp.getPage();
+                lbl_PageNumber.Text = ""+imp.getPage();
                 lbl_NumFound.Text = "" + imp.getNumfound();
                 lbl_KeyWordSearch.Text = txt_Search.Text;
                 min = Convert.ToInt32(drpdwnlst_View.SelectedValue) * pagenumber;
@@ -68,46 +68,34 @@ namespace PCM_SearchPage
 
         protected void btn_PageNext_Click(object sender, EventArgs e)   // PAGE >>  
         {
-            pagenumber = Convert.ToInt32(tb_PageNumber.Text);
-            if (IsPostBack)
+            pagenumber = Convert.ToInt32(lbl_PageNumber.Text);
+            int x = Convert.ToInt32(drpdwnlst_View.SelectedValue);
+            int maxproductview = pagenumber * x;
+            if (maxproductview < Convert.ToInt32(lbl_MAX.Text))
             {
-                pagenumber = Convert.ToInt32(tb_PageNumber.Text)  + 1;
 
-                min = Convert.ToInt32(drpdwnlst_View.SelectedValue) * pagenumber;
-                max = Convert.ToInt32(drpdwnlst_View.SelectedValue)+min;
 
-                lbl_Min.Text = ""+min;
-                lbl_MAX.Text = "" + max;
-                imp.PagingControl(Convert.ToInt32(pagenumber));
-                refresh();
-                tb_PageNumber.Text = "" + pagenumber;
+                if (IsPostBack)
+                {
+                    imp.nextPage(lbl_PageNumber, drpdwnlst_View, lbl_Min, lbl_MAX);
+                    refresh();
+
+                }
             }
-           
+
         }
 
         protected void Btn_PagePrevious_Click(object sender, EventArgs e)  // << PAGE
         {
             if (IsPostBack)
             {
-                pagenumber = Convert.ToInt32(tb_PageNumber.Text);
 
-                if (pagenumber>0)
-                {
+                imp.previousPage(lbl_PageNumber, drpdwnlst_View, lbl_Min, lbl_MAX);
+                refresh();
 
-                    pagenumber = Convert.ToInt32(tb_PageNumber.Text) -1;
-                    min = Convert.ToInt32(drpdwnlst_View.SelectedValue) * pagenumber;
-                    max = Convert.ToInt32(drpdwnlst_View.SelectedValue) + min;
-                    lbl_Min.Text = "" + min;
-                    lbl_MAX.Text = "" + max;
 
-                    imp.PagingControl(Convert.ToInt32(pagenumber));
-                    refresh();
-                    tb_PageNumber.Text = "" + pagenumber;
-                }
-             
             }
         }
-
         protected void refresh()    // REFRESH
         {
             if (IsPostBack)
@@ -117,5 +105,8 @@ namespace PCM_SearchPage
                 lbl_KeyWordSearch.Text = txt_Search.Text;
             }
         }
+
+
+
     }
 }
