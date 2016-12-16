@@ -402,8 +402,11 @@ namespace PCM_SEARCHPAGE_V2
                 PlaceHolder ph = new PlaceHolder();
                 ph.ID = "placeHold" + i;
                 #endregion Naming , Creation of LAbel
-                getDetails2(Convert.ToString(All_EDPString), label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
-
+                getDetails2(Convert.ToString(All_EDPString), 
+                    
+                    // MAKE THIS ALL LIST
+                    label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
+               
                 #region  IMPLEMENTATION
                 Image_url.Height = 500;
                 Image_url.Width = 500;
