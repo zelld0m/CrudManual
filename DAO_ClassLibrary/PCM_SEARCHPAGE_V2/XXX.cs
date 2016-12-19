@@ -382,37 +382,64 @@ namespace PCM_SEARCHPAGE_V2
         {
             // save is an arraylist that contains EDP #
             placeholder1.Controls.Clear();
-            for (int i = 0; i < all_edp.Count; i++)
-            {
-                #region Naming , Creation of LAbel
-                Label label_ProductName = new Label();
-                label_ProductName.ID = "label_ProductName" + i;
-                Label label_Store = new Label();
-                label_Store.ID = "label_Store" + i;
-                Label label_Description = new Label();
-                label_Description.ID = "label_Description" + i;
-                Label label_Price = new Label();
-                label_Price.ID = "label_Price" + i;
-                Image Image_url = new Image();
-                Image_url.ID = "Image_ID" + i;
-                Label label_Manufacturer = new Label();
-                label_Manufacturer.ID = "label_Manufacturer" + i;
-                Label label_Availability = new Label();
-                label_Availability.ID = "label_Availability" + i;
-                PlaceHolder ph = new PlaceHolder();
-                ph.ID = "placeHold" + i;
+            List<string> ProductName = new List<string>();
+            List<string> Store = new List<string>();
+            List<string> Description = new List<string>();
+            List<string> Price = new List<string>();
+            List<string> Url = new List<string>();
+            List<string> Manufacturer = new List<string>();
+            List<string> Availability = new List<string>();
+            Label label_ProductName = new Label();
+            label_ProductName.ID = "label_ProductName";
+            Label label_Store = new Label();
+            label_Store.ID = "label_Store";
+            Label label_Description = new Label();
+            label_Description.ID = "label_Description";
+            Label label_Price = new Label();
+            label_Price.ID = "label_Price";
+            Image Image_url = new Image();
+            Image_url.ID = "Image_ID";
+            Label label_Manufacturer = new Label();
+            label_Manufacturer.ID = "label_Manufacturer";
+            Label label_Availability = new Label();
+            label_Availability.ID = "label_Availability";
+
+            #region Naming , Creation of LAbel
+
+      
                 #endregion Naming , Creation of LAbel
-                getDetails2(Convert.ToString(All_EDPString), 
-                    
-                    // MAKE THIS ALL LIST
-                    label_Store, label_ProductName, label_Description, label_Price, Image_url, label_Manufacturer, label_Availability);
-               
-                #region  IMPLEMENTATION
+                getDetails2(Convert.ToString(All_EDPString),Store, ProductName, Description, Price, Url, Manufacturer, Availability);
+
+            #region  IMPLEMENTATION
+            Image_url.Height = 500;
+            Image_url.Width = 500;
+            Image_url.CssClass = "img-responsive ";
+            Image_url.AlternateText = "No Image";
+            //<----------  IMPLEMENT ----------->
+
+
+            for (int i = 0; i < all_edp.Count; i++)
+                {
+                PlaceHolder ph = new PlaceHolder();
+                ph.ID = "ph" + i;
+                label_ProductName.Text = ProductName[i];
+                label_Store.Text = Store[i];
+                label_Description.Text = Description[i];
+                label_Manufacturer.Text = Manufacturer[i];
+                label_Price.Text = Price[i];
                 Image_url.Height = 500;
                 Image_url.Width = 500;
                 Image_url.CssClass = "img-responsive ";
                 Image_url.AlternateText = "No Image";
-                //<----------  IMPLEMENT ----------->
+                if (Url[i] == null)
+                {
+                    Image_url.CssClass = "img-responsive ";
+                }
+                Image_url.ImageUrl = Url[i]; 
+                label_Availability.Text = Availability[i];
+
+
+
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("</br>"));
@@ -503,35 +530,39 @@ namespace PCM_SEARCHPAGE_V2
                     reader.ReadToFollowing("productDetails");
                     while (reader.ReadToFollowing("manufacturer"))
                     {
-
                         label_Manufacturer.Add(reader.ReadElementString("manufacturer"));
-
-
                         reader.ReadToFollowing("storeSpecific");
                         reader.ReadToFollowing("store");
                         label_store.Add(reader.ReadElementString("store"));
                         label_productName.Add(reader.ReadElementString("name"));
-                        while (reader.Read())
+                        while (reader.ReadToFollowing("description"))
                         {
-                            label_productdescription.Add(reader.Value);
-                            break;
+                            label_productdescription.Add(reader.Value); break;
+
                         }
                         while (reader.ReadToFollowing("finalPrice"))
                         {
                             label_Price.Add(reader.ReadElementString("finalPrice")); break;
                         }
-                        reader.ReadToFollowing("availabilityDescription");
-                        if (reader.Name == "availabilityDescription") //
+                        while (reader.ReadToFollowing("availabilityDescription"))
                         {
-                            label_availabilityDescription.Add(reader.ReadElementString("availabilityDescription"));
+
+                            label_availabilityDescription.Add(reader.ReadElementString("availabilityDescription")); break;
                         }
-                        reader.ReadToFollowing("image");
-                        reader.ReadToFollowing("xlg");
-                        if (reader.Name == "xlg") //
+                        while (reader.ReadToFollowing("images"))
                         {
-                            imageSourceUrl.Add(reader.ReadElementString("xlg")); break;
+                            if (reader.ReadToFollowing("xlg"))
+                            {
+
+                                imageSourceUrl.Add(reader.ReadElementString("xlg")); break; 
+                            }
+                            else imageSourceUrl.Add("NO IMAGE");break;
+                             
                         }
                     }
+                    
+
+                
                 }
             }
             reader.Dispose();
