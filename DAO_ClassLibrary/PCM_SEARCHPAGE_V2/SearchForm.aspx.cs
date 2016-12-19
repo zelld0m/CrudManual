@@ -9,11 +9,12 @@ namespace PCM_SEARCHPAGE_V2
 {
     public partial class SearchForm : System.Web.UI.Page
     {
-        //  Implementation imp = new Implementation();
-        XXX imp = new XXX();
+    
+        Implementation imp = new Implementation();
+        
         int min = 0;
         int max = 0;
-        //static int foundProduct = 0;
+  
         static string previewsSearch = "";
         int pagenumber =0 ;
         protected void Page_Load(object sender, EventArgs e)            // PAGELOAD
@@ -30,13 +31,13 @@ namespace PCM_SEARCHPAGE_V2
             previewsSearch = txt_Search.Text;
             if (IsPostBack)
             {
-
+                imp.searchButton(txt_Search.Text, rdbtnlst_Brand, PlaceHolder1);
               
 
-                imp.BrandLimit = 10;
-                imp.Currentpage = 0;
-                imp.ProductLimitView = 10;
-                imp.searchButton(txt_Search.Text, rdbtnlst_Brand, PlaceHolder1);
+                //imp.BrandLimit = 10;
+                //imp.Currentpage = 0;
+                //imp.ProductLimitView = 10;
+                //imp.searchButton(txt_Search.Text, rdbtnlst_Brand, PlaceHolder1);
               //  lbl_PageNumber.Text = ""+Currentpage;
               //  lbl_NumFound.Text = "" + con_EDP.NumfoundFromSearch;
                 lbl_KeyWordSearch.Text = txt_Search.Text;
@@ -80,13 +81,10 @@ namespace PCM_SEARCHPAGE_V2
             int maxproductview = pagenumber * x;
             if (maxproductview < Convert.ToInt32(lbl_MAX.Text))
             {
-
-
                 if (IsPostBack)
                 {
                     imp.nextPage(lbl_PageNumber, drpdwnlst_View, lbl_Min, lbl_MAX);
                     refresh();
-
                 }
             }
 
@@ -107,13 +105,16 @@ namespace PCM_SEARCHPAGE_V2
         {
             if (IsPostBack)
             {
-                imp.searchButton(previewsSearch, rdbtnlst_Brand, PlaceHolder1);
+                imp.refresh(PlaceHolder1);
+                //imp.searchButton(previewsSearch, rdbtnlst_Brand, PlaceHolder1);
             //    lbl_NumFound.Text = "" + con_EDP.NumfoundFromSearch;
                 lbl_KeyWordSearch.Text = txt_Search.Text;
             }
         }
 
-
-
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            refresh();
+        }
     }
 }

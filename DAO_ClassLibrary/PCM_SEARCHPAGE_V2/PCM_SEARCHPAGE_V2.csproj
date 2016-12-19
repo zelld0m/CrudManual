@@ -404,7 +404,6 @@
     <Compile Include="ControlDisplay.cs" />
     <Compile Include="Controls_EDP.cs" />
     <Compile Include="Controls_URLSite.cs" />
-    <Compile Include="Controls_URL_Properties.cs" />
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>

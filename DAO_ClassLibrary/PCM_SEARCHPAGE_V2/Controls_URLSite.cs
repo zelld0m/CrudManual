@@ -9,33 +9,86 @@ namespace PCM_SEARCHPAGE_V2
     {
         private string searchManagerURL;
         private string alldetails_Use_EDP;
-       
-        Controls_EDP con_EDP = new Controls_EDP();
-        Controls_URL_Properties con_URL_prop = new Controls_URL_Properties();
+        private String findproduct;
+        private int currentpage;
+        private int productLimitView = 10;
+        private int brandLimit;
 
+
+
+
+        #region GETTER SETTER
+        public string Findproduct
+        {
+            get
+            {
+                return findproduct;
+            }
+
+            set
+            {
+                findproduct = value;
+            }
+        }
+        public int Currentpage
+        {
+            get
+            {
+                return currentpage;
+            }
+
+            set
+            {
+                currentpage = value;
+            }
+        }
+        public int ProductLimitView
+        {
+            get
+            {
+                return productLimitView;
+            }
+
+            set
+            {
+                productLimitView = value;
+            }
+        }
+        public int BrandLimit
+        {
+            get
+            {
+                return brandLimit;
+            }
+
+            set
+            {
+                brandLimit = value;
+            }
+        }
+        #endregion
+
+        Controls_EDP con_EDP = new Controls_EDP();
         public string SearchManagerURL
         {
             get
             {
-                return searchManagerURL = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=" + con_URL_prop.Findproduct + "&fl=EDP&store=pcmall&rows=" + con_URL_prop.ProductLimitView + "&start=" + con_URL_prop.Currentpage + "&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + con_URL_prop.BrandLimit; 
+                return searchManagerURL = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=" + Findproduct + "&fl=EDP&store=pcmall&rows=" + ProductLimitView + "&start=" + Currentpage + "&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + BrandLimit; 
             }
-
             set
             {
                 searchManagerURL = value;
             }
         }
-
         public string Alldetails_Use_EDP
         {
             get
             {
-                return alldetails_Use_EDP = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + con_EDP.All_edp + "&ignoreCatalog=true";
+                return alldetails_Use_EDP ;
             }
-
             set
             {
-                alldetails_Use_EDP = value;
+                alldetails_Use_EDP = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist="+value+ "&ignoreCatalog=true";
             }
         }
  

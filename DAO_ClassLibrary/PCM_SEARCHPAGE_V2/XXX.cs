@@ -418,7 +418,7 @@ namespace PCM_SEARCHPAGE_V2
             //<----------  IMPLEMENT ----------->
 
 
-            for (int i = 0; i < all_edp.Count; i++)
+            for (int i = 0; i < Store.Count; i++)
                 {
                 PlaceHolder ph = new PlaceHolder();
                 ph.ID = "ph" + i;
@@ -534,7 +534,9 @@ namespace PCM_SEARCHPAGE_V2
                         reader.ReadToFollowing("storeSpecific");
                         reader.ReadToFollowing("store");
                         label_store.Add(reader.ReadElementString("store"));
-                        label_productName.Add(reader.ReadElementString("name"));
+                        label_productName.Add(reader.ReadElementString("name")); 
+
+
                         while (reader.ReadToFollowing("description"))
                         {
                             label_productdescription.Add(reader.Value); break;
@@ -549,20 +551,24 @@ namespace PCM_SEARCHPAGE_V2
 
                             label_availabilityDescription.Add(reader.ReadElementString("availabilityDescription")); break;
                         }
-                        while (reader.ReadToFollowing("images"))
+                        if (reader.ReadToFollowing("images"))
                         {
-                            if (reader.ReadToFollowing("xlg"))
+                            if (reader.Name == "image")
                             {
+                                while (reader.ReadToFollowing("xlg"))
+                                {
 
-                                imageSourceUrl.Add(reader.ReadElementString("xlg")); break; 
+                                    imageSourceUrl.Add(reader.ReadElementString("xlg")); break;
+                                }
                             }
-                            else imageSourceUrl.Add("NO IMAGE");break;
-                             
+                            else if (reader.ReadToFollowing("hasImage"))
+                            {
+                                imageSourceUrl.Add("NO IMAGE"); 
+                            }
+
                         }
                     }
-                    
 
-                
                 }
             }
             reader.Dispose();

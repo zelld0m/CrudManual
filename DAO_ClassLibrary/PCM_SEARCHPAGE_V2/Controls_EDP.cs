@@ -6,6 +6,8 @@ using System.Xml;
 
 namespace PCM_SEARCHPAGE_V2
 {
+
+    
     public class Controls_EDP
     {
         private List<int> all_edp;
@@ -14,6 +16,7 @@ namespace PCM_SEARCHPAGE_V2
         private List<string> brandList;
         private List<string> tempoBrand;
         private int numfoundFromSearch;
+        private string edpString;
 
         public List<int> All_edp
         {
@@ -87,7 +90,20 @@ namespace PCM_SEARCHPAGE_V2
                 numfoundFromSearch = value;
             }
         }
-    
+
+        public string EdpString
+        {
+            get
+            {
+                return edpString;
+            }
+
+            set
+            {
+                edpString = value;
+            }
+        }
+
 
 
         #region SETTER
@@ -109,7 +125,34 @@ namespace PCM_SEARCHPAGE_V2
             return All_edp;
         }
 
-        public  void generateBrandList()    
+
+        public void getEDPfromSearchManager2(string SearchManagerURL)
+        {
+
+            List<int> EDPLIST = new List<int>();
+
+
+            string url = SearchManagerURL;   // SERVICE MANAGER WAS USED 
+            if (All_edp != null)
+            {
+                All_edp.Clear();
+            }
+            System.Xml.XmlTextReader reader = new XmlTextReader(url);
+            reader.ReadToFollowing("result");
+            NumfoundFromSearch = Convert.ToInt32(reader.GetAttribute("numFound"));
+            reader.ReadToFollowing("int");
+            while (reader.GetAttribute("name") == "EDP")
+            {
+                EDPLIST.Add(Convert.ToInt32(reader.ReadElementString("int")));
+                reader.ReadToFollowing("int");
+            }
+            All_edp = EDPLIST;
+          
+            EdpString = string.Join(",", EDPLIST);
+        }
+
+
+        public void generateBrandList()    
         {
             if (brandList != null)
             {
@@ -146,9 +189,18 @@ namespace PCM_SEARCHPAGE_V2
       
         public  void BrandSelected_Generate_EDP(string findBrand)
         {
-            TempoBrand.Clear();
-            BrandFiltered_EDP.Clear();
-            if (Search_EDP.Count == 0)
+            if(TempoBrand != null)
+            {
+                TempoBrand.Clear();
+
+            }
+            if(brandFiltered_EDP != null)
+            {
+                 BrandFiltered_EDP.Clear();
+            }
+         
+
+            if (Search_EDP.Count == null)
             {
                 Search_EDP = All_edp;
             }
