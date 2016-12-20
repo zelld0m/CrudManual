@@ -13,7 +13,7 @@ namespace PCM_SEARCHPAGE_V2
         Controls_EDP con_EDP = new Controls_EDP();
         Controls_URLSite con_site = new Controls_URLSite();
         ControlDisplay con_dis = new ControlDisplay();
-
+        static string historySearch = "";
         #endregion
 
 
@@ -21,7 +21,7 @@ namespace PCM_SEARCHPAGE_V2
         
         public void radioButton_button(String findBrand, RadioButtonList radiobuttonlist, PlaceHolder PlaceHolder1)
         {
-            con_EDP.BrandSelected_Generate_EDP(findBrand);
+           // con_EDP.BrandSelected_Generate_EDP(findBrand);
             con_dis.SelectedMultipleDisplay(con_EDP.BrandFiltered_EDP , PlaceHolder1);
 
             radiobuttonlist.ClearSelection();
@@ -38,7 +38,7 @@ namespace PCM_SEARCHPAGE_V2
         public void searchButton(string search , RadioButtonList radiobuttonlist,PlaceHolder PlaceHolder1 )   // useThis as Clear Filter
         {
             #region DisplayProducts
-
+            historySearch = search;
             con_site.Findproduct = search;
             con_EDP.getEDPfromSearchManager2(con_site.SearchManagerURL); //1st  Create an edp using the search textbox this will generate a url for specified search
             con_site.Alldetails_Use_EDP = con_EDP.EdpString;            //2nd  use the generated EdpString
@@ -53,7 +53,7 @@ namespace PCM_SEARCHPAGE_V2
             radiobuttonlist.Items.Clear();
             listBrand = con_dis.Manufacturer;
             listBrand = listBrand.Distinct().ToList();
-            listBrand = listBrand.OrderBy(i => i).ToList();
+            listBrand = listBrand.OrderBy(i => i).ToList();             // MAKE brand alphabetical
 
             for (int i = 0; i < listBrand.Count; i++)
             {
@@ -68,14 +68,13 @@ namespace PCM_SEARCHPAGE_V2
             
         }
 
-        public void dropdownList_NumViews(DropDownList drop)
+        public void dropdownList_NumViews(DropDownList drop,PlaceHolder placeholder1, RadioButtonList radiobuttonlist)  // Perfect
         {
             int x = Convert.ToInt32(drop.SelectedValue);
-            con_site. ProductLimitView= x;
+            con_site. ProductLimitView= x;          // increase view
+            refresh(placeholder1, radiobuttonlist); // refresh
         }
 
-
- 
         public void nextPage(Label lbl_PageNumber, DropDownList drpdwnlst_View, Label lbl_Min, Label lbl_MAX)
         {
             ///----------------------------------------
@@ -105,9 +104,34 @@ namespace PCM_SEARCHPAGE_V2
             }
         }
 
-        public void refresh(PlaceHolder placeholder1)
+        public void refresh(PlaceHolder placeholder1,RadioButtonList radiobuttonlist)
         {
+
+
+            #region Display
+            con_site.Findproduct = historySearch;  // TEST 
+            con_EDP.getEDPfromSearchManager2(con_site.SearchManagerURL); //1st  Create an edp using the search textbox this will generate a url for specified search
+            con_site.Alldetails_Use_EDP = con_EDP.EdpString;
+            con_dis.getDetails2(con_site.Alldetails_Use_EDP);
             con_dis.SelectedMultipleDisplay2(placeholder1);
+
+            #endregion
+
+            #region DisplayBrand
+
+            radiobuttonlist.ClearSelection();
+            radiobuttonlist.Controls.Clear();
+            radiobuttonlist.Items.Clear();
+            listBrand = con_dis.Manufacturer;
+            listBrand = listBrand.Distinct().ToList();
+            listBrand = listBrand.OrderBy(i => i).ToList();             // MAKE brand alphabetical
+
+            for (int i = 0; i < listBrand.Count; i++)
+            {
+                radiobuttonlist.Items.Add(new ListItem(listBrand[i]));
+            }
+            radiobuttonlist.AutoPostBack = true;
+            #endregion
         }
     }
 }

@@ -226,7 +226,7 @@ namespace PCM_SEARCHPAGE_V2
             Label label_productdescription = new Label(); ;
             Label label_Price = new Label(); ;
             Image imageSourceUrl = new Image();  Label label_Manufacturer = new Label(); ;
-            Label label_availabilityDescription = new Label(); ;
+            Label label_availabilityDescription = new Label(); 
      
             System.Xml.XmlTextReader reader = new XmlTextReader(url_For_EDP_details);
             while (reader.Read())

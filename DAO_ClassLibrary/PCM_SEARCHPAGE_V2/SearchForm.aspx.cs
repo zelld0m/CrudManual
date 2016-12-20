@@ -70,7 +70,7 @@ namespace PCM_SEARCHPAGE_V2
 
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)   // DROP DOWNLIST # VIEW
         {
-            imp.dropdownList_NumViews(drpdwnlst_View);
+            imp.dropdownList_NumViews(drpdwnlst_View,PlaceHolder1,rdbtnlst_Brand);
             refresh();
         }
 
@@ -105,7 +105,7 @@ namespace PCM_SEARCHPAGE_V2
         {
             if (IsPostBack)
             {
-                imp.refresh(PlaceHolder1);
+                imp.refresh(PlaceHolder1,rdbtnlst_Brand);
                 //imp.searchButton(previewsSearch, rdbtnlst_Brand, PlaceHolder1);
             //    lbl_NumFound.Text = "" + con_EDP.NumfoundFromSearch;
                 lbl_KeyWordSearch.Text = txt_Search.Text;

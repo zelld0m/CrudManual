@@ -187,55 +187,55 @@ namespace PCM_SEARCHPAGE_V2
             }
         }
       
-        public  void BrandSelected_Generate_EDP(string findBrand)
-        {
-            if(TempoBrand != null)
-            {
-                TempoBrand.Clear();
+        //public  void BrandSelected_Generate_EDP(string findBrand)
+        //{
+        //    if(TempoBrand != null)
+        //    {
+        //        TempoBrand.Clear();
 
-            }
-            if(brandFiltered_EDP != null)
-            {
-                 BrandFiltered_EDP.Clear();
-            }
+        //    }
+        //    if(brandFiltered_EDP != null)
+        //    {
+        //         BrandFiltered_EDP.Clear();
+        //    }
          
 
-            if (Search_EDP.Count == null)
-            {
-                Search_EDP = All_edp;
-            }
+        //   //if (Search_EDP.Count == 0)
+        //    //{
+        //        Search_EDP = All_edp;
+        //   // }
             
-            for (int i = 0; i < Search_EDP.Count; i++)
-            {
-                String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + Search_EDP[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
-                System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
-                string brandx = "";
-                int edp_tempo = 0;
-                //   StringComparison comp = StringComparison.OrdinalIgnoreCase;
-                while (reader.Read())
-                {
-                    while (reader.ReadToFollowing("edp"))
-                    {
-                        if (reader.Name == "edp")
-                        {
-                            edp_tempo = Convert.ToInt32(reader.ReadElementString("edp"));
-                        }
-                        if (reader.ReadToFollowing("manufacturer"))
-                        {
-                            brandx = reader.ReadElementString("manufacturer");
-                        }
-                    }
-                    if (brandx.ToLower().Contains(findBrand.ToLower()))
-                    {
-                        BrandFiltered_EDP.Add(edp_tempo);
-                        if (TempoBrand.Contains(brandx))
-                        {
-                        }
-                        else TempoBrand.Add(brandx);
-                    }
-                }
-            }
-        }
+        //    for (int i = 0; i < Search_EDP.Count; i++)
+        //    {
+        //        String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + Search_EDP[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
+        //        System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
+        //        string brandx = "";
+        //        int edp_tempo = 0;
+        //        //   StringComparison comp = StringComparison.OrdinalIgnoreCase;
+        //        while (reader.Read())
+        //        {
+        //            while (reader.ReadToFollowing("edp"))
+        //            {
+        //                if (reader.Name == "edp")
+        //                {
+        //                    edp_tempo = Convert.ToInt32(reader.ReadElementString("edp"));
+        //                }
+        //                if (reader.ReadToFollowing("manufacturer"))
+        //                {
+        //                    brandx = reader.ReadElementString("manufacturer");
+        //                }
+        //            }
+        //            if (brandx.ToLower().Contains(findBrand.ToLower()))
+        //            {
+        //                BrandFiltered_EDP.Add(edp_tempo);
+        //                if (TempoBrand.Contains(brandx))
+        //                {
+        //                }
+        //                else TempoBrand.Add(brandx);
+        //            }
+        //        }
+        //    }
+        //}
 
 
         #region  Unused GetALL Brand
