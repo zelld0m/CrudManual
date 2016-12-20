@@ -102,7 +102,7 @@ namespace PCM_SEARCHPAGE_V2
         {
             if (lbl_KeyWordSearch.Text == "None")
             {}
-            else
+            else 
             {
                 if (IsPostBack)
                 {
