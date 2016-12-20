@@ -26,7 +26,6 @@
                         <div class="panel-body">
                             <div class=" text-center">
                                 <asp:LinkButton ID="lnkbtn_ClearFilter" runat="server" CssClass="btn btn-danger" Font-Size="Small" OnClick="lnkbtn_ClearFilter_Click"><i class="fa fa-times"></i> Clear Filter</asp:LinkButton>
-                                <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text="Button" />
                             </div>
                             <asp:RadioButtonList ID="rdbtnlst_Brand" runat="server" CssClass="radio radio-info" AutoPostBack="True" Font-Size="Small" Font-Overline="False" CellPadding="-1" CellSpacing="1" OnSelectedIndexChanged="rdbtnlst_Brand_SelectedIndexChanged">
                             </asp:RadioButtonList>

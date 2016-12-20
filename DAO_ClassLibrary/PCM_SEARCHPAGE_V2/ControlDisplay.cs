@@ -181,33 +181,35 @@ namespace PCM_SEARCHPAGE_V2
                 label_Price.Text = price[i];
                 label_Manufacturer.Text = Manufacturer[i];
                 label_Availability.Text = availability[i];
+                ph.Controls.Add(new LiteralControl("<label style = color:blue'></br>"));
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
+                if(Image_url.ImageUrl== "NO IMAGE"){
+
+            }
                 ph.Controls.Add(Image_url);
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Price: </label>"));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Price: "));
                 label_Price.ForeColor = System.Drawing.Color.Red;
                 ph.Controls.Add(label_Price);
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Name: </label>"));
+                ph.Controls.Add(new LiteralControl("</label></br>"));
+               
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Name:</label> "));
                 ph.Controls.Add(label_ProductName);
           
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Store:  </label>"));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Store:</label> "));
                 ph.Controls.Add(label_Store);
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Description: </label>"));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Description:</label> "));
                 if(label_Description.Text == "N")
                 {
-                    label_Description.Text = "No Description";
+                    label_Description.Text = " No Description";
                     label_Description.ForeColor = System.Drawing.Color.DarkOrange;
                 }
                 ph.Controls.Add(label_Description);
-                
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Manufacturer:  </label>"));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Manufacturer:</label> "));
                 ph.Controls.Add(label_Manufacturer);
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("<label style='color:red'>Availability: "));
@@ -228,7 +230,7 @@ namespace PCM_SEARCHPAGE_V2
                 #endregion
                 ph.Controls.Add(label_Availability);
                 ph.Controls.Add(new LiteralControl("</label></br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
+                ph.Controls.Add(new LiteralControl("</br></label>"));
                 #endregion IMPLEMENTATION
                 placeholder1.Controls.Add(ph);
             }

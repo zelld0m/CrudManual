@@ -77,34 +77,28 @@ namespace PCM_SEARCHPAGE_V2
             con_site.ProductLimitView = Convert.ToInt32(drop.SelectedValue);           // increase view
 
         }
-        public void nextPage(Label lbl_PageNumber, DropDownList drpdwnlst_View, Label lbl_Min, Label lbl_MAX)
+        public void nextPage(Label lbl_PageNumber, DropDownList drpdwnlst_View)
         {
-            ///----------------------------------------
             int pagenumber = Convert.ToInt32(lbl_PageNumber.Text) + 1;   // getting old page # 
-            int min = Convert.ToInt32(drpdwnlst_View.SelectedValue) * pagenumber;   // numbering  start 
-            int max = Convert.ToInt32(drpdwnlst_View.SelectedValue) + min;          // numbering to end 
-            lbl_Min.Text = "" + min;
-            lbl_MAX.Text = "" + max;
-            con_site.StartRead = (Convert.ToInt32(pagenumber) * Convert.ToInt32(drpdwnlst_View.SelectedValue));
             lbl_PageNumber.Text = "" + pagenumber;
         }
-        public void previousPage(Label lbl_PageNumber, DropDownList drpdwnlst_View, Label lbl_Min, Label lbl_MAX)
+        public void previousPage(Label lbl_PageNumber, DropDownList drpdwnlst_View)
         {
-
-
             int pagenumber = Convert.ToInt32(lbl_PageNumber.Text) - 1;   // getting old page # 
-            int min = Convert.ToInt32(drpdwnlst_View.SelectedValue) * pagenumber;   // numbering  start 
-            int max = Convert.ToInt32(drpdwnlst_View.SelectedValue) + min;          // numbering to end 
-            lbl_Min.Text = "" + min;
-            lbl_MAX.Text = "" + max;
-            con_site.StartRead = (Convert.ToInt32(pagenumber) * Convert.ToInt32(drpdwnlst_View.SelectedValue));
             lbl_PageNumber.Text = "" + pagenumber;
 
         }
-        public void refresh(PlaceHolder placeholder1, RadioButtonList radiobuttonlist, TextBox currentTextboxSearch)
+        public void refresh(PlaceHolder placeholder1, RadioButtonList radiobuttonlist, string currentTextboxSearch ,DropDownList numberOfViews , int pageNumber, Label lbl_Min, Label lbl_MAX)
         {
             #region Display
-            con_site.Findproduct = currentTextboxSearch.Text;  // TEST 
+            int min = Convert.ToInt32(numberOfViews.SelectedValue) * pageNumber;   // numbering  start 
+            int max = Convert.ToInt32(numberOfViews.SelectedValue) + min;          // numbering to end 
+            lbl_Min.Text = "" + min;
+            lbl_MAX.Text = "" + max;
+
+            con_site.StartRead = (Convert.ToInt32(numberOfViews.SelectedValue) * pageNumber);     // startread
+            con_site.ProductLimitView = Convert.ToInt32( numberOfViews.SelectedValue);              // limit view 
+            con_site.Findproduct = currentTextboxSearch;  // TEST 
             con_EDP.getEDPfromSearchManager2(con_site.SearchManagerURL); //1st  Create an edp using the search textbox this will generate a url for specified search
             con_site.Alldetails_Use_EDP = con_EDP.EdpString;
             con_dis.getDetails2(con_site.Alldetails_Use_EDP);
