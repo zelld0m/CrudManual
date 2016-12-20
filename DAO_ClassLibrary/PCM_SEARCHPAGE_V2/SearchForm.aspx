@@ -55,8 +55,7 @@
                                     <label style="font-size: small" class="control-label">View: </label>
                                   
                                     <asp:DropDownList ID="drpdwnlst_View" runat="server" CssClass="form-control" AutoPostBack="true" Font-Size="Small" OnSelectedIndexChanged="drpdwnlst_View_SelectedIndexChanged">
-                                        <asp:ListItem>5</asp:ListItem>
-                                        <asp:ListItem>10</asp:ListItem>
+                                        <asp:ListItem Selected="True">10</asp:ListItem>
                                         <asp:ListItem>25</asp:ListItem>
                                         <asp:ListItem>50</asp:ListItem>
                                         <asp:ListItem>100</asp:ListItem>

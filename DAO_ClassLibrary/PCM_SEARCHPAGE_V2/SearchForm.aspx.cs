@@ -11,11 +11,9 @@ namespace PCM_SEARCHPAGE_V2
     {
     
         Implementation imp = new Implementation();
-        
-        int min = 0;
-        int max = 0;
-  
-        static string previewsSearch = "";
+
+
+        //static string previewsSearch = "";
         int pagenumber =0 ;
         protected void Page_Load(object sender, EventArgs e)            // PAGELOAD
         {
@@ -25,40 +23,22 @@ namespace PCM_SEARCHPAGE_V2
             }
             lnkbtn_ClearFilter.Visible = false;
         }
-
         protected void lnbtn_Search_Click(object sender, EventArgs e)           // BTN SEARCH
         {
-            previewsSearch = txt_Search.Text;
-            if (IsPostBack)
+           if (IsPostBack)
             {
-                imp.searchButton(txt_Search.Text, rdbtnlst_Brand, PlaceHolder1);
-              
-
-                //imp.BrandLimit = 10;
-                //imp.Currentpage = 0;
-                //imp.ProductLimitView = 10;
-                //imp.searchButton(txt_Search.Text, rdbtnlst_Brand, PlaceHolder1);
-              //  lbl_PageNumber.Text = ""+Currentpage;
-              //  lbl_NumFound.Text = "" + con_EDP.NumfoundFromSearch;
-                lbl_KeyWordSearch.Text = txt_Search.Text;
-                min = Convert.ToInt32(drpdwnlst_View.SelectedValue) * pagenumber;
-                max = Convert.ToInt32(drpdwnlst_View.SelectedValue) + min;
-                lbl_Min.Text = "" + min;
-                lbl_MAX.Text = "" + max;
+                imp.searchButton(txt_Search.Text, rdbtnlst_Brand, PlaceHolder1 ,lbl_NumFound ,lbl_PageNumber,lbl_Min,lbl_MAX,drpdwnlst_View);
             }
         }
-
         protected void lnkbtn_ClearFilter_Click(object sender, EventArgs e)         //  CLEAR FILTER
         {
             if (IsPostBack)
             {
-                rdbtnlst_Brand.ClearSelection();
                 refresh();
                 rdbtnlst_Brand.ClearSelection();
                 lnkbtn_ClearFilter.Visible = false;
             }
         }
-
         protected void rdbtnlst_Brand_SelectedIndexChanged(object sender, EventArgs e)      //BRAND RADIO BUTTON
         {
             if (IsPostBack)
@@ -67,19 +47,23 @@ namespace PCM_SEARCHPAGE_V2
                 lnkbtn_ClearFilter.Visible = true;
             }
         }
-
         protected void drpdwnlst_View_SelectedIndexChanged(object sender, EventArgs e)   // DROP DOWNLIST # VIEW
         {
-            imp.dropdownList_NumViews(drpdwnlst_View,PlaceHolder1,rdbtnlst_Brand);
-            refresh();
+            if (IsPostBack)
+            {
+                imp.dropdownList_NumViews(drpdwnlst_View);
+                refresh();
+            }
+            
         }
-
         protected void btn_PageNext_Click(object sender, EventArgs e)   // PAGE >>  
         {
             pagenumber = Convert.ToInt32(lbl_PageNumber.Text);
-            int x = Convert.ToInt32(drpdwnlst_View.SelectedValue);
-            int maxproductview = pagenumber * x;
-            if (maxproductview < Convert.ToInt32(lbl_MAX.Text))
+            int x = Convert.ToInt32(drpdwnlst_View.SelectedValue);   // getting the dropdownlist VALUE 
+            int numfound =Convert.ToInt32( lbl_NumFound.Text);
+
+            int maxproductview = pagenumber * x;                    //  list value * page
+            if (maxproductview < numfound)
             {
                 if (IsPostBack)
                 {
@@ -89,29 +73,22 @@ namespace PCM_SEARCHPAGE_V2
             }
 
         }
-
         protected void Btn_PagePrevious_Click(object sender, EventArgs e)  // << PAGE
         {
             if (IsPostBack)
             {
-
                 imp.previousPage(lbl_PageNumber, drpdwnlst_View, lbl_Min, lbl_MAX);
                 refresh();
-
-
             }
         }
         protected void refresh()    // REFRESH
         {
             if (IsPostBack)
             {
-                imp.refresh(PlaceHolder1,rdbtnlst_Brand);
-                //imp.searchButton(previewsSearch, rdbtnlst_Brand, PlaceHolder1);
-            //    lbl_NumFound.Text = "" + con_EDP.NumfoundFromSearch;
+                imp.refresh(PlaceHolder1,rdbtnlst_Brand,txt_Search);
                 lbl_KeyWordSearch.Text = txt_Search.Text;
             }
         }
-
         protected void Button1_Click(object sender, EventArgs e)
         {
             refresh();

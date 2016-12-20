@@ -7,16 +7,15 @@ namespace PCM_SEARCHPAGE_V2
 {
     public class Controls_URLSite
     {
+        #region Declaration of Variables
         private string searchManagerURL;
         private string alldetails_Use_EDP;
         private String findproduct;
-        private int currentpage;
+        private int startRead;
         private int productLimitView = 10;
         private int brandLimit;
 
-
-
-
+        #endregion
         #region GETTER SETTER
         public string Findproduct
         {
@@ -30,16 +29,16 @@ namespace PCM_SEARCHPAGE_V2
                 findproduct = value;
             }
         }
-        public int Currentpage
+        public int StartRead
         {
             get
             {
-                return currentpage;
+                return startRead;
             }
 
             set
             {
-                currentpage = value;
+                startRead = value;
             }
         }
         public int ProductLimitView
@@ -66,14 +65,14 @@ namespace PCM_SEARCHPAGE_V2
                 brandLimit = value;
             }
         }
+     
         #endregion
-
-        Controls_EDP con_EDP = new Controls_EDP();
+        #region Using URL's
         public string SearchManagerURL
         {
             get
             {
-                return searchManagerURL = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=" + Findproduct + "&fl=EDP&store=pcmall&rows=" + ProductLimitView + "&start=" + Currentpage + "&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + BrandLimit; 
+                return searchManagerURL = "http://afs-sl-schmgr03.afservice.org:8080/searchManager/search/afs-sl-schmstr.afservice.org:8080/solr4/Products/select?q=" + Findproduct + "&fl=EDP&store=pcmall&rows=" + ProductLimitView + "&start=" + StartRead + "&facet=true&facet.field=Manufacturer&facet.field=InStock&facet.limit=" + BrandLimit;
             }
             set
             {
@@ -84,13 +83,16 @@ namespace PCM_SEARCHPAGE_V2
         {
             get
             {
-                return alldetails_Use_EDP ;
+                return alldetails_Use_EDP;
             }
             set
             {
-                alldetails_Use_EDP = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist="+value+ "&ignoreCatalog=true";
+                alldetails_Use_EDP = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + value + "&ignoreCatalog=true";
             }
         }
- 
+
+      
+        #endregion
+
     }
 }
