@@ -10,6 +10,8 @@ namespace PCM_SEARCHPAGE_V2
     
     public class Controls_EDP
     {
+        #region Declaration
+
         private List<int> all_edp;
         private List<int> search_EDP;
         private List<int> brandFiltered_EDP;
@@ -17,6 +19,9 @@ namespace PCM_SEARCHPAGE_V2
         private List<string> tempoBrand;
         private int numfoundFromSearch;
         private string edpString;
+
+        #endregion   
+        #region Getter : Setter
 
         public List<int> All_edp
         {
@@ -90,7 +95,6 @@ namespace PCM_SEARCHPAGE_V2
                 numfoundFromSearch = value;
             }
         }
-
         public string EdpString
         {
             get
@@ -102,10 +106,8 @@ namespace PCM_SEARCHPAGE_V2
             {
                 edpString = value;
             }
-        }
-
-
-
+        } 
+        #endregion
         #region SETTER
         public  List<int> getEDPfromSearchManager() {
             Controls_URLSite con_site = new Controls_URLSite();   
@@ -130,8 +132,6 @@ namespace PCM_SEARCHPAGE_V2
         {
 
             List<int> EDPLIST = new List<int>();
-
-
             string url = SearchManagerURL;   // SERVICE MANAGER WAS USED 
             if (All_edp != null)
             {
@@ -147,7 +147,6 @@ namespace PCM_SEARCHPAGE_V2
                 reader.ReadToFollowing("int");
             }
             All_edp = EDPLIST;
-          
             EdpString = string.Join(",", EDPLIST);
         }
 
@@ -263,9 +262,5 @@ namespace PCM_SEARCHPAGE_V2
         #endregion
         #endregion
 
-
-
-
-   
     }
 }

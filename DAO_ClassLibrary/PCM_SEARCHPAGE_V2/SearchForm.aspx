@@ -64,7 +64,7 @@
                                         <span class="input-group-btn">
                                             <asp:LinkButton ID="Btn_PagePrevious" runat="server" CssClass=" btn btn-info" OnClick="Btn_PagePrevious_Click"><</asp:LinkButton>
                                         </span>
-                                        <asp:Label ID="lbl_PageNumber" runat="server" CssClass=" form-control">1</asp:Label>
+                                        <asp:Label ID="lbl_PageNumber" runat="server" CssClass=" form-control">0</asp:Label>
                                         <span class="input-group-btn">
                                             <asp:LinkButton ID="btn_PageNext" runat="server" CssClass=" btn btn-info" OnClick="btn_PageNext_Click">></asp:LinkButton>
                                         </span>

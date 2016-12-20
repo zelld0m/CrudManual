@@ -169,8 +169,8 @@ namespace PCM_SEARCHPAGE_V2
                 #endregion Naming , Creation of LAbel
                 
                 #region  IMPLEMENTATION
-                Image_url.Height = 100;
-                Image_url.Width = 100;
+                Image_url.Height = 200;
+                Image_url.Width = 200;
                 Image_url.CssClass = "img-responsive ";
                 Image_url.AlternateText = "No Image";
                 //<----------  IMPLEMENT ----------->
@@ -186,26 +186,48 @@ namespace PCM_SEARCHPAGE_V2
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(Image_url);
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Price: "));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Price: </label>"));
+                label_Price.ForeColor = System.Drawing.Color.Red;
                 ph.Controls.Add(label_Price);
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Name: "));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Name: </label>"));
                 ph.Controls.Add(label_ProductName);
+          
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Store: "));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Store:  </label>"));
                 ph.Controls.Add(label_Store);
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Description: "));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Description: </label>"));
+                if(label_Description.Text == "N")
+                {
+                    label_Description.Text = "No Description";
+                    label_Description.ForeColor = System.Drawing.Color.DarkOrange;
+                }
                 ph.Controls.Add(label_Description);
+                
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("Manufacturer: "));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'> Manufacturer:  </label>"));
                 ph.Controls.Add(label_Manufacturer);
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("<label style='color:red'>Availability: </label>"));
+                ph.Controls.Add(new LiteralControl("<label style='color:red'>Availability: "));
+                #region Availability Condition
+                if (label_Availability.Text == "Temporarily out of stock. Order today and we'll deliver when available.")
+                {
+                    label_Availability.ForeColor = System.Drawing.Color.DarkOrange;
+                }
+                else if (label_Availability.Text == "In stock. Usually ships next business day.")
+                {
+
+                    label_Availability.ForeColor = System.Drawing.Color.ForestGreen;
+                }
+                else if (label_Availability.Text == "Sold Out")
+                {
+                    label_Availability.ForeColor = System.Drawing.Color.Red;
+                } 
+                #endregion
                 ph.Controls.Add(label_Availability);
+                ph.Controls.Add(new LiteralControl("</label></br>"));
                 ph.Controls.Add(new LiteralControl("</br>"));
                 #endregion IMPLEMENTATION
                 placeholder1.Controls.Add(ph);

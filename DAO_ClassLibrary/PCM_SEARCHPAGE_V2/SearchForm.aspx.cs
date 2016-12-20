@@ -28,6 +28,7 @@ namespace PCM_SEARCHPAGE_V2
            if (IsPostBack)
             {
                 imp.searchButton(txt_Search.Text, rdbtnlst_Brand, PlaceHolder1 ,lbl_NumFound ,lbl_PageNumber,lbl_Min,lbl_MAX,drpdwnlst_View);
+                lbl_KeyWordSearch.Text = txt_Search.Text;
             }
         }
         protected void lnkbtn_ClearFilter_Click(object sender, EventArgs e)         //  CLEAR FILTER
@@ -71,25 +72,34 @@ namespace PCM_SEARCHPAGE_V2
                     refresh();
                 }
             }
+            else refresh();
 
         }
         protected void Btn_PagePrevious_Click(object sender, EventArgs e)  // << PAGE
         {
-            if (IsPostBack)
+            if (lbl_PageNumber.Text =="0")
             {
-                imp.previousPage(lbl_PageNumber, drpdwnlst_View, lbl_Min, lbl_MAX);
                 refresh();
+            }
+            else
+            {
+                if (IsPostBack)
+                {
+                    imp.previousPage(lbl_PageNumber, drpdwnlst_View, lbl_Min, lbl_MAX);
+                    refresh();
+                }
             }
         }
         protected void refresh()    // REFRESH
         {
             if (IsPostBack)
             {
+
                 imp.refresh(PlaceHolder1,rdbtnlst_Brand,txt_Search);
-                lbl_KeyWordSearch.Text = txt_Search.Text;
+               // lbl_KeyWordSearch.Text = txt_Search.Text;
             }
         }
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void Button1_Click(object sender, EventArgs e)            //TEST REFRESH
         {
             refresh();
         }
