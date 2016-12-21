@@ -12,7 +12,7 @@ namespace PCM_SEARCHPAGE_V2
 
         Controls_EDP con_EDP = new Controls_EDP();
         Controls_URLSite con_site = new Controls_URLSite();
-        ControlDisplay con_dis = new ControlDisplay();
+        Control_Display con_dis = new Control_Display();
         Controls_URLSite con_site2 = new Controls_URLSite();
 
         #endregion
@@ -61,7 +61,7 @@ namespace PCM_SEARCHPAGE_V2
             #endregion
             #region RESET
 
-            int min = 0; // numbering  start 
+            int min = 1; // numbering  start 
             int max = 10;      // numbering to end 
             lbl_Min.Text = "" + min;
             lbl_MAX.Text = "" + max;
@@ -69,7 +69,7 @@ namespace PCM_SEARCHPAGE_V2
             con_site.StartRead = 0;
             con_site.ProductLimitView = 10;
             drop.Text = con_site.ProductLimitView.ToString();
-            pageNumber.Text = "" + 0;
+            pageNumber.Text = "" + 0;       // --------------------     TEST ------------------
             #endregion
         }
         public void dropdownList_NumViews(DropDownList drop)  // Perfect
@@ -77,34 +77,64 @@ namespace PCM_SEARCHPAGE_V2
             con_site.ProductLimitView = Convert.ToInt32(drop.SelectedValue);           // increase view
 
         }
-        public void nextPage(Label lbl_PageNumber, DropDownList drpdwnlst_View)
+        public void nextPage(Label lbl_PageNumber, DropDownList drpdwnlst_View,Label lbl_KeyWordSearch,int numFound)
         {
-            int pagenumber = Convert.ToInt32(lbl_PageNumber.Text) + 1;   // getting old page # 
-            lbl_PageNumber.Text = "" + pagenumber;
+            //-----
+           int  pagenumber = Convert.ToInt32(lbl_PageNumber.Text);
+            int x = Convert.ToInt32(drpdwnlst_View.SelectedValue);   // getting the dropdownlist VALUE 
+            
+
+            int maxproductview = pagenumber * x;                    //  list value * page
+            if (lbl_KeyWordSearch.Text == "None")
+            {
+            }
+            else
+            {
+                #region postback or REfresh
+                if (maxproductview < numFound)
+                {
+
+                     pagenumber = Convert.ToInt32(lbl_PageNumber.Text) + 1;   // getting old page # 
+                    lbl_PageNumber.Text = "" + pagenumber;
+
+                }
+                #endregion
+            }
+        
         }
         public void previousPage(Label lbl_PageNumber, DropDownList drpdwnlst_View)
         {
-            int pagenumber = Convert.ToInt32(lbl_PageNumber.Text) - 1;   // getting old page # 
-            lbl_PageNumber.Text = "" + pagenumber;
+            if (Convert.ToInt32( lbl_PageNumber.Text )<= 0)
+            {
+            }
+            else
+            {
+                int pagenumber = Convert.ToInt32(lbl_PageNumber.Text) - 1;   // getting old page # 
+                lbl_PageNumber.Text = "" + pagenumber;
+            }
 
         }
         public void refresh(PlaceHolder placeholder1, RadioButtonList radiobuttonlist, string currentTextboxSearch ,DropDownList numberOfViews , int pageNumber, Label lbl_Min, Label lbl_MAX)
         {
+            
             #region Display
             int min = Convert.ToInt32(numberOfViews.SelectedValue) * pageNumber;   // numbering  start 
             int max = Convert.ToInt32(numberOfViews.SelectedValue) + min;          // numbering to end 
-            lbl_Min.Text = "" + min;
+            lbl_Min.Text = "" + (min+1);
             lbl_MAX.Text = "" + max;
 
-            con_site.StartRead = (Convert.ToInt32(numberOfViews.SelectedValue) * pageNumber);     // startread
-            con_site.ProductLimitView = Convert.ToInt32( numberOfViews.SelectedValue);              // limit view 
-            con_site.Findproduct = currentTextboxSearch;  // TEST 
-            con_EDP.getEDPfromSearchManager2(con_site.SearchManagerURL); //1st  Create an edp using the search textbox this will generate a url for specified search
+            #region urlSite_SETUP
+
+            con_site.Findproduct = currentTextboxSearch;                        // product search   = q
+            con_site.ProductLimitView = Convert.ToInt32(numberOfViews.SelectedValue);              // ROW 
+            con_site.StartRead = (Convert.ToInt32(numberOfViews.SelectedValue) * pageNumber);     // start
+            con_EDP.getEDPfromSearchManager2(con_site.SearchManagerURL); //Using Url to get EDP
             con_site.Alldetails_Use_EDP = con_EDP.EdpString;
             con_dis.getDetails2(con_site.Alldetails_Use_EDP);
             con_dis.SelectedMultipleDisplay2(placeholder1);
 
             #endregion
+         
             #region DisplayBrand
 
             radiobuttonlist.ClearSelection();
@@ -120,8 +150,9 @@ namespace PCM_SEARCHPAGE_V2
             }
             radiobuttonlist.AutoPostBack = true;
             #endregion
+            #endregion
         }
 
         #endregion
-     }
+    }
 }

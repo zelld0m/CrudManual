@@ -11,10 +11,8 @@ namespace PCM_SEARCHPAGE_V2
     {
 
         Implementation imp = new Implementation();
-
-
-        //static string previewsSearch = "";
-        int pagenumber = 0;
+        
+        #region Function
         protected void Page_Load(object sender, EventArgs e)            // PAGELOAD
         {
 
@@ -59,55 +57,23 @@ namespace PCM_SEARCHPAGE_V2
         }
         protected void btn_PageNext_Click(object sender, EventArgs e)   // PAGE >>  
         {
-            pagenumber = Convert.ToInt32(lbl_PageNumber.Text);
-            int x = Convert.ToInt32(drpdwnlst_View.SelectedValue);   // getting the dropdownlist VALUE 
-            int numfound = Convert.ToInt32(lbl_NumFound.Text);
-
-            int maxproductview = pagenumber * x;                    //  list value * page
-            if (lbl_KeyWordSearch.Text == "None")
-            {
-
-            }
-            else
-            {
-                #region postback or REfresh
-                if (maxproductview < numfound)
-                {
-                    if (IsPostBack)
-                    {
-                        imp.nextPage(lbl_PageNumber, drpdwnlst_View);
-                        refresh();
-                    }
-                }
-                #endregion
-            }
-
-
+            imp.nextPage(lbl_PageNumber, drpdwnlst_View, lbl_KeyWordSearch, Convert.ToInt32(lbl_NumFound.Text));
+            refresh();
         }
         protected void Btn_PagePrevious_Click(object sender, EventArgs e)  // << PAGE
         {
-            if (lbl_PageNumber.Text == "0" || lbl_KeyWordSearch.Text == "None")
-            {}
-            else
-            {
-                if (IsPostBack)
-                {
-                    imp.previousPage(lbl_PageNumber, drpdwnlst_View);
-                    refresh();
-                }
-            }
-           
+            imp.previousPage(lbl_PageNumber, drpdwnlst_View);
+            refresh();
         }
         protected void refresh()    // REFRESH
         {
             if (lbl_KeyWordSearch.Text == "None")
-            {}
-            else 
+            { }
+            else
             {
                 if (IsPostBack)
                 {
-                    imp.refresh(PlaceHolder1, rdbtnlst_Brand, lbl_KeyWordSearch.Text,drpdwnlst_View,Convert.ToInt16( lbl_PageNumber.Text), lbl_Min, lbl_MAX);
-                   
+                    imp.refresh(PlaceHolder1, rdbtnlst_Brand, lbl_KeyWordSearch.Text, drpdwnlst_View, Convert.ToInt16(lbl_PageNumber.Text), lbl_Min, lbl_MAX);
                 }
             }
         }
@@ -115,5 +81,10 @@ namespace PCM_SEARCHPAGE_V2
         {
             refresh();
         }
+        protected void txt_Search_TextChanged(object sender, EventArgs e)  // only if entered   but it works if you type
+        {
+            //lnbtn_Search_Click(sender, e);
+        } 
+        #endregion
     }
 }

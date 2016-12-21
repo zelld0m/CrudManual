@@ -69,7 +69,7 @@
                                         </span>
                                     </div>
                                     <div class="input-group">
-                                        <asp:TextBox ID="txt_Search" runat="server" CssClass=" form-control" />
+                                        <asp:TextBox ID="txt_Search" runat="server" CssClass=" form-control" OnTextChanged="txt_Search_TextChanged" />
                                         <span class="input-group-btn">
                                             <asp:LinkButton ID="lnbtn_Search" runat="server" CssClass=" btn btn-success" OnClick="lnbtn_Search_Click">Search</asp:LinkButton>
                                         </span>

@@ -8,7 +8,7 @@ using System.Xml;
 
 namespace PCM_SEARCHPAGE_V2
 {
-    public class ControlDisplay
+    public class Control_Display
     {
         #region Declaration of Variable List
         List<String> Superstorage = new List<string>();
@@ -140,7 +140,7 @@ namespace PCM_SEARCHPAGE_V2
         //}
 
         #endregion
-        #region new  used
+        #region new  used   GET AND DISPLAY
         public void SelectedMultipleDisplay2(PlaceHolder placeholder1)
         {
             // save is an arraylist that contains EDP #
@@ -185,8 +185,8 @@ namespace PCM_SEARCHPAGE_V2
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("</br>"));
                 if(Image_url.ImageUrl== "NO IMAGE"){
-
-            }
+                    Image_url.ImageUrl = "https://upload.wikimedia.org/wikipedia/commons/a/ac/No_image_available.svg";
+                }
                 ph.Controls.Add(Image_url);
                 ph.Controls.Add(new LiteralControl("</br>"));
                 ph.Controls.Add(new LiteralControl("<label style='color: blue'> Price: "));
@@ -212,7 +212,7 @@ namespace PCM_SEARCHPAGE_V2
                 ph.Controls.Add(new LiteralControl("<label style='color: blue'> Manufacturer:</label> "));
                 ph.Controls.Add(label_Manufacturer);
                 ph.Controls.Add(new LiteralControl("</br>"));
-                ph.Controls.Add(new LiteralControl("<label style='color:red'>Availability: "));
+                ph.Controls.Add(new LiteralControl("<label style='color: blue'>Availability: "));
                 #region Availability Condition
                 if (label_Availability.Text == "Temporarily out of stock. Order today and we'll deliver when available.")
                 {

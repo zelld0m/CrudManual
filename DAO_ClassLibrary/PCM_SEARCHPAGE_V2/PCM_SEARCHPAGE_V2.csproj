@@ -401,7 +401,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
-    <Compile Include="ControlDisplay.cs" />
+    <Compile Include="Control_Display.cs" />
     <Compile Include="Controls_EDP.cs" />
     <Compile Include="Controls_URLSite.cs" />
     <Compile Include="Default.aspx.cs">

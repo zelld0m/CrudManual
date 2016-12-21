@@ -89,7 +89,6 @@ namespace PCM_SEARCHPAGE_V2
             {
                 return numfoundFromSearch;
             }
-
             set
             {
                 numfoundFromSearch = value;
