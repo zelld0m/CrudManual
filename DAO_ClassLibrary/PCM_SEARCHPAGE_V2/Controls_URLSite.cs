@@ -13,7 +13,7 @@ namespace PCM_SEARCHPAGE_V2
         private String findproduct;
         private int startRead;
         private int productLimitView = 10;
-        private int brandLimit;
+        private int brandLimit =10;
 
         #endregion
         #region GETTER SETTER
@@ -90,8 +90,6 @@ namespace PCM_SEARCHPAGE_V2
                 alldetails_Use_EDP = "http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + value + "&ignoreCatalog=true";
             }
         }
-
-      
         #endregion
 
     }

@@ -11,12 +11,15 @@ namespace PCM_SEARCHPAGE_V2
     public class Controls_EDP
     {
         #region Declaration
-
+        private List<string> testlist = new List<string>();
+        private List<int> testbrandcount = new List<int>();
         private List<int> all_edp;
         private List<int> search_EDP;
         private List<int> brandFiltered_EDP;
         private List<string> brandList;
         private List<string> tempoBrand;
+        private List<string> fullBrand = new List<string>();
+        private List<string> brandCount = new List<string>();
         private int numfoundFromSearch;
         private string edpString;
 
@@ -105,28 +108,36 @@ namespace PCM_SEARCHPAGE_V2
             {
                 edpString = value;
             }
-        } 
-        #endregion
-        #region SETTER
-        public  List<int> getEDPfromSearchManager() {
-            Controls_URLSite con_site = new Controls_URLSite();   
-         //   All_edp.Clear();
-
-            
-            string url =   con_site.SearchManagerURL;   // SERVICE MANAGER WAS USED 
-            System.Xml.XmlTextReader reader = new XmlTextReader(url);
-            reader.ReadToFollowing("result");
-            NumfoundFromSearch = Convert.ToInt32(reader.GetAttribute("numFound"));
-            reader.ReadToFollowing("int");
-            while (reader.GetAttribute("name") == "EDP")
+        }
+        public List<string> FullBrand
+        {
+            get
             {
-                All_edp.Add(Convert.ToInt32(reader.ReadElementString("int")));
-                reader.ReadToFollowing("int");
+                return fullBrand;
             }
-            return All_edp;
+
+            set
+            {
+                fullBrand = value;
+            }
+        }
+        public List<string> BrandCount
+        {
+            get
+            {
+                return brandCount;
+            }
+
+            set
+            {
+                brandCount = value;
+            }
         }
 
-
+        
+        #endregion
+        #region SETTER
+    
         public void getEDPfromSearchManager2(string SearchManagerURL)
         {
 
@@ -148,116 +159,30 @@ namespace PCM_SEARCHPAGE_V2
             All_edp = EDPLIST;
             EdpString = string.Join(",", EDPLIST);
         }
-
-
-        public void generateBrandList()    
+        #region  Unused GetALL Brand
+        public void AllBrand2(string SearchManagerURL)  // GET ALL BRAND   Use This to show all brand  
         {
-            if (brandList != null)
+            System.Xml.XmlTextReader reader = new XmlTextReader(SearchManagerURL);
+            reader.ReadToFollowing("lst");
+            reader.ReadToFollowing("lst");//reader.Skip();reader.Skip();
+            reader.ReadToFollowing("lst");
+            reader.ReadToFollowing("lst");
+            reader.ReadToFollowing("lst");
+            while (reader.Read())
             {
-                BrandList.Clear();
-            }
-            for (int i = 0; i < All_edp.Count; i++)
-            {
-                String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + All_edp[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
-                System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
-                string brandx = "";
-                int edp_tempo = 0;
-                //   StringComparison comp = StringComparison.OrdinalIgnoreCase;
-                while (reader.Read())
+                if ((reader.GetAttribute("name") == "Manufacturer"))
                 {
-                    while (reader.ReadToFollowing("edp"))
+                    
+                    while (reader.ReadToFollowing("int") && (reader.GetAttribute("name") != "true") && (reader.GetAttribute("name") != "false"))
                     {
-                        if (reader.Name == "edp")
-                        {
-                            edp_tempo = Convert.ToInt32(reader.ReadElementString("edp"));
-                        }
-                        if (reader.ReadToFollowing("manufacturer"))
-                        {
-                            brandx = reader.ReadElementString("manufacturer");
-                        }                        
-                        if (BrandList.Contains(brandx))
-                        {
-                        }
-                        else BrandList.Add(brandx);
-                        
+                        FullBrand.Add (Convert.ToString(reader.GetAttribute("name")));  // GOT ALL BRAND
+                        reader.Read();
+                        BrandCount.Add( reader.Value); // GOT ALL COUNT
                     }
                 }
             }
         }
-      
-        //public  void BrandSelected_Generate_EDP(string findBrand)
-        //{
-        //    if(TempoBrand != null)
-        //    {
-        //        TempoBrand.Clear();
-
-        //    }
-        //    if(brandFiltered_EDP != null)
-        //    {
-        //         BrandFiltered_EDP.Clear();
-        //    }
-         
-
-        //   //if (Search_EDP.Count == 0)
-        //    //{
-        //        Search_EDP = All_edp;
-        //   // }
-            
-        //    for (int i = 0; i < Search_EDP.Count; i++)
-        //    {
-        //        String inputurl = ("http://afs-sl-pservice01.afservice.org:8080/productservice2/getProductInfo/pcmall?edplist=" + Search_EDP[i] + "&ignoreCatalog=true"); //  + 6926988/*EDP*/ +
-        //        System.Xml.XmlTextReader reader = new XmlTextReader(inputurl);
-        //        string brandx = "";
-        //        int edp_tempo = 0;
-        //        //   StringComparison comp = StringComparison.OrdinalIgnoreCase;
-        //        while (reader.Read())
-        //        {
-        //            while (reader.ReadToFollowing("edp"))
-        //            {
-        //                if (reader.Name == "edp")
-        //                {
-        //                    edp_tempo = Convert.ToInt32(reader.ReadElementString("edp"));
-        //                }
-        //                if (reader.ReadToFollowing("manufacturer"))
-        //                {
-        //                    brandx = reader.ReadElementString("manufacturer");
-        //                }
-        //            }
-        //            if (brandx.ToLower().Contains(findBrand.ToLower()))
-        //            {
-        //                BrandFiltered_EDP.Add(edp_tempo);
-        //                if (TempoBrand.Contains(brandx))
-        //                {
-        //                }
-        //                else TempoBrand.Add(brandx);
-        //            }
-        //        }
-        //    }
-        //}
-
-
-        #region  Unused GetALL Brand
-        //public static List<String> AllBrand()  // GET ALL BRAND   Use This to show all brand  
-        //{
-           
-        //    System.Xml.XmlTextReader reader = new XmlTextReader(Controls_URL.SearchManagerPage_URL());
-        //    reader.ReadToFollowing("lst");
-        //    reader.ReadToFollowing("lst");
-        //    reader.ReadToFollowing("lst");
-        //    reader.ReadToFollowing("lst");
-        //    reader.ReadToFollowing("lst");
-        //    while (reader.Read())
-        //    {
-        //        if ((reader.GetAttribute("name") == "Manufacturer"))
-        //        {
-        //            while (reader.ReadToFollowing("int") && (reader.GetAttribute("name") != "true") && (reader.GetAttribute("name") != "false"))
-        //            {
-        //                BrandList.Add(Convert.ToString(reader.GetAttribute("name")));// show all EDP
-        //            }
-        //        }
-        //    }
-        //    return BrandList;
-        //}
+        
         #endregion
         #endregion
 

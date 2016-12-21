@@ -18,6 +18,8 @@ namespace PCM_SEARCHPAGE_V2
 
             if (!IsPostBack)
             {
+                imp.getGLOBALBrand(rdbtnlst_Brand);
+
             }
             lnkbtn_ClearFilter.Visible = false;
         }
