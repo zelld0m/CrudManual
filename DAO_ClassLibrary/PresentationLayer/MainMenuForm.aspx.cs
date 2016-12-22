@@ -54,7 +54,7 @@ namespace PresentationLayer
         }
         protected void Btn_Search_Click(object sender, EventArgs e)
         {
-            Response.Redirect("SearchForm.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);// Correct 
+            Response.Redirect("SearchForm2.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);// Correct 
         }
         protected void Btn_Delete_Click(object sender, EventArgs e)
         {

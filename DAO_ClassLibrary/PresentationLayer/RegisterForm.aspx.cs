@@ -7,9 +7,10 @@ using System.Web.UI.WebControls;
 
 namespace PresentationLayer
 {
+    
     public partial class RegisterForm : System.Web.UI.Page
     {
-
+        
         int Id;
         String Name;
         int AccessLevel;
@@ -53,7 +54,7 @@ namespace PresentationLayer
             Response.Redirect("MainMenuForm.aspx?id=" + Id + "&AccessLevel=" + AccessLevel + "&AuthorityName=" + AuthorityName + "&Name=" + Name + "", true);
 
         }
-
+        
         private void ClearControls()
         {
             foreach (Control c in Page.Controls)

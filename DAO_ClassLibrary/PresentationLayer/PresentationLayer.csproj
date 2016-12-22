@@ -105,6 +105,19 @@
     <Content Include="Bootstrap\js\bootstrap.min.js" />
     <Content Include="Bootstrap\js\jquery.js" />
     <Content Include="Bootstrap\js\npm.js" />
+    <Content Include="Content\css\bootstrap-3.css" />
+    <Content Include="Content\css\bootstrap-4.css" />
+    <Content Include="Content\css\bootstrap-flex.css" />
+    <Content Include="Content\css\bootstrap-grid.css" />
+    <Content Include="Content\css\bootstrap-reboot.css" />
+    <Content Include="Content\css\checkbox.css" />
+    <Content Include="Content\css\font-awesome.css" />
+    <Content Include="Content\css\site.css" />
+    <Content Include="Content\images\box.gif" />
+    <Content Include="Content\images\pcm-logo-lg.png" />
+    <Content Include="Content\js\bootstrap.js" />
+    <Content Include="Content\js\jquery-3.1.1.js" />
+    <Content Include="Content\js\tether.js" />
     <Content Include="DeleteForm.aspx" />
     <Content Include="LoginForm.aspx" />
     <Content Include="MainMenuForm.aspx" />
@@ -112,6 +125,22 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\fonts\FontAwesome.otf" />
+    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <Content Include="SearchForm2.aspx" />
+    <Content Include="Service References\ServiceReference1\PresentationLayer.ServiceReference1.CompositeType.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Content>
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
     <Content Include="WebForm1.aspx" />
     <Content Include="Bootstrap\css\bootstrap-theme.css.map" />
     <Content Include="Bootstrap\css\bootstrap-theme.min.css.map" />
@@ -122,6 +151,7 @@
     <Content Include="Bootstrap\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Bootstrap\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Site.Master" />
     <None Include="Service References\ServiceReference1\service.wsdl" />
     <None Include="Service References\ServiceReference1\service.xsd">
       <SubType>Designer</SubType>
@@ -135,7 +165,6 @@
     <None Include="Service References\ServiceReference1\ServiceLayer.xsd">
       <SubType>Designer</SubType>
     </None>
-    <Content Include="Site.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -148,17 +177,7 @@
     <Content Include="Properties\DataSources\System.Data.DataSet.datasource">
       <SubType>Designer</SubType>
     </Content>
-    <None Include="Service References\ServiceReference1\configuration91.svcinfo" />
-    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
     <Content Include="RegisterForm.aspx" />
-    <Content Include="SearchForm.aspx" />
-    <Content Include="Service References\ServiceReference1\PresentationLayer.ServiceReference1.CompositeType.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Content>
-    <None Include="Service References\ServiceReference1\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
     <Content Include="UpdateForm.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -170,6 +189,9 @@
     <Compile Include="Admin.aspx.designer.cs">
       <DependentUpon>Admin.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Controls_EDP.cs" />
+    <Compile Include="Controls_URLSite.cs" />
+    <Compile Include="Control_Display.cs" />
     <Compile Include="DeleteForm.aspx.cs">
       <DependentUpon>DeleteForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,6 +199,7 @@
     <Compile Include="DeleteForm.aspx.designer.cs">
       <DependentUpon>DeleteForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Implementation.cs" />
     <Compile Include="LoginForm.aspx.cs">
       <DependentUpon>LoginForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -199,12 +222,12 @@
     <Compile Include="RegisterForm.aspx.designer.cs">
       <DependentUpon>RegisterForm.aspx</DependentUpon>
     </Compile>
-    <Compile Include="SearchForm.aspx.cs">
-      <DependentUpon>SearchForm.aspx</DependentUpon>
+    <Compile Include="SearchForm2.aspx.cs">
+      <DependentUpon>SearchForm2.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="SearchForm.aspx.designer.cs">
-      <DependentUpon>SearchForm.aspx</DependentUpon>
+    <Compile Include="SearchForm2.aspx.designer.cs">
+      <DependentUpon>SearchForm2.aspx</DependentUpon>
     </Compile>
     <Compile Include="Service References\ServiceReference1\Reference.cs">
       <AutoGen>True</AutoGen>

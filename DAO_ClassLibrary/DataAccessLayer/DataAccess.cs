@@ -107,7 +107,6 @@ namespace DataAccessLayer
             con.Close();
         }
         #endregion DB_AuthorityEnd
-
         public DataSet validation(SqlCommand cmd , String _name , String _AuthorityName)
         {
     
@@ -127,8 +126,6 @@ namespace DataAccessLayer
             con.Close();
             return ds;
         }
-
-
         public DataSet View_ALLProduct()
         {
             SqlCommand cmd = con.CreateCommand();

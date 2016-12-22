@@ -10,7 +10,7 @@
 namespace PresentationLayer {
     
     
-    public partial class SearchForm {
+    public partial class SearchForm2 {
         
         /// <summary>
         /// form1 control.
@@ -40,40 +40,40 @@ namespace PresentationLayer {
         protected global::System.Web.UI.WebControls.Button Button2;
         
         /// <summary>
-        /// Label1 control.
+        /// Lbl_Id control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label Lbl_Id;
         
         /// <summary>
-        /// Label2 control.
+        /// Lbl_name control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label2;
+        protected global::System.Web.UI.WebControls.Label Lbl_name;
         
         /// <summary>
-        /// Label3 control.
+        /// Lbl_AuthorityName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::System.Web.UI.WebControls.Label Lbl_AuthorityName;
         
         /// <summary>
-        /// Label4 control.
+        /// Lbl_AccessLevel control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label4;
+        protected global::System.Web.UI.WebControls.Label Lbl_AccessLevel;
         
         /// <summary>
         /// lnkbtn_ClearFilter control.

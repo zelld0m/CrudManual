@@ -60,7 +60,6 @@ namespace BusinessLayer
         {
             return da.view_Authority();
         }
-
         public DataSet search_Authority(int _id)
         {
             return da.Search_Authority(cmd, _id);
@@ -78,11 +77,11 @@ namespace BusinessLayer
             da.Delete_Authority(cmd);
         }
         #endregion Crud_Authority
+
         public DataSet validation(String _name,String _AuthorityName)
         {
            return da.validation(cmd, _name, _AuthorityName);
         }
-
         public DataSet Search_Brand(String _BrandName)
         {
             return da.Search_Brand(cmd, _BrandName);
