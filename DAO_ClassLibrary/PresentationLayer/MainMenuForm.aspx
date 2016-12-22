@@ -22,6 +22,11 @@
 </head>
 <body>
     <form id="form1" runat="server">
+       
+
+
+
+        </container>
         <table class="auto-style1">
             <tr>
                 <td>&nbsp;</td>
@@ -31,7 +36,7 @@
                     <asp:Button ID="Btn_Admin" runat="server" OnClick="Btn_Admin_Click" style="height: 26px" Text="Admin" />
                 </td>
                 <td>
-                    <asp:Button ID="Btn_Logout" runat="server" OnClick="Btn_Logout_Click" Text="Logout" />
+                    <asp:Button ID="Btn_Logout"  runat="server" CssClass="auto-style4"  OnClick="Btn_Logout_Click" Text="Logout" />
                 </td>
             </tr>
         </table>

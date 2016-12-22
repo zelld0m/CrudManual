@@ -13,5 +13,15 @@ namespace PresentationLayer
         {
 
         }
+
+        protected void Btn_Logout_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void Btn_Back_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

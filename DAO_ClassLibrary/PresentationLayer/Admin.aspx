@@ -14,10 +14,10 @@
                     <table class="auto-style1">
                         <tr>
                             <td class="auto-style5">
-                                <asp:Button ID="Btn_Back" runat="server" OnClick="Button1_Click" Text="Back" />
+                                <asp:Button ID="Btn_Back" BorderStyle="Outset" CssClass="alert-warning" runat="server" OnClick="Button1_Click" Text="Back" />
                             </td>
                             <td>
-                    <asp:Button ID="Btn_Logout" runat="server" OnClick="Btn_Logout_Click" Text="Logout" />
+                    <asp:Button ID="Btn_Logout" CssClass="alert-danger" runat="server" OnClick="Btn_Logout_Click" Text="Logout" />
                             </td>
                         </tr>
                         <tr>

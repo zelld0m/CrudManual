@@ -17,7 +17,7 @@ namespace PresentationLayer
         protected void Page_Load(object sender, EventArgs e)
         {
             Id = Convert.ToInt32(Request.QueryString["id"]);
-            Name =  Convert.ToString(Request.QueryString["Name"]);
+            Name = Convert.ToString(Request.QueryString["Name"]);
             AccessLevel = Convert.ToInt32(Request.QueryString["AccessLevel"]);
             AuthorityName = Convert.ToString(Request.QueryString["AuthorityName"]);
 
@@ -34,7 +34,7 @@ namespace PresentationLayer
             GridView1.DataBind();
             GridView2.DataSource = svc.viewAuthority();
             GridView2.DataBind();
-          
+
         }
         #region Buttons
         protected void _BtnAdd_Click(object sender, EventArgs e)
@@ -45,7 +45,7 @@ namespace PresentationLayer
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "Required Box IS EMPTY  " + "');", true);
                 refresh();
 
-              
+
             }
             else
             {
@@ -55,7 +55,7 @@ namespace PresentationLayer
                 refresh();
             }
         }
-        protected void _BtnSearch_Click(object sender, EventArgs e)   
+        protected void _BtnSearch_Click(object sender, EventArgs e)
         {
 
             if (String.IsNullOrWhiteSpace(_Tb_ID.Text))
@@ -70,12 +70,12 @@ namespace PresentationLayer
                 GridView2.DataBind();
                 GridView1.DataSource = svc.SearchDummy(Convert.ToInt32(_Tb_ID.Text));
                 GridView1.DataBind();
-                
+
             }
         }
         protected void _BtnUpdate_Click(object sender, EventArgs e)
         {
-           _BtnSearch_Click(sender,e);   // Activate Button Search
+            _BtnSearch_Click(sender, e);   // Activate Button Search
             if (String.IsNullOrWhiteSpace(_Tb_ID.Text) || String.IsNullOrWhiteSpace(_Tb_Name.Text) || String.IsNullOrWhiteSpace(_Tb_AuthorityName.Text))
             {
                 ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "ID BOX IS EMPTY  " + "');", true);
@@ -91,7 +91,7 @@ namespace PresentationLayer
                     svc.UpdateAuthority(Convert.ToInt32(_Tb_ID.Text), Convert.ToInt32(DropDownList1.SelectedValue), _Tb_AuthorityName.Text);
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " UPDATE SUCCESSFUL " + "');", true);
                     refresh();
-                    
+
                 }
                 else if (GridView1.Rows.Count == 0)
                 {
@@ -103,16 +103,16 @@ namespace PresentationLayer
         }
         protected void _btnDelete_Click(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(_Tb_ID.Text  ))
+            if (String.IsNullOrWhiteSpace(_Tb_ID.Text))
             {
-                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "ID BOX IS EMPTY  " + "');", true);    
+                ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + "ID BOX IS EMPTY  " + "');", true);
                 refresh();
             }
-            else 
+            else
             {
-              
+
                 _BtnSearch_Click(sender, e); // using search for validation of records if Available
-                if (GridView1.Rows.Count > 0 && GridView2.Rows.Count >0)
+                if (GridView1.Rows.Count > 0 && GridView2.Rows.Count > 0)
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " Deleted " + "');", true);
                     svc.deleteDummy(Convert.ToInt32(_Tb_ID.Text));
@@ -120,10 +120,10 @@ namespace PresentationLayer
                     refresh();
                     ClearControls();
                 }
-                else if (GridView1.Rows.Count ==0)
+                else if (GridView1.Rows.Count == 0)
                 {
                     ClientScript.RegisterStartupScript(this.GetType(), "myalert", "alert('" + " NO ID FOUND " + "');", true);
-                }  
+                }
                 refresh();
             }
         }
@@ -135,7 +135,7 @@ namespace PresentationLayer
         protected void Btn_AuthorityName_Click(object sender, EventArgs e) // Refresh Button
         {
             refresh();
-           
+
         }
         private void ClearControls()
         {
@@ -169,7 +169,7 @@ namespace PresentationLayer
         protected void Button1_Click1(object sender, EventArgs e)
         {
             String status = String.Empty;
-           // PresentationLayer proxy = new ;
+            // PresentationLayer proxy = new ;
         }
     }
 }

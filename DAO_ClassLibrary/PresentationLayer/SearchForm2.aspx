@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="SearchForm2.aspx.cs" Inherits="PresentationLayer.SearchForm2" %>
+﻿<%@ Page Language="C#"   AutoEventWireup="true" CodeBehind="SearchForm2.aspx.cs" Inherits="PresentationLayer.SearchForm2" %>
 
 <!DOCTYPE html>
 

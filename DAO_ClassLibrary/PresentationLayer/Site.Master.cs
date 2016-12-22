@@ -13,5 +13,10 @@ namespace PresentationLayer
         {
 
         }
+
+        protected void Btn_Logout_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("LoginForm.aspx");
+        }
     }
 }
