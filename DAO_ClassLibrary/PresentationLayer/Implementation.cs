@@ -76,8 +76,8 @@ namespace PresentationLayer
         public void dropdownList_NumViews(DropDownList drop)  // Perfect
         {
             con_site.ProductLimitView = Convert.ToInt32(drop.SelectedValue);           // increase view
-
         }
+
         public void nextPage(Label lbl_PageNumber, DropDownList drpdwnlst_View,Label lbl_KeyWordSearch,int numFound)
         {
             //-----
@@ -94,15 +94,13 @@ namespace PresentationLayer
                 #region postback or REfresh
                 if (maxproductview < numFound)
                 {
-
                      pagenumber = Convert.ToInt32(lbl_PageNumber.Text) + 1;   // getting old page # 
                     lbl_PageNumber.Text = "" + pagenumber;
-
                 }
                 #endregion
             }
-        
         }
+
         public void previousPage(Label lbl_PageNumber, DropDownList drpdwnlst_View)
         {
             if (Convert.ToInt32( lbl_PageNumber.Text )<= 0)
@@ -113,8 +111,8 @@ namespace PresentationLayer
                 int pagenumber = Convert.ToInt32(lbl_PageNumber.Text) - 1;   // getting old page # 
                 lbl_PageNumber.Text = "" + pagenumber;
             }
-
         }
+
         public void refresh(PlaceHolder placeholder1, RadioButtonList radiobuttonlist, string currentTextboxSearch ,DropDownList numberOfViews , int pageNumber, Label lbl_Min, Label lbl_MAX)
         {
             
@@ -135,7 +133,6 @@ namespace PresentationLayer
             con_dis.SelectedMultipleDisplay2(placeholder1);                                     // Display product On placeholder
 
             #endregion
-         
             #region DisplayBrand
 
             radiobuttonlist.ClearSelection();                                                    // Clear Selection
@@ -153,6 +150,7 @@ namespace PresentationLayer
             #endregion
             #endregion
         }
+
         public void getGLOBALBrand(RadioButtonList radiobuttonlist)
         {
            con_site.Findproduct = "laptop";
