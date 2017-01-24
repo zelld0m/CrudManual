@@ -34,6 +34,7 @@ namespace PresentationLayer
             }
             radiobuttonlist.AutoPostBack = true;
         }
+
         public void searchButton(string search, RadioButtonList radiobuttonlist, PlaceHolder PlaceHolder1, Label numfound, Label pageNumber, Label lbl_Min, Label lbl_MAX, DropDownList drop)   // useThis as Clear Filter
         {
             #region DisplayProducts
@@ -73,6 +74,7 @@ namespace PresentationLayer
             pageNumber.Text = "" + 0;       // --------------------     TEST ------------------
             #endregion
         }
+
         public void dropdownList_NumViews(DropDownList drop)  // Perfect
         {
             con_site.ProductLimitView = Convert.ToInt32(drop.SelectedValue);           // increase view
@@ -153,8 +155,8 @@ namespace PresentationLayer
 
         public void getGLOBALBrand(RadioButtonList radiobuttonlist)
         {
-           con_site.Findproduct = "laptop";
-           con_EDP.AllBrand2(con_site.SearchManagerURL);  //1st  Create an edp using the search textbox this will generate a url for specified search
+            con_site.Findproduct = "laptop";
+            con_EDP.AllBrand2(con_site.SearchManagerURL);  //1st  Create an edp using the search textbox this will generate a url for specified search
 
             radiobuttonlist.ClearSelection();
             radiobuttonlist.Controls.Clear();
